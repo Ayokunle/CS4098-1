@@ -1,6 +1,6 @@
 <?php
 
-function helloWorld($value='')
+function helloWorld()
 {
 	echo "Hello World \n";
 }
