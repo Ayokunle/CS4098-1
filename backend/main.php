@@ -1,5 +1,9 @@
 <?php
 
-echo "Hello World \n";
+function helloWorld($value='')
+{
+	echo "Hello World \n";
+}
 
+helloWorld();
 ?>
