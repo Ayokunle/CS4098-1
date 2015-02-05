@@ -1,9 +1,11 @@
-<?php
 
-function helloWorld()
-{
-	echo "Hello World \n";
-}
+<?php 
 
-helloWorld();
+$name = $_POST["name"]);
+
+$fp = fopen('results.json', 'w');
+
+fwrite($fp, json_encode($name));
+
+fclose($fp);
 ?>
