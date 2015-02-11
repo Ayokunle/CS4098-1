@@ -13,6 +13,11 @@ $susy: (
   flow: rtl,
 );
 
+h1 {
+    font-family: "Times New Roman", Times, serif;
+	font-size: 40px;
+}
+
 .container {
 	@include clearfix;
 }
@@ -33,7 +38,7 @@ $susy: (
  * Styles for AG grids & Container
  */
 .container {
-  	background-color: #fbeecb;
+  	background-color: #00ff00;
 }
 
 .ag1, .ag3 {
