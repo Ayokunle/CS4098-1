@@ -14,7 +14,7 @@ CGI.dir=$(HTML.dir)/cgi-bin
 #
 
 # Static web pages and forms to be installed:
-PAGES=index.html, popup/index.html
+PAGES=index.html popup.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
