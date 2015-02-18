@@ -11,7 +11,7 @@ MODEL_PATH = "/root/peos-master/models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 
 os.chdir(EXECUTION_PATH)
-sampleJSON = '{ "event": "CREATE", "login_name": "henrik", "pathway_name": "test_commit.pml" }'
+sampleJSON = '{ "event": "GETLIST", "login_name": "henrik", "pathway_name": "test_commit.pml" }'
 server = socket.socket() 
 host = socket.gethostname()
 port = sys.argv[1]        
@@ -28,12 +28,17 @@ while True:
 	if request['event'] == "CREATE":
 		#peos [-l login_name] -c name_of_model_file
 		process = subprocess.Popen(["./peos", "-l", request['login_name'], "-c", MODEL_PATH + request['pathway_name']], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	
+	elif request['event'] == "GETLIST":
+		#peos [-l login_name] -i
+		process = subprocess.Popen(["./peos", "-l", request['login_name'], "-i"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		
 	else:
 		#peos [-l login_name] -n process_id action_name event
 		process = subprocess.Popen(["./peos", "-l", request['login_name'], "-n", request['process_id'], request['action_name'], request['event']], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	
 	output, error = process.communicate()
+
 	client.send(output)
 	client.send(error)
 	client.close()
