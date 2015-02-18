@@ -21,4 +21,9 @@ Run make in peos directory
 
 Clone git repository and run make in CS4098 directory
 
+#OpenEMR:
+ Go to OpenEMR location on server (http://localhost/openemr)
 
+ Sign in as admin
+
+ Create patients
