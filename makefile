@@ -1,8 +1,8 @@
 # This directory is where stuff served by Apache (for example, the
 # chatbot's 'home' page) goes.  
-HTML.dir=${HOME}/public_html/${PROJECT}
-CSS.dir=${HOME}/public_html/${PROJECT}/css/stylesheets
-JS.dir=${HOME}/public_html/${PROJECT}/js
+HTML.dir=${HOME}/var/www/${PROJECT}
+CSS.dir=${HOME}/var/www/${PROJECT}/css/stylesheets
+JS.dir=${HOME}/var/www/${PROJECT}/js
 # CGI scripts go here:
 CGI.dir=$(HTML.dir)/cgi-bin
 
