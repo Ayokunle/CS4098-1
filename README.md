@@ -11,6 +11,8 @@
 
   https://github.com/jnoll/peos (requries bison [for yacc] and flex)
   
+  OpenEMR (http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads)
+  
 #Installation:
 
 Install OpenEMR
