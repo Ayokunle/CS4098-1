@@ -6,40 +6,93 @@ nav { @include span(25%); }
 main { @include span(75%); }
 
 $susy: (
-  columns: 3,
-  gutter-position: inside,
-  math: fluid,
-  output: float,
-  flow: rtl,
+  global-box-sizing: border-box,
+  use-custom: (rem: true)
 );
 
+.container {
+    @include clearfix; 
+}
+
+.sidebar {
+  @include span(1);
+}
 
 h1 {
     font-family: "Times New Roman", Times, serif;
 	font-size: 40px;
 }
 
-.container {
-	@include clearfix;
+.ag1 {
+  @include span(2 of 10);
 }
 
-.ag1 {
-	@include span(2 of 10);
-}
 .ag2 {
-	@include span(6 of 10);
-	@include clearfix;
+  @include span(6 of 10);
+  @include clearfix; 
 }
+
 .ag3 {
-	@include span(2 of 10 last);
+  @include span(2 of 10 last);
 }
+
+
+
+.ag4 {
+  @include span(3 of 6);
+}
+
+.ag5 {
+  @include span(3 of 6 last);
+}
+
+.ag4,.ag5 {
+  @include span(3 of 6);
+}
+.ag5 {
+  @include last;
+}
+
+
+
+.ag6 {
+  @include span(3 of 6);
+}
+
+.ag7 {
+  @include span(3 of 6 last);
+}
+
+.ag6,.ag7 {
+  @include span(3 of 6);
+}
+.ag7 {
+  @include last;
+}
+
+
+
+.ag8 {
+  @include span(3 of 6);
+}
+
+.ag9 {
+  @include span(3 of 6 last);
+}
+
+.ag10 {
+  clear: both;
+}
+
+
 
 
 /**
  * Styles for AG grids & Container
  */
+
 .container {
-  	background-color: #00ff00;
+  background-color: #fbeecb;
 }
 
 .ag1, .ag3 {
@@ -65,6 +118,7 @@ h1 {
 .ag10 {
   background-color: #ea9fc3;
 }
+
 
 /**
  * Text Styles

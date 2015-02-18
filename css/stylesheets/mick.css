@@ -12,19 +12,19 @@ main {
   margin-right: 5.26316%;
 }
 
-/* line 16, ../sass/mick.scss */
+/* line 17, ../sass/mick.scss */
 h1 {
   font-family: "Times New Roman", Times, serif;
   font-size: 40px;
 }
 
-/* line 21, ../sass/mick.scss */
+/* line 22, ../sass/mick.scss */
 .container {
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 25, ../sass/mick.scss */
+/* line 26, ../sass/mick.scss */
 .ag1 {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -35,7 +35,7 @@ h1 {
   padding-left: 1%;
 }
 
-/* line 28, ../sass/mick.scss */
+/* line 29, ../sass/mick.scss */
 .ag2 {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -48,7 +48,7 @@ h1 {
   *zoom: 1;
 }
 
-/* line 32, ../sass/mick.scss */
+/* line 33, ../sass/mick.scss */
 .ag3 {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -62,37 +62,37 @@ h1 {
 /**
  * Styles for AG grids & Container
  */
-/* line 40, ../sass/mick.scss */
+/* line 41, ../sass/mick.scss */
 .container {
   background-color: #00ff00;
 }
 
-/* line 44, ../sass/mick.scss */
+/* line 45, ../sass/mick.scss */
 .ag1, .ag3 {
   background-color: #71dad2;
 }
 
-/* line 48, ../sass/mick.scss */
+/* line 49, ../sass/mick.scss */
 .ag2 {
   background-color: #fae7b3;
 }
 
-/* line 52, ../sass/mick.scss */
+/* line 53, ../sass/mick.scss */
 .ag4, .ag5, .ag8, .ag9 {
   background-color: #ee9e9c;
 }
 
-/* line 56, ../sass/mick.scss */
+/* line 57, ../sass/mick.scss */
 .ag6 {
   background-color: #f09671;
 }
 
-/* line 60, ../sass/mick.scss */
+/* line 61, ../sass/mick.scss */
 .ag7 {
   background-color: #f6d784;
 }
 
-/* line 64, ../sass/mick.scss */
+/* line 65, ../sass/mick.scss */
 .ag10 {
   background-color: #ea9fc3;
 }
@@ -100,7 +100,7 @@ h1 {
 /**
  * Text Styles
  */
-/* line 71, ../sass/mick.scss */
+/* line 72, ../sass/mick.scss */
 h2 {
   text-align: center;
   font-size: 1rem;
