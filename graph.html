@@ -17,8 +17,12 @@
 	</head>
 	<body class="container">
 
-		<div class="">
-			
+		<div class="processlist" ng-controller="actionController">
+			<div>{{actionName}}: {{actionState}}</div>
+			<button ng-click="start()">Start</button>
+			<button>Suspend</button>
+			<button ng-click="finish()">Finish</button>
+			<button>Abort</button>
 		</div>
 
 		<div class="nav">Navigation bar</div>
@@ -26,21 +30,5 @@
 	      <input type="text" ng-model="yourName" placeholder="Enter a name here">
 	      <h1>Hello, {{ yourName }}!</h1>
 	    </div>
-		</div>
-		<!-- /ag1 -->
-
-		<!-- ag4 to ag7 are nested within ag2.-->
-		<div class="ag ag2">
-		  <h2>AG 2</h2>
-		  <div class="ag ag4">
-		    <h2>AG 4</h2>
-		  </div>
-		  <div class="ag ag5">
-		    <h2>AG 5</h2>
-		  </div>
-		  <div class="ag ag6">
-		    <h2>AG 6</h2>
-		  </div>
-		</div>
 	</body>
 </html>

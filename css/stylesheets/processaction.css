@@ -14,8 +14,8 @@ main {
 
 /* line 15, ../sass/processaction.scss */
 .ag1 {
-  padding-right: 3.33333%;
   padding-left: 3.33333%;
+  padding-right: 3.33333%;
 }
 
 /* line 19, ../sass/processaction.scss */
@@ -24,9 +24,9 @@ main {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 50%;
-  float: right;
-  padding-right: 1%;
+  float: left;
   padding-left: 1%;
+  padding-right: 1%;
 }
 
 /* line 23, ../sass/processaction.scss */
@@ -35,9 +35,9 @@ main {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
-  float: right;
-  padding-right: 1%;
+  float: left;
   padding-left: 1%;
+  padding-right: 1%;
 }
 
 /*
