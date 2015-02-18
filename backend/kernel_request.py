@@ -1,13 +1,17 @@
 #!/usr/bin/python 
 
+import os
 import sys
+import json
 import socket             
-from subprocess import call
+import subprocess
 
 EXECUTION_PATH = "/root/peos-master/os/kernel/"
 MODEL_PATH = "/root/peos-master/models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 
+os.chdir(EXECUTION_PATH)
+sampleJSON = '{ "event": "GETLIST", "login_name": "henrik", "pathway_name": "test_commit.pml" }'
 server = socket.socket() 
 host = socket.gethostname()
 port = sys.argv[1]        
@@ -18,15 +22,23 @@ server.listen(MAX_CONNECTION_REQUEST_QUEUE)
 while True:
 	client, address = server.accept()
 	request = client.recv(1024)
+	#request = sampleJSON
+	request = json.loads(request)
 	
-	request = request.split("****")
-	
-	if request[0] == "CREATE":
+	if request['event'] == "CREATE":
 		#peos [-l login_name] -c name_of_model_file
-		call([EXECUTION_PATH + "./peos", "-l", request[1], "-c", MODEL_PATH + request[2]])
+		process = subprocess.Popen(["./peos", "-l", request['login_name'], "-c", MODEL_PATH + request['pathway_name']], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	
+	elif request['event'] == "GETLIST":
+		#peos [-l login_name] -i
+		process = subprocess.Popen(["./peos", "-l", request['login_name'], "-i"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		
-	elif request[0] == "START/FINISH/SUSPEND/ABORT":
+	else:
 		#peos [-l login_name] -n process_id action_name event
-		call([EXECUTION_PATH + "./peos", "-l", request[1], "-n", request[2], request[3], request[4]])
-		
+		process = subprocess.Popen(["./peos", "-l", request['login_name'], "-n", request['process_id'], request['action_name'], request['event']], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	
+	output, error = process.communicate()
+
+	client.send(output)
+	client.send(error)
 	client.close()
