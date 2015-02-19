@@ -27,8 +27,6 @@ while True:
 	
 	if request['event'] == "GET_TABLE":
 		data = {}
-		data['key'] = 'value'
-		json_data = json.dumps(data)
 
 		tree = etree.parse('process_table.xml')  
 
@@ -57,6 +55,7 @@ while True:
 					data['prov_resource.tag'] = prov_resource.tag
 					data['prov_resource.text'] = prov_resource.text
 		
-	client.send(error)
+	json_data = json.dumps(data)
+	client.send(json_data)
 	client.close()
 
