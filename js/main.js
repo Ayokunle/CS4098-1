@@ -1,29 +1,47 @@
 var app = angular.module('myApp', []);
 var popupapp = angular.module('popupApp', []);
 
-var hello_world = "hello"
-function test () {
-	hello_world = "hi world"
+var KERNEL_REQUEST_URL = 'backend/test_request.php';
+
+
+function action_controller($scope) {
+	$scope.action_name = "Action1";
+	$scope.action_state = "None";
+	$scope.patient_name = "TestPatient";
+	$scope.process_id = 0;
+
+	$scope.start = function() { peos_request($scope, "START") };
+	$scope.finish = function() { peos_request($scope, "FINISH") };
 }
 
-function actionController($scope) {
-	$scope.actionName = "Action1";
-	$scope.actionState = "None";
+function peos_request($scope, event_type) {
+	postdata = {"event" : event_type,
+				login_name : $scope.patient_name,
+				action_name : $scope.action_name,
+				process_id : $scope.process_id };
 
-	$scope.start = 
-		function process_start() {
-			xmlhttp=new XMLHttpRequest();
-			console.log("Starting " + $scope.actionName);
-			xmlhttp.onreadystatechange=function() {
-		  		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-		  			$scope.actionState = "Started";
-				}
-				else {
-					$scope.actionState = "Failed request";
-				}
-			}
+	done = function(result, status, xhr) {
+  		if (xhr.status=="200") {
 
-			xmlhttp.open("GET","backend/kernel_request.py",true);
-			xmlhttp.send();
-		};
+  			data = JSON.parse(result);
+
+  			$scope.action_state = data.new_state;
+  			$scope.$apply(); //Force update of ui
+		}
+		else {
+			console.log("Failed request");
+			$scope.action_state = "Failed request";
+		}
+	};
+
+	fail =  function(xhr, status, error) {
+		alert( xhr.responseText);
+		console.log("error: " + error);
+	};
+
+	$.post(
+		KERNEL_REQUEST_URL,
+		postdata)
+			.done(done)
+			.fail(fail);
 }
