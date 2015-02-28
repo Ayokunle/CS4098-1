@@ -16,6 +16,7 @@
 #Installation:
 
 Install OpenEMR
+  Download from http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads
 
 Run make in peos directory
 
