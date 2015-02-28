@@ -15,11 +15,12 @@ function action_controller($scope) {
 }
 
 function peos_request($scope, event_type) {
-	postdata = {"event" : event_type,
+	postdata = {event : event_type,
 				login_name : $scope.patient_name,
 				action_name : $scope.action_name,
 				process_id : $scope.process_id };
 
+	//The function that runs when the http request succeeds
 	done = function(result, status, xhr) {
   		if (xhr.status=="200") {
 
@@ -34,11 +35,13 @@ function peos_request($scope, event_type) {
 		}
 	};
 
+	//The function that runs when the http request fails
 	fail =  function(xhr, status, error) {
 		alert( xhr.responseText);
 		console.log("error: " + error);
 	};
 
+	//Send a post request
 	$.post(
 		KERNEL_REQUEST_URL,
 		postdata)

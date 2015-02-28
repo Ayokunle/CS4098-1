@@ -1,8 +1,11 @@
 # This directory is where stuff served by Apache (for example, the
 # chatbot's 'home' page) goes.  
-HTML.dir=${HOME}/var/www/${PROJECT}
-CSS.dir=${HOME}/var/www/${PROJECT}/css/stylesheets
-JS.dir=${HOME}/var/www/${PROJECT}/js
+HTML.dir=/var/www/${PROJECT}
+CSS.dir=/var/www/${PROJECT}/css/stylesheets
+JS.dir=/var/www/${PROJECT}/js
+OPENEMR.dir=/var/www/openemr
+INJECTION.dir=${OPENEMR}/main/main_screen.php
+
 # CGI scripts go here:
 CGI.dir=$(HTML.dir)/cgi-bin
 
@@ -87,6 +90,9 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	${INSTALL} --mode ${SCRIPT_MODE} ${SCRIPTS} ${CGI.dir}
 	${INSTALL} --mode ${FILE_MODE} htaccess ${CGI.dir}/.htaccess
+
+	#Inject popup code into openemr main screen
+	sed "s_</html>_<frame src='popup.html' name='test' scrolling='auto'/>\n&_" ${INJECTION.dir} > ${INJECTION.dir}
 
 # Make a distribution archive from the current workspace.
 # the 'distclean' dependency insures that the distribution is 
