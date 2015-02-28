@@ -3,26 +3,46 @@
 
 #Requirements:
 
-  make
- 
-  apache 2
-  
-  python 3.4.1
-
-  https://github.com/jnoll/peos (requries bison [for yacc] and flex)
-  
-  OpenEMR (http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads)
+- make
+- apache 2
+- python 3.4.1
+- https://github.com/jnoll/peos (requries bison [for yacc] and flex)
+- OpenEMR (http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads)
   
 #Installation:
 
-- Install OpenEMR
+To install OpenEMR:
+
 - Download from http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads
-- Run make in peos directory
-- Clone git repository and run make in CS4098 directory
+
+- Run **make** in peos directory
+- Clone git repository
+- Run **make** in CS4098 directory
+
+- Run the following commands:
+
+ ```bash
+ wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb
+ sudo apt-get update
+ sudo dpkg -i openemr_4.2.0-1_all.de
+ ```
+ If there was an error(s), then issue the following command (type 'Y' after): 
+
+ ```bash
+ sudo apt-get install -f
+ ```
+ 
+- If prompted, create a mysql root password (applicable if installing mysql server)
+- If prompted, enter your mysql root password (during openemr installion)
+- See more at: http://www.open-emr.org/wiki/index.php/OpenEMR_4.2.0_Ubuntu-Debian_Package_Installation#sthash.CTMZM8Vp.dpuf
 
 #OpenEMR:
 
-- Go to OpenEMR location on server - http://localhost/openemr/
-- Go to OpenEMR location on server (http://localhost/openemr)
+- Go to OpenEMR location on server 
+	- http://localhost/openemr/
+- Go to OpenEMR location on server 
+	- http://localhost/openemr
 - Sign in as admin
+	- username: admin
+	- password: pass
 - Create patients
