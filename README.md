@@ -13,16 +13,6 @@
 
 To install OpenEMR:
 
-- Download from http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads
-
-- Run **make** in peos directory
-- Clone this git repository
-	
-	```bash
-	git clone https://github.com/thysol/CS4098.git
-	```
-- Run **make** in CS4098 directory
-
 - Run the following commands:
 
  ```bash
