@@ -22,7 +22,11 @@ Run make in peos directory
 Clone git repository and run make in CS4098 directory
 
 #OpenEMR:
+<<<<<<< HEAD
  Go to OpenEMR location on server - http://localhost/openemr/
+=======
+ Go to OpenEMR location on server (http://localhost/openemr)
+>>>>>>> master
 
  Sign in as admin
 
