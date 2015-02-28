@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="openemr">
+	<table_structure name="patient_data">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="MUL" Extra="auto_increment" Comment="" />
+		<field Field="title" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="language" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="financial" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="fname" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="lname" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="mname" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="DOB" Type="date" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="street" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="postal_code" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="city" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="state" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="country_code" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="drivers_license" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="ss" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="occupation" Type="longtext" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="phone_home" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="phone_biz" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="phone_contact" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="phone_cell" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="pharmacy_id" Type="int(11)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="status" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="contact_relationship" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="date" Type="datetime" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="sex" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="referrer" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="referrerID" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="providerID" Type="int(11)" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="ref_providerID" Type="int(11)" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="email" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="email_direct" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="ethnoracial" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="race" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="ethnicity" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="interpretter" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="migrantseasonal" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="family_size" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="monthly_income" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="homeless" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="financial_review" Type="datetime" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="pubpid" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="pid" Type="bigint(20)" Null="NO" Key="PRI" Default="0" Extra="" Comment="" />
+		<field Field="genericname1" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="genericval1" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="genericname2" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="genericval2" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="hipaa_mail" Type="varchar(3)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="hipaa_voice" Type="varchar(3)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="hipaa_notice" Type="varchar(3)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="hipaa_message" Type="varchar(20)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="hipaa_allowsms" Type="varchar(3)" Null="NO" Key="" Default="NO" Extra="" Comment="" />
+		<field Field="hipaa_allowemail" Type="varchar(3)" Null="NO" Key="" Default="NO" Extra="" Comment="" />
+		<field Field="squad" Type="varchar(32)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="fitness" Type="int(11)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="referral_source" Type="varchar(30)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext1" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext2" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext3" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext4" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext5" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext6" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext7" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="usertext8" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist1" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist2" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist3" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist4" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist5" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist6" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="userlist7" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="pricelevel" Type="varchar(255)" Null="NO" Key="" Default="standard" Extra="" Comment="" />
+		<field Field="regdate" Type="date" Null="YES" Key="" Extra="" Comment="Registration Date" />
+		<field Field="contrastart" Type="date" Null="YES" Key="" Extra="" Comment="Date contraceptives initially used" />
+		<field Field="completed_ad" Type="varchar(3)" Null="NO" Key="" Default="NO" Extra="" Comment="" />
+		<field Field="ad_reviewed" Type="date" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="vfc" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="mothersname" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="guardiansname" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="allow_imm_reg_use" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="allow_imm_info_share" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="allow_health_info_ex" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="allow_patient_portal" Type="varchar(31)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="deceased_date" Type="datetime" Null="YES" Key="" Extra="" Comment="" />
+		<field Field="deceased_reason" Type="varchar(255)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="soap_import_status" Type="tinyint(4)" Null="YES" Key="" Extra="" Comment="1-Prescription Press 2-Prescription Import 3-Allergy Press 4-Allergy Import" />
+		<field Field="cmsportal_login" Type="varchar(60)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<key Table="patient_data" Non_unique="0" Key_name="pid" Seq_in_index="1" Column_name="pid" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="patient_data" Non_unique="1" Key_name="id" Seq_in_index="1" Column_name="id" Collation="A" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="patient_data" Engine="MyISAM" Version="10" Row_format="Dynamic" Rows="2" Avg_row_length="156" Data_length="312" Max_data_length="281474976710655" Index_length="3072" Data_free="0" Auto_increment="3" Create_time="2015-02-17 14:12:13" Update_time="2015-02-18 23:20:48" Collation="utf8_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_data name="patient_data">
+	<row>
+		<field name="id">1</field>
+		<field name="title">Mr.</field>
+		<field name="language"></field>
+		<field name="financial"></field>
+		<field name="fname">Mick</field>
+		<field name="lname">Healy</field>
+		<field name="mname">R</field>
+		<field name="DOB">2014-04-01</field>
+		<field name="street"></field>
+		<field name="postal_code"></field>
+		<field name="city"></field>
+		<field name="state"></field>
+		<field name="country_code"></field>
+		<field name="drivers_license">xoxo</field>
+		<field name="ss">Hi</field>
+		<field name="occupation">Mickmonger</field>
+		<field name="phone_home"></field>
+		<field name="phone_biz"></field>
+		<field name="phone_contact"></field>
+		<field name="phone_cell"></field>
+		<field name="pharmacy_id">0</field>
+		<field name="status">single</field>
+		<field name="contact_relationship"></field>
+		<field name="date">2015-02-17 15:25:25</field>
+		<field name="sex">Female</field>
+		<field name="referrer"></field>
+		<field name="referrerID"></field>
+		<field name="providerID">0</field>
+		<field name="ref_providerID">0</field>
+		<field name="email"></field>
+		<field name="email_direct"></field>
+		<field name="ethnoracial"></field>
+		<field name="race"></field>
+		<field name="ethnicity"></field>
+		<field name="interpretter"></field>
+		<field name="migrantseasonal"></field>
+		<field name="family_size"></field>
+		<field name="monthly_income"></field>
+		<field name="homeless"></field>
+		<field name="financial_review">0000-00-00 00:00:00</field>
+		<field name="pubpid">1234</field>
+		<field name="pid">1</field>
+		<field name="genericname1"></field>
+		<field name="genericval1"></field>
+		<field name="genericname2"></field>
+		<field name="genericval2"></field>
+		<field name="hipaa_mail"></field>
+		<field name="hipaa_voice"></field>
+		<field name="hipaa_notice"></field>
+		<field name="hipaa_message"></field>
+		<field name="hipaa_allowsms"></field>
+		<field name="hipaa_allowemail"></field>
+		<field name="squad"></field>
+		<field name="fitness">0</field>
+		<field name="referral_source"></field>
+		<field name="usertext1"></field>
+		<field name="usertext2"></field>
+		<field name="usertext3"></field>
+		<field name="usertext4"></field>
+		<field name="usertext5"></field>
+		<field name="usertext6"></field>
+		<field name="usertext7"></field>
+		<field name="usertext8"></field>
+		<field name="userlist1"></field>
+		<field name="userlist2"></field>
+		<field name="userlist3"></field>
+		<field name="userlist4"></field>
+		<field name="userlist5"></field>
+		<field name="userlist6"></field>
+		<field name="userlist7"></field>
+		<field name="pricelevel">standard</field>
+		<field name="regdate" xsi:nil="true" />
+		<field name="contrastart" xsi:nil="true" />
+		<field name="completed_ad">NO</field>
+		<field name="ad_reviewed" xsi:nil="true" />
+		<field name="vfc"></field>
+		<field name="mothersname"></field>
+		<field name="guardiansname"></field>
+		<field name="allow_imm_reg_use"></field>
+		<field name="allow_imm_info_share"></field>
+		<field name="allow_health_info_ex"></field>
+		<field name="allow_patient_portal"></field>
+		<field name="deceased_date">0000-00-00 00:00:00</field>
+		<field name="deceased_reason"></field>
+		<field name="soap_import_status" xsi:nil="true" />
+		<field name="cmsportal_login"></field>
+	</row>
+	<row>
+		<field name="id">2</field>
+		<field name="title">Mr.</field>
+		<field name="language"></field>
+		<field name="financial"></field>
+		<field name="fname">John</field>
+		<field name="lname">Smith</field>
+		<field name="mname"></field>
+		<field name="DOB">1992-02-18</field>
+		<field name="street"></field>
+		<field name="postal_code"></field>
+		<field name="city"></field>
+		<field name="state"></field>
+		<field name="country_code"></field>
+		<field name="drivers_license"></field>
+		<field name="ss">11484084</field>
+		<field name="occupation"></field>
+		<field name="phone_home"></field>
+		<field name="phone_biz"></field>
+		<field name="phone_contact"></field>
+		<field name="phone_cell"></field>
+		<field name="pharmacy_id">0</field>
+		<field name="status">married</field>
+		<field name="contact_relationship"></field>
+		<field name="date">2015-02-18 18:20:48</field>
+		<field name="sex">Male</field>
+		<field name="referrer"></field>
+		<field name="referrerID"></field>
+		<field name="providerID">0</field>
+		<field name="ref_providerID">0</field>
+		<field name="email"></field>
+		<field name="email_direct"></field>
+		<field name="ethnoracial"></field>
+		<field name="race"></field>
+		<field name="ethnicity"></field>
+		<field name="interpretter"></field>
+		<field name="migrantseasonal"></field>
+		<field name="family_size"></field>
+		<field name="monthly_income"></field>
+		<field name="homeless"></field>
+		<field name="financial_review">0000-00-00 00:00:00</field>
+		<field name="pubpid">2</field>
+		<field name="pid">2</field>
+		<field name="genericname1"></field>
+		<field name="genericval1"></field>
+		<field name="genericname2"></field>
+		<field name="genericval2"></field>
+		<field name="hipaa_mail"></field>
+		<field name="hipaa_voice"></field>
+		<field name="hipaa_notice"></field>
+		<field name="hipaa_message"></field>
+		<field name="hipaa_allowsms"></field>
+		<field name="hipaa_allowemail"></field>
+		<field name="squad"></field>
+		<field name="fitness">0</field>
+		<field name="referral_source"></field>
+		<field name="usertext1"></field>
+		<field name="usertext2"></field>
+		<field name="usertext3"></field>
+		<field name="usertext4"></field>
+		<field name="usertext5"></field>
+		<field name="usertext6"></field>
+		<field name="usertext7"></field>
+		<field name="usertext8"></field>
+		<field name="userlist1"></field>
+		<field name="userlist2"></field>
+		<field name="userlist3"></field>
+		<field name="userlist4"></field>
+		<field name="userlist5"></field>
+		<field name="userlist6"></field>
+		<field name="userlist7"></field>
+		<field name="pricelevel">standard</field>
+		<field name="regdate" xsi:nil="true" />
+		<field name="contrastart" xsi:nil="true" />
+		<field name="completed_ad">NO</field>
+		<field name="ad_reviewed" xsi:nil="true" />
+		<field name="vfc"></field>
+		<field name="mothersname"></field>
+		<field name="guardiansname"></field>
+		<field name="allow_imm_reg_use"></field>
+		<field name="allow_imm_info_share"></field>
+		<field name="allow_health_info_ex"></field>
+		<field name="allow_patient_portal"></field>
+		<field name="deceased_date">0000-00-00 00:00:00</field>
+		<field name="deceased_reason"></field>
+		<field name="soap_import_status" xsi:nil="true" />
+		<field name="cmsportal_login"></field>
+	</row>
+	</table_data>
+</database>
+</mysqldump>
