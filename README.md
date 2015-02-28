@@ -16,7 +16,11 @@ To install OpenEMR:
 - Download from http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads
 
 - Run **make** in peos directory
-- Clone git repository
+- Clone this git repository
+	
+	```bash
+	git clone https://github.com/thysol/CS4098.git
+	```
 - Run **make** in CS4098 directory
 
 - Run the following commands:
@@ -31,7 +35,7 @@ To install OpenEMR:
  ```bash
  sudo apt-get install -f
  ```
- 
+
 - If prompted, create a mysql root password (applicable if installing mysql server)
 - If prompted, enter your mysql root password (during openemr installion)
 - See more at: http://www.open-emr.org/wiki/index.php/OpenEMR_4.2.0_Ubuntu-Debian_Package_Installation#sthash.CTMZM8Vp.dpuf
