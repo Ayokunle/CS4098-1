@@ -75,6 +75,8 @@ test: build
 # won't have a repeatable, reliable build process.
 build: 
 	echo "build something"
+	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
+	sudo apt-get update sudo dpkg -i openemr_4.2.0-1_all.deb
 
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
