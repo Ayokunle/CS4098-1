@@ -1,5 +1,8 @@
-var popupapp = angular.module('popupApp', []);
+var app = angular.module('popupApp', ['ngRoute']);
 
-function injection_controller($scope) {
-	$scope.InjectLocation = "<p>Injection successful!</p>"
-}
+app.controller("injection_controller", function($scope, $sce) {
+	$.get("popup.html").done(function(data){
+		$scope.InjectLocation = $sce.trustAsHtml(data);
+		$scope.$digest();
+	});
+});
