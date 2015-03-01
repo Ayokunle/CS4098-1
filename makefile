@@ -1,8 +1,9 @@
-# This directory is where stuff served by Apache (for example, the
-# chatbot's 'home' page) goes.  
-HTML.dir=${HOME}/var/www/${PROJECT}
-CSS.dir=${HOME}/var/www/${PROJECT}/css/stylesheets
-JS.dir=${HOME}/var/www/${PROJECT}/js
+# This directory is where stuff served by Apache goes.  
+HTML.dir=/var/www/${PROJECT}
+CSS.dir=/var/www/${PROJECT}/css/stylesheets
+JS.dir=/var/www/${PROJECT}/js
+OPENEMR.dir=/var/www/openemr
+
 # CGI scripts go here:
 CGI.dir=$(HTML.dir)/cgi-bin
 
@@ -14,12 +15,12 @@ CGI.dir=$(HTML.dir)/cgi-bin
 #
 
 # Static web pages and forms to be installed:
-PAGES=index.html popup.html
+PAGES=index.html popup.html graph.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css
-JS=js/main.js
+CSS=mick.css graph.css ie.css processaction.css screen.css
+JS=js/main.js js/emrinjection.js
 
 #
 # Values for creating the distribution.
@@ -31,7 +32,7 @@ PROJECT=Shcyup
 RELEASE=0
 # The tar archive will be identified by version.  Increment this each
 # time you add new functionality.
-RELEASE_CANDIDATE=1
+RELEASE_CANDIDATE=3
 RELEASE_NAME=${PROJECT}_R${RELEASE}_rc${RELEASE_CANDIDATE}
 # Things to be excluded from the tar archive, after the workspace is cleaned.
 TAR_EXCLUDE=--exclude='.svn' --exclude='.git' --exclude ${RELEASE_NAME}.tar.gz
@@ -89,6 +90,8 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	${INSTALL} --mode ${SCRIPT_MODE} ${SCRIPTS} ${CGI.dir}
 	${INSTALL} --mode ${FILE_MODE} htaccess ${CGI.dir}/.htaccess
+	./inject.sh
+	
 
 # Make a distribution archive from the current workspace.
 # the 'distclean' dependency insures that the distribution is 
