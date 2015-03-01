@@ -18,7 +18,7 @@ To install OpenEMR:
  ```bash
  wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb
  sudo apt-get update
- sudo dpkg -i openemr_4.2.0-1_all.de
+ sudo dpkg -i openemr_4.2.0-1_all.deb
  ```
  If there was an error(s), then issue the following command (type 'Y' after): 
 
