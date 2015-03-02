@@ -4,9 +4,6 @@ CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
 OPENEMR.dir=/var/www/openemr
 
-# CGI scripts go here:
-CGI.dir=$(HTML.dir)/cgi-bin
-
 #####################################################################
 # Project-specific parameters that should not be modified by users.
 
@@ -19,7 +16,7 @@ PAGES=index.html popup.html graph.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=mick.css graph.css ie.css processaction.css screen.css
+CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
 JS=js/main.js js/emrinjection.js
 
 #
@@ -77,20 +74,18 @@ build:
 	echo "build something"
 	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
 	sudo apt-get update sudo dpkg -i openemr_4.2.0-1_all.deb
+	chmod +x inject.sh
 
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
 install: test ${WSGI.script}
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
-	${INSTALL} --mode ${DIR_MODE} -d ${CGI.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES} ${HTML.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	${INSTALL} --mode ${SCRIPT_MODE} ${SCRIPTS} ${CGI.dir}
-	${INSTALL} --mode ${FILE_MODE} htaccess ${CGI.dir}/.htaccess
-	./inject.sh
+	sudo bash ./inject.sh
 	
 
 # Make a distribution archive from the current workspace.
