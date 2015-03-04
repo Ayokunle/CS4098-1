@@ -2,6 +2,7 @@
 #Release tag: 0.3.0
 
 #Requirements:
+- The user installing the program must be able to use sudo
 - The following commands need to be run
 - sudo apt-get update (required for flex to install properly)
 - sudo apt-get install make
