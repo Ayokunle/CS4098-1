@@ -73,7 +73,9 @@ test: build
 build: 
 	echo "build something"
 	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
-	sudo apt-get update sudo dpkg -i openemr_4.2.0-1_all.deb
+	-sudo apt-get update
+	-sudo dpkg -i openemr_4.2.0-1_all.deb
+	-sudo apt-get install -f
 	chmod +x inject.sh
 
 # Install the application for deployment by Apache.
