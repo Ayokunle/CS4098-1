@@ -1,4 +1,4 @@
-# This directory is where stuff served by Apache goes.  
+# This directory is where stuff served by Apache goes.
 HTML.dir=/var/www/${PROJECT}
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
@@ -16,7 +16,7 @@ PAGES=index.html popup.html graph.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
+CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
 JS=js/main.js js/emrinjection.js
 
 #
