@@ -1,5 +1,4 @@
 #CS4098
-#Release tag: 0.3.0
 
 #Requirements:
 - The user installing the program must be able to use sudo
