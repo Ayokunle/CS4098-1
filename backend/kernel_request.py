@@ -9,8 +9,8 @@ import subprocess
 from urllib.parse import urlparse
 from http.server import BaseHTTPRequestHandler,HTTPServer
 
-EXECUTION_PATH = "/root/peos-master/os/kernel/"
-MODEL_PATH = "/root/peos-master/models/"
+EXECUTION_PATH = "/../peos-master/os/kernel/"
+MODEL_PATH = "/../peos-master/models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 PORT = 13930 
 
