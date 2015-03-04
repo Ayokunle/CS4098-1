@@ -4,17 +4,17 @@
 #Requirements:
 - The user installing the program must be able to use sudo
 - The following commands need to be run
-- sudo apt-get update (required for flex to install properly)
-- sudo apt-get install make
-- sudo apt-get install check
-- sudo apt-get install tcl-dev
-- sudo apt-get install libreadline-dev
-- sudo apt-get install lib32ncurses5-dev
-- sudo apt-get install apache2
-- sudo apt-get install python3
-- sudo apt-get install git
-- sudo apt-get install bison
-- sudo apt-get install flex
+	- sudo apt-get update (required for flex to install properly)
+	- sudo apt-get install make
+	- sudo apt-get install check
+	- sudo apt-get install tcl-dev
+	- sudo apt-get install libreadline-dev
+	- sudo apt-get install lib32ncurses5-dev
+	- sudo apt-get install apache2
+	- sudo apt-get install python3
+	- sudo apt-get install git
+	- sudo apt-get install bison
+	- sudo apt-get install flex
 - The following will be installed during setup:
 	- OpenEMR (will be installed via our makefile)
 	- The peos kernel at https://github.com/jnoll/peos (clone this as described below)
