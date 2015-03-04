@@ -11,14 +11,12 @@
 - sudo apt-get install lib32ncurses5-dev
 - sudo apt-get install apache2
 - sudo apt-get install python3
-- sudo apt-get install git (if using it to clone the peos repo)
-- sudo apt-get install bison (for yacc)
+- sudo apt-get install git
+- sudo apt-get install bison
 - sudo apt-get install flex
-- 
-- The following will be installed during setup
-- OpenEMR (will be installed via our makefile)
-- https://github.com/jnoll/peos (clone this as described below)
-- 
+- The following will be installed during setup:
+	- OpenEMR (will be installed via our makefile)
+	- The peos kernel at https://github.com/jnoll/peos (clone this as described below)
   
 #Installation:
 
@@ -33,7 +31,6 @@ To install:
 - If prompted, enter your mysql root password (during openemr installion)
 - Clone https://github.com/jnoll/peos so it will be located in CS4098/peos
 - Enter the CS4098/peos directory and run make
-
 
 #To verify OpenEMR is working:
 
