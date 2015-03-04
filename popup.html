@@ -8,10 +8,16 @@
 		<![endif]-->
 		<link href="css/stylesheets/popup.css" rel="stylesheet" type="text/css" />
 
+		<script src="http://code.jquery.com/jquery-2.1.3.js"></script>
 	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 	    <script src="js/main.js"></script>
+	    <script src="js/popup.js"></script>
+
 	</head>
 			
+
+
+
 	<div class="container">
 		<h1 align="center">Action Popup</h1>
 
@@ -24,7 +30,29 @@
 		<div class="ag ag2">
 		  <h2>Action</h2>
 		  <div class="ag ag4">
-		    <h2>Action 1</h2>
+		    <!--h2>Action 1</h2-->
+
+		    <li>
+		        <div class="expanded">
+					State:<br>
+					    READY<br>
+					Required resources:<br><br>
+					    patient_record = <br>
+					001671458.hl7<br><br>
+					Provided resources:<br>
+					    patient_symptoms = <br>
+					001671458.spt<br><br>
+
+					<button type="button" onclick="alert('Hello world!')">Start</button>
+					<button type="button" onclick="alert('Hello world!')">Suspend</button>
+					<button type="button" onclick="alert('Hello world!')">Finish</button>
+					<button type="button" onclick="alert('Hello world!')">Abort</button>
+				</div>
+		        <div class="collapsed">Action 1</div>
+		        <a href="javascript:void(0)" class="collapsed">Expand</a>
+		        <a href="javascript:void(0)" class="expanded">Collapse</a>
+		    </li>
+
 		  </div>
 		  <div class="ag ag5">
 		    <h2>??</h2>
