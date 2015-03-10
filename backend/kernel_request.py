@@ -9,10 +9,10 @@ import subprocess
 from urllib.parse import urlparse
 from http.server import BaseHTTPRequestHandler,HTTPServer
 
-EXECUTION_PATH = "/../peos/os/kernel/"
-MODEL_PATH = "/../peos/models/"
+#http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
+EXECUTION_PATH = "../peos/os/kernel/"
+MODEL_PATH = "../peos/models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
-PORT = 13930 
 
 os.chdir(EXECUTION_PATH)
 sampleJSON = '{ "event": "GETLIST", "login_name": "henrik", "pathway_name": "test_commit.pml" }'
@@ -33,6 +33,10 @@ class KernelRequest(BaseHTTPRequestHandler):
         elif request['event'][0] == "GETLIST":
             #peos [-l login_name] -i
             process = subprocess.Popen(["./peos", "-l", request['login_name'][0], "-i"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        
+        elif request['event'][0] == "DELETE":
+            #To delete a process: peos [-l login_name] -d pid
+            process = subprocess.Popen(["./peos", "-l", request['login_name'][0], "-d", request['process_id'][0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             
         else:
             #peos [-l login_name] -n process_id action_name event
@@ -58,6 +62,13 @@ class KernelRequest(BaseHTTPRequestHandler):
         print('Message')
 
 if __name__ == "__main__":
+    
+    if (len(sys.argv) < 2):
+        print ("Usage: python3 kernel_request.py <portnumber>")
+        sys.exit(1)
+        
+    PORT = int(sys.argv[1])
+    
     try:
         server = HTTPServer(('', PORT), KernelRequest)
         print('Started http server')
