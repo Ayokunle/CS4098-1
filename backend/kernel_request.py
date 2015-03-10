@@ -11,7 +11,7 @@ from http.server import BaseHTTPRequestHandler,HTTPServer
 
 #http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
 EXECUTION_PATH = "../peos/os/kernel/"
-MODEL_PATH = "../peos/models/"
+MODEL_PATH = "../../models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 
 os.chdir(EXECUTION_PATH)
@@ -29,7 +29,7 @@ class KernelRequest(BaseHTTPRequestHandler):
         if request['event'][0] == "CREATE":
             #peos [-l login_name] -c name_of_model_file
             process = subprocess.Popen(["./peos", "-l", request['login_name'][0], "-c", MODEL_PATH + request['pathway_name'][0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        
+            print ("./peos ", " -l " + request['login_name'][0] + " -c " + MODEL_PATH + request['pathway_name'][0])
         elif request['event'][0] == "GETLIST":
             #peos [-l login_name] -i
             process = subprocess.Popen(["./peos", "-l", request['login_name'][0], "-i"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -79,7 +79,7 @@ class KernelRequest(BaseHTTPRequestHandler):
             print(error)
             print("End")
             self.send_response(4096)
-            self.send_header("Content-type", "text/json")
+            self.send_header("Content-type", "text/html")
             self.end_headers()
             self.wfile.write(bytes(str(output), 'utf-8'))
 
