@@ -20,7 +20,7 @@ sampleJSON = '{ "event": "GETLIST", "login_name": "henrik", "pathway_name": "tes
 class KernelRequest(BaseHTTPRequestHandler):
     def do_GET(self):
         print (self.path)
-        request = urllib.parse.parse_qs(self.path[1:])
+        request = urllib.parse.parse_qs(self.path[2:])
         
         #request = sampleJSON
         #request = json.loads(request)
@@ -51,8 +51,11 @@ class KernelRequest(BaseHTTPRequestHandler):
                 if (len(process) > 4):
                     if (not first):
                         JSON += ", "
+                        JSON +=  process[1:3] + " : " + (process.split("/")[-1])
                         
-                    JSON +=  process[1:3] + " : " + (process.split("/")[-1])
+                    else:
+                        JSON +=  process[0:2] + " : " + (process.split("/")[-1])
+                        
                     first = False
                     
             self.send_response(4096)
