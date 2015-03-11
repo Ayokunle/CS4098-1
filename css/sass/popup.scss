@@ -24,64 +24,7 @@ h1 {
 }
 
 .ag1 {
-  @include span(2 of 10);
-}
-
-.ag2 {
-  @include span(6 of 10);
-  @include clearfix; 
-}
-
-.ag3 {
-  @include span(2 of 10 last);
-}
-
-
-
-.ag4 {
-  @include span(3 of 6);
-}
-
-.ag5 {
-  @include span(3 of 6 last);
-}
-
-.ag4,.ag5 {
-  @include span(3 of 6);
-}
-.ag5 {
-  @include last;
-}
-
-
-
-.ag6 {
-  @include span(3 of 6);
-}
-
-.ag7 {
-  @include span(3 of 6 last);
-}
-
-.ag6,.ag7 {
-  @include span(3 of 6);
-}
-.ag7 {
-  @include last;
-}
-
-
-
-.ag8 {
-  @include span(3 of 6);
-}
-
-.ag9 {
-  @include span(3 of 6 last);
-}
-
-.ag10 {
-  clear: both;
+  @include span(5 of 10);
 }
 
 

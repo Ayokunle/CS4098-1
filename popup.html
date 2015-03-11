@@ -13,35 +13,24 @@
 	    <script src="js/main.js"></script>
 	    <script src="js/popup.js"></script>
 
+	    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
 	</head>
 			
 
-
-
 	<div class="container">
-		<h1 align="center">Action Popup</h1>
+		<!--h1 align="center">Action Popup</h1-->
 
 		<div class="ag ag1">
-		  <h2>Action</h2>
-		</div>
-		<!-- /ag1 -->
-
-		<!-- ag4 to ag7 are nested within ag2.-->
-		<div class="ag ag2">
-		  <h2>Action</h2>
-		  <div class="ag ag4">
-		    <!--h2>Action 1</h2-->
-
-		    <li>
-		        <div class="expanded">
-					State:<br>
-					    READY<br>
-					Required resources:<br><br>
-					    patient_record = <br>
-					001671458.hl7<br><br>
-					Provided resources:<br>
-					    patient_symptoms = <br>
-					001671458.spt<br><br>
+		  <!--h2>Action</h2-->
+		  <li>
+		        <div class="expanded" ng-app="" ng-controller="actionController">
+					<div>State: {{ actionList.State }}</div>
+					<br>
+					<div>Required resources: {{ actionList.required_resources }}</div>
+					<br>
+					<div>Provided resources: {{ actionList.provided_resources }}</div>
+					<br>
 
 					<button type="button" onclick="alert('Hello world!')">Start</button>
 					<button type="button" onclick="alert('Hello world!')">Suspend</button>
@@ -52,33 +41,18 @@
 		        <a href="javascript:void(0)" class="collapsed">Expand</a>
 		        <a href="javascript:void(0)" class="expanded">Collapse</a>
 		    </li>
-
-		  </div>
-		  <div class="ag ag5">
-		    <h2>??</h2>
-		  </div>
-		  <div class="ag ag6">
-		    <h2>Action 2</h2>
-		  </div>
-		  <div class="ag ag7">
-		    <h2>??</h2>
-		  </div>
-		  <div class="ag ag8">
-		    <h2>Action 3</h2>
-		  </div>
-		  <div class="ag ag9">
-		    <h2>??</h2>
-		  </div>		</div>
-		  <!-- /ag7 -->
 		</div>
-		<!-- /ag2 -->
+		<!-- /ag1 -->
 
-		<!--div class="ag ag3">
-		  <h2>AG 3</h2>
-		</div-->
-		<!-- /ag3 -->
+		<script>
+			function actionController($scope) {
+			    /*$scope.state= "Ready";
+			    $scope.required_resource= "Doe";*/
+			    $scope.actionList = {State:"Ready", required_resources:"patient_record: 001671458.hl7", provided_resources:"patient_symptoms:001671458.spt"};
+			}
+		</script>
 
-		</div>
+	</div>
 		<!-- /container -->
 
 	<!--h1 align="center">Popup</h1-->
