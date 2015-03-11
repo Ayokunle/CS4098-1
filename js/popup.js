@@ -9,6 +9,7 @@ app.controller('pathway_controller', function($scope) {
                 $scope.active_pid = window.active_pid;
                 getPathway(window.active_pid, function(data){
                         $scope.result = data;
+                        $scope.$digest();
                 });
         };
 });
