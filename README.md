@@ -8,7 +8,10 @@
 	- sudo apt-get install check
 	- sudo apt-get install tcl-dev
 	- sudo apt-get install libreadline-dev
-	- sudo apt-get install lib32ncurses5-dev
+	- if 64 bit
+		- sudo apt-get install lib32ncurses5-dev
+	- if 32 bit
+		- sudo apt-get install libncurses5-dev
 	- sudo apt-get install apache2
 	- sudo apt-get install python3
 	- sudo apt-get install git
