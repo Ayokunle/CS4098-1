@@ -1,5 +1,5 @@
 # These directives allow CGI scripts to be run from this directory.
 Options +ExecCGI 
 AddHandler cgi-script .cgi 
-
+AddHandler cgi-script .py
 
