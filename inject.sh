@@ -3,6 +3,12 @@ INJECTION_FILE=${OPENEMR_DIR}/interface/main/main_title.php
 
 echo $INJECTION_FILE
 
+
+#TODO:
+# Change ALL occurrences of 'top.frames' to 'top.frames["popupframe"].frames'
+# Change ALL occurrences of 'top.window.document.Title' to 'top.frames["popupframe"].frames["Title"]'
+# Change ALL occurences of 'active_pid = ' to 'top.window.active_pid = active_pid = '
+
 SCRIPT_ANGULAR="<script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js\"></script>"
 SCRIPT_ANGULAR_SANITIZE="<script src=\"http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js\"></script>"
 SCRIPT_ANGULAR_ROUTE="<script src = \"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js\"></script>"

@@ -12,12 +12,12 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=index.html popup.html graph.html
+PAGES=index.php popup.html graph.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
-JS=js/main.js js/emrinjection.js
+CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/popup.css
+JS=js/main.js js/emrinjection.js js/patientPathway.js js/popup.js
 
 #
 # Values for creating the distribution.

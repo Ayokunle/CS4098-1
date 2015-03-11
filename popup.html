@@ -1,8 +1,16 @@
-<a href="#openModal">Open Modal</a>
+<div ng-controller="pathway_controller">
+<a href="#openModal" ng-click="openDialog()">Pathway Support</a>
 <div id="openModal" class="popupDialog">
-	<div>
-		<a href="#close" title="close" class="close">X</a>
-		<h2>Pathway Support</h2>
-		<p>This is the pathway support popup</p>
-	</div>
+        <div>
+                <a href="#close" title="close" class="close">X</a>
+                <h2>Pathway Support</h2>
+                <p>Active patient: {{active_pid}}</p>
+                <div>
+                {{result}}
+                </div>
+                <div>
+                {{action_name}} | {{action_state}} | {{action_script}}
+                </div>
+        </div>
+</div>
 </div>
