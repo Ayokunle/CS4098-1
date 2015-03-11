@@ -17,6 +17,8 @@
 	- sudo apt-get install git
 	- sudo apt-get install bison
 	- sudo apt-get install flex
+	- sudo apt-get install python-pip
+	- pip install https://github.com/hay/xml2json/zipball/master
 - The following will be installed during setup:
 	- OpenEMR (will be installed via our makefile)
 	- The peos kernel at https://github.com/jnoll/peos (clone this as described below)
