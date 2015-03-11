@@ -1,0 +1,558 @@
+<process_table>
+	<process pid="0" model="/root/peos-master/models/netbeans_req_release.pml" status="2">
+		<action name="ReviewNetBeans" state="BLOCKED">
+			<script>
+				&quot;available at &lt;a href=http://www.netbeans.org/devhome/docs/roadmap.html&gt;http://www.netbeans.org/devhome/docs/roadmap.html&lt;/a&gt;&quot;
+			</script>
+			<req_resource name="NetBeansRoadmap" value="{}" qualifier=""></req_resource>
+		</action>
+		<action name="SetReleaseDate" state="NONE">
+			<script>
+				&quot;&quot;
+			</script>
+			<req_resource name="NetBeansRoadmap" value="{}" qualifier=""></req_resource>
+			<prov_resource name="ReleaseDate" value="{}" qualifier=""></prov_resource>
+		</action>
+		<branch>
+			<sequence>
+				<action name="ReviewNetBeansVisionStatmenet" state="NONE">
+					<script>
+						&quot;available at &lt;a href=http://www.netbeans.org/about/os/vision.html&gt;http://www.netbeans.org/about/os/vision.html&lt;/a&gt;&quot;
+					</script>
+					<req_resource name="NetBeansVisionStatement" value="{}" qualifier=""></req_resource>
+				</action>
+			</sequence>
+			<sequence>
+				<action name="ReviewUncompletedMilestonesFromPreviousRelease" state="NONE">
+					<script>
+						&quot;Available at &lt;a href=http://www.netbeans.org/devhome/docs/releases/33/features/nb33-features-overview.html&gt;http://www.netbeans.org/devhome/docs/releases/33/features/nb33-features-overview.html&lt;/a&gt;&quot;
+					</script>
+					<req_resource name="PreviousVersionReleaseDocuments" value="{}" qualifier=""></req_resource>
+					<prov_resource name="ProspectiveFeaturesForUpcomingRelease" value="{}" qualifier=""></prov_resource>
+				</action>
+			</sequence>
+			<sequence>
+				<action name="ReviewIssuzillaFeatureRequests" state="NONE">
+					<script>
+						&quot;Go to &lt;a href=http://www.netbeans.org/devhome/issues.html&gt;Issuezilla&lt;/a&gt;
+	      				Search for feature requests/enhancements from current release&quot;
+					</script>
+					<req_resource name="IssuzillaIssueRepository" value="{}" qualifier=""></req_resource>
+					<prov_resource name="ProspectiveFeaturesForUpcomingRelease" value="{}" qualifier=""></prov_resource>
+				</action>
+			</sequence>
+		</branch>
+		<iteration>
+			<action name="CompileListOfPossibleFeaturesToInclude" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ProspectiveFeaturesGatheredFromIssuezilla" value="{}" qualifier=""></req_resource>
+<req_resource name="ProspectiveFeaturesFromPreviousReleases" value="{}" qualifier=""></req_resource>
+<prov_resource name="FeatureSetForUpcomingRelease" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="CategorizeFeaturesProposedFeatureSet" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeatureSetForUpcomingRelease" value="{}" qualifier=""></req_resource>
+<prov_resource name="WeightedListOfFeaturesToImplement" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SendMessageToCommunityForFeedback" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="WeightedListOfFeaturesToImplement" value="{}" qualifier=""></req_resource>
+</action>
+<action name="ReviewFeedbackFromCommunity" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeebackMessagesOnMail" value="{}" qualifier=""></req_resource>
+<prov_resource name="PotentialRevisionsToDevelopmentProposal" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ReviseProposalBasedOnFeedback" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="PotentialRevisionsToDevelopmentProposal" value="{}" qualifier=""></req_resource>
+<prov_resource name="RevisedDevelopmentProposal" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="PostFinalDevelopmentProposalToNetBeansWebsite" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="RevisedDevelopmentProposal" value="{}" qualifier=""></req_resource>
+<prov_resource name="FinalDevelopmentProposal" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="AssignDevelopersToCompleteProjectMilestones" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="RevisedDevelopmentProposal" value="{}" qualifier=""></req_resource>
+</action>
+<action name="SetFeatureFreezeDate" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseDate" value="{}" qualifier=""></req_resource>
+<prov_resource name="FeatureFreezeDate" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SetMilestoneCompletionDates" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeatureFreezeDate" value="{}" qualifier=""></req_resource>
+<req_resource name="ReleaseDate" value="{}" qualifier=""></req_resource>
+<prov_resource name="MilestoneCompletionDates" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="EmailSolicitationForReleaseManager" state="AVAILABLE">
+<script>
+&quot;&quot;
+</script>
+<prov_resource name="ReleaseManagerRequest" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="WaitForVolunteer" state="AVAILABLE">
+<script>
+&quot;Wait for community members to volunteer to be the release manager &quot;
+</script>
+</action>
+<iteration>
+<action name="SendCandidacyAnnouncement" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseManagerRequest" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseManagerCandidacyAnnouncement" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="EstablishReleaseManagerConsensus" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseManagerCandidacyAnnouncements" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseManagerDecision" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="AnnounceNewReleaseManager" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseManagerDecision" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseManagerAnnoucementToNbdevMailingList" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SolicitModuleMaintainersForInclusionInUpcomingRelease" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeatureFreezeDate" value="{}" qualifier=""></req_resource>
+<prov_resource name="ModuleInclusionNoticeToNbdevMailingList" value="{}" qualifier=""></prov_resource>
+</action>
+<iteration>
+<action name="ChangeBuildBranchName" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="CvsCodeRepository" value="{}" qualifier=""></req_resource>
+<prov_resource name="NewBranchForCurrentBuild" value="{}" qualifier=""></prov_resource>
+</action>
+<iteration>
+<action name="MakeInstallTarForEachPlatform" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="DevelopmentSourceForEachPlatform" value="{}" qualifier=""></req_resource>
+<prov_resource name="InstallExecutableTar" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="UploadInstallTarFilesToWebRepository" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="BinaryReleaseDownloads" value="{}" qualifier=""></req_resource>
+<req_resource name="WebRepository" value="{}" qualifier=""></req_resource>
+</action>
+<action name="UpdateWebPage" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ProjectWeb" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdatedWeb" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="MakeReadmeInstallationNotesAndChangelog" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ChangesFromIndividualModules" value="{}" qualifier=""></req_resource>
+<prov_resource name="README" value="{}" qualifier=""></prov_resource>
+<prov_resource name="InstallationNotes" value="{}" qualifier=""></prov_resource>
+<prov_resource name="Changelog" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SendReleaseNotificationToCommunityInvitingTheCommunityToDownloadAndTestIt" state="AVAILABLE">
+<script>
+&quot;&quot;
+</script>
+<prov_resource name="ReleaseNotice" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ExecuteAutomaticTestScripts" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="TestScripts" value="{}" qualifier=""></req_resource>
+<req_resource name="ReleaseBinaries" value="{}" qualifier=""></req_resource>
+<prov_resource name="TestResults" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ExecuteManualTestScripts" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseBinaries" value="{}" qualifier=""></req_resource>
+<prov_resource name="TestResults" value="{}" qualifier=""></prov_resource>
+</action>
+<iteration>
+<action name="ReportIssuesToIssuezilla" state="NONE">
+<script>
+&quot;Navigate to &lt;a href='http://www.netbeans.org/issues'&gt;Issuezilla&lt;/a&gt;.
+	      Select issue number/component to update	.&quot;
+</script>
+<req_resource name="TestResults" value="{}" qualifier=""></req_resource>
+<prov_resource name="IssuezillaEntry" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="UpdateStandingIssueStatus" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="St" value="{}" qualifier=""></req_resource>
+<req_resource name="ingIssueFromIssuezilla" value="{}" qualifier=""></req_resource>
+<req_resource name="TestResults" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdatedIssuezillaIssueRepository" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="PostBugStats" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="TestResults" value="{}" qualifier=""></req_resource>
+<prov_resource name="BugStatusReport" value="{}" qualifier=""></prov_resource>
+<prov_resource name="TestResultReport" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ExamineTestReport" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="TestReport" value="{}" qualifier=""></req_resource>
+<req_resource name="BugStats" value="{}" qualifier=""></req_resource>
+</action>
+<action name="WriteBugFix" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ErroneousSource" value="{}" qualifier=""></req_resource>
+<prov_resource name="PotentialBugFix" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="VerifyBugFix" state="NONE">
+<script>
+&quot;Compile source locally.
+	    Execute module locally.
+	    Perform automatic, manual unit testing.
+	    Perform automatic, manual integration testing.&quot;
+</script>
+<req_resource name="PotentialBugFix" value="{}" qualifier=""></req_resource>
+<prov_resource name="WorkingBugFix" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="CommitCodeToCvsCodeRepository" state="NONE">
+<script>
+&quot;Upload revised source to the CVS code repository in respective branch.&quot;
+</script>
+<req_resource name="WorkingBugFix" value="{}" qualifier=""></req_resource>
+<req_resource name="CVSCodeRepsository" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdatedSource" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="UpdateIssuezillaToReflectChanges" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="IssuezillaIssueRepository" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdateIssueStatus" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+</process>
+<process pid="1" model="/root/peos-master/models/netbeans_req_release.pml" status="2">
+<action name="ReviewNetBeans" state="BLOCKED">
+<script>
+&quot;available at &lt;a href=http://www.netbeans.org/devhome/docs/roadmap.html&gt;http://www.netbeans.org/devhome/docs/roadmap.html&lt;/a&gt;&quot;
+</script>
+<req_resource name="NetBeansRoadmap" value="{}" qualifier=""></req_resource>
+</action>
+<action name="SetReleaseDate" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="NetBeansRoadmap" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseDate" value="{}" qualifier=""></prov_resource>
+</action>
+<branch>
+<sequence>
+<action name="ReviewNetBeansVisionStatmenet" state="NONE">
+<script>
+&quot;available at &lt;a href=http://www.netbeans.org/about/os/vision.html&gt;http://www.netbeans.org/about/os/vision.html&lt;/a&gt;&quot;
+</script>
+<req_resource name="NetBeansVisionStatement" value="{}" qualifier=""></req_resource>
+</action>
+</sequence>
+<sequence>
+<action name="ReviewUncompletedMilestonesFromPreviousRelease" state="NONE">
+<script>
+&quot;Available at &lt;a href=http://www.netbeans.org/devhome/docs/releases/33/features/nb33-features-overview.html&gt;http://www.netbeans.org/devhome/docs/releases/33/features/nb33-features-overview.html&lt;/a&gt;&quot;
+</script>
+<req_resource name="PreviousVersionReleaseDocuments" value="{}" qualifier=""></req_resource>
+<prov_resource name="ProspectiveFeaturesForUpcomingRelease" value="{}" qualifier=""></prov_resource>
+</action>
+</sequence>
+<sequence>
+<action name="ReviewIssuzillaFeatureRequests" state="NONE">
+<script>
+&quot;Go to &lt;a href=http://www.netbeans.org/devhome/issues.html&gt;Issuezilla&lt;/a&gt;
+	      Search for feature requests/enhancements from current release&quot;
+</script>
+<req_resource name="IssuzillaIssueRepository" value="{}" qualifier=""></req_resource>
+<prov_resource name="ProspectiveFeaturesForUpcomingRelease" value="{}" qualifier=""></prov_resource>
+</action>
+</sequence>
+</branch>
+<iteration>
+<action name="CompileListOfPossibleFeaturesToInclude" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ProspectiveFeaturesGatheredFromIssuezilla" value="{}" qualifier=""></req_resource>
+<req_resource name="ProspectiveFeaturesFromPreviousReleases" value="{}" qualifier=""></req_resource>
+<prov_resource name="FeatureSetForUpcomingRelease" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="CategorizeFeaturesProposedFeatureSet" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeatureSetForUpcomingRelease" value="{}" qualifier=""></req_resource>
+<prov_resource name="WeightedListOfFeaturesToImplement" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SendMessageToCommunityForFeedback" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="WeightedListOfFeaturesToImplement" value="{}" qualifier=""></req_resource>
+</action>
+<action name="ReviewFeedbackFromCommunity" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeebackMessagesOnMail" value="{}" qualifier=""></req_resource>
+<prov_resource name="PotentialRevisionsToDevelopmentProposal" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ReviseProposalBasedOnFeedback" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="PotentialRevisionsToDevelopmentProposal" value="{}" qualifier=""></req_resource>
+<prov_resource name="RevisedDevelopmentProposal" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="PostFinalDevelopmentProposalToNetBeansWebsite" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="RevisedDevelopmentProposal" value="{}" qualifier=""></req_resource>
+<prov_resource name="FinalDevelopmentProposal" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="AssignDevelopersToCompleteProjectMilestones" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="RevisedDevelopmentProposal" value="{}" qualifier=""></req_resource>
+</action>
+<action name="SetFeatureFreezeDate" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseDate" value="{}" qualifier=""></req_resource>
+<prov_resource name="FeatureFreezeDate" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SetMilestoneCompletionDates" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeatureFreezeDate" value="{}" qualifier=""></req_resource>
+<req_resource name="ReleaseDate" value="{}" qualifier=""></req_resource>
+<prov_resource name="MilestoneCompletionDates" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="EmailSolicitationForReleaseManager" state="AVAILABLE">
+<script>
+&quot;&quot;
+</script>
+<prov_resource name="ReleaseManagerRequest" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="WaitForVolunteer" state="AVAILABLE">
+<script>
+&quot;Wait for community members to volunteer to be the release manager &quot;
+</script>
+</action>
+<iteration>
+<action name="SendCandidacyAnnouncement" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseManagerRequest" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseManagerCandidacyAnnouncement" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="EstablishReleaseManagerConsensus" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseManagerCandidacyAnnouncements" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseManagerDecision" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="AnnounceNewReleaseManager" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseManagerDecision" value="{}" qualifier=""></req_resource>
+<prov_resource name="ReleaseManagerAnnoucementToNbdevMailingList" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SolicitModuleMaintainersForInclusionInUpcomingRelease" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="FeatureFreezeDate" value="{}" qualifier=""></req_resource>
+<prov_resource name="ModuleInclusionNoticeToNbdevMailingList" value="{}" qualifier=""></prov_resource>
+</action>
+<iteration>
+<action name="ChangeBuildBranchName" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="CvsCodeRepository" value="{}" qualifier=""></req_resource>
+<prov_resource name="NewBranchForCurrentBuild" value="{}" qualifier=""></prov_resource>
+</action>
+<iteration>
+<action name="MakeInstallTarForEachPlatform" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="DevelopmentSourceForEachPlatform" value="{}" qualifier=""></req_resource>
+<prov_resource name="InstallExecutableTar" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="UploadInstallTarFilesToWebRepository" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="BinaryReleaseDownloads" value="{}" qualifier=""></req_resource>
+<req_resource name="WebRepository" value="{}" qualifier=""></req_resource>
+</action>
+<action name="UpdateWebPage" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ProjectWeb" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdatedWeb" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="MakeReadmeInstallationNotesAndChangelog" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ChangesFromIndividualModules" value="{}" qualifier=""></req_resource>
+<prov_resource name="README" value="{}" qualifier=""></prov_resource>
+<prov_resource name="InstallationNotes" value="{}" qualifier=""></prov_resource>
+<prov_resource name="Changelog" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="SendReleaseNotificationToCommunityInvitingTheCommunityToDownloadAndTestIt" state="AVAILABLE">
+<script>
+&quot;&quot;
+</script>
+<prov_resource name="ReleaseNotice" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ExecuteAutomaticTestScripts" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="TestScripts" value="{}" qualifier=""></req_resource>
+<req_resource name="ReleaseBinaries" value="{}" qualifier=""></req_resource>
+<prov_resource name="TestResults" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ExecuteManualTestScripts" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ReleaseBinaries" value="{}" qualifier=""></req_resource>
+<prov_resource name="TestResults" value="{}" qualifier=""></prov_resource>
+</action>
+<iteration>
+<action name="ReportIssuesToIssuezilla" state="NONE">
+<script>
+&quot;Navigate to &lt;a href='http://www.netbeans.org/issues'&gt;Issuezilla&lt;/a&gt;.
+	      Select issue number/component to update	.&quot;
+</script>
+<req_resource name="TestResults" value="{}" qualifier=""></req_resource>
+<prov_resource name="IssuezillaEntry" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="UpdateStandingIssueStatus" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="St" value="{}" qualifier=""></req_resource>
+<req_resource name="ingIssueFromIssuezilla" value="{}" qualifier=""></req_resource>
+<req_resource name="TestResults" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdatedIssuezillaIssueRepository" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+<action name="PostBugStats" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="TestResults" value="{}" qualifier=""></req_resource>
+<prov_resource name="BugStatusReport" value="{}" qualifier=""></prov_resource>
+<prov_resource name="TestResultReport" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="ExamineTestReport" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="TestReport" value="{}" qualifier=""></req_resource>
+<req_resource name="BugStats" value="{}" qualifier=""></req_resource>
+</action>
+<action name="WriteBugFix" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="ErroneousSource" value="{}" qualifier=""></req_resource>
+<prov_resource name="PotentialBugFix" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="VerifyBugFix" state="NONE">
+<script>
+&quot;Compile source locally.
+	    Execute module locally.
+	    Perform automatic, manual unit testing.
+	    Perform automatic, manual integration testing.&quot;
+</script>
+<req_resource name="PotentialBugFix" value="{}" qualifier=""></req_resource>
+<prov_resource name="WorkingBugFix" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="CommitCodeToCvsCodeRepository" state="NONE">
+<script>
+&quot;Upload revised source to the CVS code repository in respective branch.&quot;
+</script>
+<req_resource name="WorkingBugFix" value="{}" qualifier=""></req_resource>
+<req_resource name="CVSCodeRepsository" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdatedSource" value="{}" qualifier=""></prov_resource>
+</action>
+<action name="UpdateIssuezillaToReflectChanges" state="NONE">
+<script>
+&quot;&quot;
+</script>
+<req_resource name="IssuezillaIssueRepository" value="{}" qualifier=""></req_resource>
+<prov_resource name="UpdateIssueStatus" value="{}" qualifier=""></prov_resource>
+</action>
+</iteration>
+</process>
+</process_table>
