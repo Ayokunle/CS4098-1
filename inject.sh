@@ -13,5 +13,5 @@ sed -i 's/top.window.document.Title/top.frames["popupframe"].frames["Title"]/g' 
 sed -i 's/top.window.document.Title/top.frames["popupframe"].frames["Title"]/g' /var/www/openemr/interface/main/left_nav.php
 
 sed -i 's/active_pid = /top.window.active_pid = active_pid = /g' /var/www/openemr/interface/main/left_nav.php
-sed -i 's/var top.window.active_pid = /top.window.active_pid/g' /var/www/openemr/interface/main/left_nav.php
+sed -i 's/var top.window.active_pid = /top.window.active_pid = /g' /var/www/openemr/interface/main/left_nav.php
 
