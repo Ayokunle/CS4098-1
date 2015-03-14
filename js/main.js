@@ -1,10 +1,8 @@
-var app = angular.module('myApp', []);
-var popupapp = angular.module('popupApp', []);
+var actionApp = angular.module('actionApp', ['ngRoute']);
 
-var KERNEL_REQUEST_URL = 'backend/test_request.php';
+var KERNEL_REQUEST_URL = ':13930';
 
-
-function action_controller($scope) {
+actionApp.controller('action_controller', function($scope) {
 	$scope.action_name = "Action1";
 	$scope.action_state = "None";
 	$scope.patient_name = "TestPatient";
@@ -12,14 +10,15 @@ function action_controller($scope) {
 
 	$scope.start = function() { peos_request($scope, "START") };
 	$scope.finish = function() { peos_request($scope, "FINISH") };
-}
+});
 
 function peos_request($scope, event_type) {
-	postdata = {"event" : event_type,
+	getdata = {event : event_type,
 				login_name : $scope.patient_name,
 				action_name : $scope.action_name,
 				process_id : $scope.process_id };
 
+	//The function that runs when the http request succeeds
 	done = function(result, status, xhr) {
   		if (xhr.status=="200") {
 
@@ -34,14 +33,16 @@ function peos_request($scope, event_type) {
 		}
 	};
 
+	//The function that runs when the http request fails
 	fail =  function(xhr, status, error) {
 		alert( xhr.responseText);
 		console.log("error: " + error);
 	};
 
-	$.post(
+	//Send a get request
+	$.get(
 		KERNEL_REQUEST_URL,
-		postdata)
+		getdata)
 			.done(done)
 			.fail(fail);
 }
