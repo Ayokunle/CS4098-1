@@ -1,15 +1,11 @@
-var app
-if (app == null)
-        app = angular.module('popupApp', ['ngRoute']);
-
-app.controller('pathway_controller', function($scope) {
-        console.log("Starting pathway controller");
-        $scope.openDialog = function() {
-                console.log(window.active_pid);
-                $scope.active_pid = window.active_pid;
-                getPathway(window.active_pid, function(data){
-                        $scope.result = data;
-                        $scope.$digest();
-                });
-        };
+$(document).ready(function() {
+    $(".expanded").hide();
+    
+    $(".expanded, .collapsed").click(function() {
+        $(this).parent().children(".expanded, .collapsed").toggle();
+   	});
 });
+
+//var actionList = {State:"Ready", required_resources:{patient_record:"001671458.hl7"}, provided_resources:{patient_symptoms:"001671458.spt"}};
+
+//var actionList = {State:"Ready", required_resources:"001671458.hl7", provided_resources:{patient_symptoms:"001671458.spt"}};
