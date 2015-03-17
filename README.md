@@ -1,8 +1,20 @@
 #CS4098
 
+#Installation:
+- Go to where you want the program to be installed
+- Run "sudo apt-get install git"
+- Enter the CS4098 directory and run "sudo chmod +x install32.sh"
+	- Do "sudo chmod +x install64.sh" instead if using 64 bit
+- Run "sudo ./install32.sh"
+	- "sudo ./install64.sh" if 64 bit
+- This script will now install all dependencies then install the program
+- Answer "yes" to all confirmation prompts
+- You may be prompted to create and/or enter a MySQL root password, please do so
+- If you want to install dependencies manually, see the below section
+
 #Requirements:
 - The user installing the program must be able to use sudo
-- The following commands need to be run
+- The following commands need to be run (if not using our install script)
 	- sudo apt-get update (required for flex to install properly)
 	- sudo apt-get install make
 	- sudo apt-get install check
@@ -19,23 +31,6 @@
 	- sudo apt-get install flex
 	- sudo apt-get install python-pip
 	- sudo pip install https://github.com/hay/xml2json/zipball/master
-- The following will be installed during setup:
-	- OpenEMR (will be installed via our makefile)
-	- The peos kernel at https://github.com/jnoll/peos (clone this as described below)
-  
-#Installation:
-
-To install:
-- Run all commands given above to install dependencies
-- Go to where you want to install the program
-- Clone the https://github.com/thysol/CS4098 repo
-- Enter the CS4098 folder
-- Run "sudo make install"
-- If OpenEMR has not been installed it will now download and install
-- If prompted, create a mysql root password (applicable if installing mysql server)
-- If prompted, enter your mysql root password (during openemr installion)
-- Clone https://github.com/jnoll/peos so it will be located in CS4098/peos
-- Enter the CS4098/peos directory and run make
 
 #To verify OpenEMR is working:
 
