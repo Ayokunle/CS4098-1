@@ -91,7 +91,7 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${APP} ${APP.dir}
-    dos2unix setupCGI.sh
+	dos2unix setupCGI.sh
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
 
