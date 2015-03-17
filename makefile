@@ -79,6 +79,7 @@ build:
 	-sudo dpkg -i openemr_4.2.0-1_all.deb
 	-sudo apt-get install -f
 	chmod +x inject.sh
+    chmod +x setupCGI.sh
 
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
