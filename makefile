@@ -17,7 +17,7 @@ PAGES=popup.html app/actions/actions.html app/pathways/pathways.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathway.css
+CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathways.css
 JS=js/popup.js
 APP=app/pathways/pathwaycontroller.js app/actions/actioncontroller.js
 
