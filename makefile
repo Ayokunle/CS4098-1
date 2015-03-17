@@ -13,7 +13,7 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=index.php popup.html app/actions/actions.html app/pathways/pathways.html
+PAGES=popup.html app/actions/actions.html app/pathways/pathways.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
@@ -79,8 +79,7 @@ build:
 	-sudo dpkg -i openemr_4.2.0-1_all.deb
 	-sudo apt-get install -f
 	chmod +x inject.sh
-    chmod +x setupCGI.sh
-
+	chmod +x setupCGI.sh
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
 install: test ${WSGI.script}
