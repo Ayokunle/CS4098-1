@@ -88,7 +88,7 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	sudo bash ./inject.sh
-	
+	sudo bash ./setupCGI.sh
 
 # Make a distribution archive from the current workspace.
 # the 'distclean' dependency insures that the distribution is 
