@@ -1,31 +1,16 @@
 OPENEMR_DIR=/var/www/openemr
-INJECTION_FILE=${OPENEMR_DIR}/interface/main/main_title.php
+INJECTION_FILE=${OPENEMR_DIR}/interface/patient_file/summary/demographics.php
+PROJECT=Shcyup
 
-echo $INJECTION_FILE
+INJECT_AFTER_LINE="<?php echo htmlspecialchars(xl('Issues'),ENT_NOQUOTES); ?></a>"
+INJECTED_LINE1="\n|"
+INJECTED_LINE2="<a href=\"/Shcyup/pathways.html?patient_id=<?php echo \$pid;?>\" class='iframe large_modal' onclick='top.restoreSession()'>"
+INJECTED_LINE3="<?php echo htmlspecialchars(xl('Pathway Support'),ENT_NOQUOTES); ?></a>"
 
+S1=`grep -c "$INJECTED_LINE3" "$INJECTION_FILE"`
 
-#TODO:
-# Change ALL occurrences of 'top.frames' to 'top.frames["popupframe"].frames'
-# Change ALL occurrences of 'top.window.document.Title' to 'top.frames["popupframe"].frames["Title"]'
-# Change ALL occurences of 'active_pid = ' to 'top.window.active_pid = active_pid = '
-
-SCRIPT_ANGULAR="<script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js\"></script>"
-SCRIPT_ANGULAR_SANITIZE="<script src=\"http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js\"></script>"
-SCRIPT_ANGULAR_ROUTE="<script src = \"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js\"></script>"
-SCRIPT_INJECT="<script src=\"/js/emrinjection.js\"></script>"
-
-POPUP_CSS="<link href=\"css/stylesheets/popup.css\" rel=\"stylesheet\" type=\"text/css\" />"
-
-echo "Injecting popup code"
-
-#Inject popup app declaration into openemr main title frame
-sed -e "s@<html>@<html ng-app=\"popupApp\" />@" $INJECTION_FILE > $INJECTION_FILE.temp && mv $INJECTION_FILE.temp $INJECTION_FILE
-
-#Inject popup scripts into openemr main title frame
-sed -e "s@</head>@${SCRIPT_ANGULAR}\n${SCRIPT_ANGULAR_SANITIZE}\n${SCRIPT_ANGULAR_ROUTE}\n${SCRIPT_INJECT}\n&@" ${INJECTION_FILE} > ${INJECTION_FILE}.temp && mv ${INJECTION_FILE}.temp ${INJECTION_FILE}
-
-#Inject popup html into openemr main title frame
-sed -e "s@</html>@<div ng-controller=\"injection_controller\" ng-bind-html=\"InjectLocation\"></div>\n&@" ${INJECTION_FILE} > ${INJECTION_FILE}.temp && mv ${INJECTION_FILE}.temp ${INJECTION_FILE}
-
-#Inject popup css into openemr main title frame
-sed -e "s@<head>@&${POPUP_CSS}@" ${INJECTION_FILE} > ${INJECTION_FILE}.temp && mv ${INJECTION_FILE}.temp ${INJECTION_FILE}
+#echo "if"
+if [[ ${S1} < 1 ]]; then
+        #echo "sed -i \"s:${INJECT_AFTER_LINE}:&${INJECTED_LINE1}\n${INJECTED_LINE2}\n${INJECTED_LINE3}:g\" $INJECTION_FILE"
+        sed -i "s:${INJECT_AFTER_LINE}:&${INJECTED_LINE1}\n${INJECTED_LINE2}\n${INJECTED_LINE3}:g" $INJECTION_FILE
+fi
