@@ -1,6 +1,7 @@
 # This directory is where stuff served by Apache goes. 	
 HTML.dir=/var/www/${PROJECT}
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
+APP.dir=/var/www/${PROJECT}/app
 JS.dir=/var/www/${PROJECT}/js
 OPENEMR.dir=/var/www/openemr
 
@@ -12,12 +13,13 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=index.php popup.html graph.html
+PAGES=index.php popup.html app/actions/actions.html app/pathways/pathways.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
-JS=js/main.js js/emrinjection.js js/patientPathway.js js/popup.js
+CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathway.css
+JS=js/popup.js
+APP=app/pathways/pathwaycontroller.js app/actions/actioncontroller.js
 
 #
 # Values for creating the distribution.
@@ -84,9 +86,11 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES} ${HTML.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
+	${INSTALL} --mode ${FILE_MODE} ${APP} ${APP.dir}
     dos2unix setupCGI.sh
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
