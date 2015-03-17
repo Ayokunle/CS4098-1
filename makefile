@@ -1,4 +1,4 @@
-# This directory is where stuff served by Apache goes.
+# This directory is where stuff served by Apache goes. 	
 HTML.dir=/var/www/${PROJECT}
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
