@@ -1,5 +1,5 @@
 //Constants
-var KERNEL_REQUEST_URL = "../../test/kernel_request.php";
+var KERNEL_REQUEST_URL = "cgi-bin/kernel_request.py";
 //Error constants
 var ERROR = "error"
 var ERROR_CODE = "error_code"
