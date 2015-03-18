@@ -12,13 +12,12 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=popup.html app/actions/actions.html app/pathways/pathways.html
+PAGES=popup.html actions.html pathways.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
 CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathways.css
-JS=js/popup.js
-APP=app/pathways/pathwaycontroller.js app/actions/actioncontroller.js
+JS=js/popup.js js/pathwaycontroller.js js/actionacontroller.js
 
 #
 # Values for creating the distribution.
@@ -86,7 +85,6 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES} ${HTML.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${APP} ${APP.dir}
 	dos2unix setupCGI.sh
 	sudo bash ./inject.sh
 	
