@@ -1,36 +1,38 @@
 #CS4098
-#Release tag: 0.3.0
+
+#Installation:
+- Go to where you want the program to be installed
+- Run "sudo apt-get install git"
+- Enter the CS4098 directory and run "sudo chmod +x install32.sh"
+	- Do "sudo chmod +x install64.sh" instead if using 64 bit
+- Run "sudo ./install32.sh"
+	- "sudo ./install64.sh" if 64 bit
+- This script will now install all dependencies then install the program
+- Answer "yes" to all confirmation prompts
+- You may be prompted to create and/or enter a MySQL root password, please do so
+- If you want to install dependencies manually, see the below section
 
 #Requirements:
+- The user installing the program must be able to use sudo
+- The following commands need to be run (if not using our install script)
+	- sudo apt-get update (required for flex to install properly)
+	- sudo apt-get install make
+	- sudo apt-get install check
+	- sudo apt-get install tcl-dev
+	- sudo apt-get install libreadline-dev
+	- if 64 bit
+		- sudo apt-get install lib32ncurses5-dev
+	- if 32 bit
+		- sudo apt-get install libncurses5-dev
+	- sudo apt-get install apache2
+	- sudo apt-get install python3
+	- sudo apt-get install git
+	- sudo apt-get install bison
+	- sudo apt-get install flex
+	- sudo apt-get install python-pip
+	- sudo pip install https://github.com/hay/xml2json/zipball/master
 
-- make
-- apache 2
-- python 3.4.1
-- https://github.com/jnoll/peos (requries bison [for yacc] and flex)
-- OpenEMR (http://www.open-emr.org/wiki/index.php/OpenEMR_Downloads)
-  
-#Installation:
-
-To install OpenEMR:
-
-- Run the following commands:
-
- ```bash
- wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb
- sudo apt-get update
- sudo dpkg -i openemr_4.2.0-1_all.deb
- ```
- If there was an error(s), then issue the following command (type 'Y' after): 
-
- ```bash
- sudo apt-get install -f
- ```
-
-- If prompted, create a mysql root password (applicable if installing mysql server)
-- If prompted, enter your mysql root password (during openemr installion)
-- See more at: http://www.open-emr.org/wiki/index.php/OpenEMR_4.2.0_Ubuntu-Debian_Package_Installation#sthash.CTMZM8Vp.dpuf
-
-#OpenEMR:
+#To verify OpenEMR is working:
 
 - Go to OpenEMR location on server 
 	- http://localhost/openemr/
@@ -40,3 +42,7 @@ To install OpenEMR:
 	- username: admin
 	- password: pass
 - Create patients
+
+#To verify peos is working
+
+- Go to CS4098/peos/os/kernel and run "./peos -h" and it should display a list of possible commands

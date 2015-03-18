@@ -1,4 +1,4 @@
-# This directory is where stuff served by Apache goes.  
+# This directory is where stuff served by Apache goes. 	
 HTML.dir=/var/www/${PROJECT}
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
@@ -63,7 +63,7 @@ what:
 # The 'test' rule should run any unit tests, but because it depends on
 # 'build', it will build the system first.
 test: build
-
+	python3 test/parse_xml_process_table_test.py
 
 # The 'build' rule should do things like compile any code, 
 # create a database if necessary, etc.
@@ -73,9 +73,11 @@ test: build
 build: 
 	echo "build something"
 	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
-	sudo apt-get update sudo dpkg -i openemr_4.2.0-1_all.deb
+	-sudo apt-get update
+	-sudo dpkg -i openemr_4.2.0-1_all.deb
+	-sudo apt-get install -f
 	chmod +x inject.sh
-
+	chmod +x setupCGI.sh
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
 install: test ${WSGI.script}
@@ -87,7 +89,7 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	dos2unix setupCGI.sh
 	sudo bash ./inject.sh
-	
+	sudo bash ./setupCGI.sh
 
 # Make a distribution archive from the current workspace.
 # the 'distclean' dependency insures that the distribution is 
