@@ -55,8 +55,8 @@ elif request.getvalue('event') == "GETLIST_PEOS":
                     
     JSON += "}"
             
-    print "Content-type:text/json\r\n\r\n"
-    print JSON
+    print ("Content-type:text/json\r\n\r\n")
+    print (JSON)
     
 elif request.getvalue('event') == "GETLIST":
     #python3 process_xml_parser.py <login_name>
@@ -72,8 +72,8 @@ elif request.getvalue('event') == "GETLIST":
     except:
         data = '{"error": "User does not exist", "error_code" : 1}'
     
-    print "Content-type:text/json\r\n\r\n"
-    print data
+    print ("Content-type:text/json\r\n\r\n")
+    print (data)
         
 elif request.getvalue('event') == "DELETE":
     #To delete a process: peos [-l login_name] -d pid
@@ -91,5 +91,5 @@ if (request.getvalue('event') != "GETLIST" and request.getvalue('event') != "GET
     print(error)
     print("End")
        
-    print "Content-type:text/html\r\n\r\n"
-    print output
+    print ("Content-type:text/html\r\n\r\n")
+    print (output)
