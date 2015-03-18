@@ -22,7 +22,7 @@ request = cgi.FieldStorage()
 
 if request.getvalue('event') == "CREATE":
     #peos [-l login_name] -c name_of_model_file
-    process = subprocess.Popen(["./peos", "-l", request['login_name'][0], "-c", MODEL_PATH + request['pathway_name'][0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-c", MODEL_PATH + request.getvalue('pathway_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #print ("./peos ", " -l " + request['login_name'][0] + " -c " + MODEL_PATH + request['pathway_name'][0])
 
 elif request.getvalue('event') == "GETLIST_PEOS":
