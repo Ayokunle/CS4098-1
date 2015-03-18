@@ -16,8 +16,8 @@ PAGES=popup.html actions.html pathways.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathways.css
-JS=js/popup.js js/pathwaycontroller.js js/actionacontroller.js
+CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathways.css
+JS=js/popup.js js/pathwaycontroller.js js/actioncontroller.js
 
 #
 # Values for creating the distribution.
@@ -70,6 +70,10 @@ test: build
 # be created and populated here.  DO NOT do this by hand else you
 # won't have a repeatable, reliable build process.
 build: 
+
+# Install the application for deployment by Apache.
+# install -d creates a directory if necessary.
+install:
 	echo "build something"
 	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
 	-sudo apt-get update
@@ -77,9 +81,6 @@ build:
 	-sudo apt-get install -f
 	chmod +x inject.sh
 	chmod +x setupCGI.sh
-# Install the application for deployment by Apache.
-# install -d creates a directory if necessary.
-install:
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
