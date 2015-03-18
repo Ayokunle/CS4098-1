@@ -65,7 +65,7 @@ what:
 # The 'test' rule should run any unit tests, but because it depends on
 # 'build', it will build the system first.
 test: build
-
+	python3 test/parse_xml_process_table_test.py
 
 # The 'build' rule should do things like compile any code, 
 # create a database if necessary, etc.
