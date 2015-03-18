@@ -11,7 +11,7 @@ import cgi, cgitb
 
 #http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
 EXECUTION_PATH = "CS4098/peos/os/kernel/"
-MODEL_PATH = "CS4098/peos/models/"
+MODEL_PATH = "../../models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
