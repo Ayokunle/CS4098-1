@@ -84,6 +84,7 @@ else:
     process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-n", request.getvalue('process_id'), request.getvalue('action_name'), request.getvalue('event')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
 if (request.getvalue('event') != "GETLIST" and request.getvalue('event') != "GETLIST_PEOS"):
+    print ("Content-type:text/json\r\n\r\n")
     print("Waiting for process to finish")
     output, error = process.communicate()
     print("Process finished")
