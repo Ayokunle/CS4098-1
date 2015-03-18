@@ -1,6 +1,6 @@
 var actionApp = angular.module('actionApp', ['ngRoute']);
 
-var KERNEL_REQUEST_URL = '../../test/kernel_request.php';
+var KERNEL_REQUEST_URL = '../test/kernel_request.php';
 
 actionApp.controller('action_controller', function($scope) {
 	$scope.action_name = "Action1";
