@@ -23,6 +23,7 @@
 	- Run "python3 create_process_test.py"
 	- Run "python3 parse_xml_process_table_test.py"
 	- If it is able to receive a request from the server it means the CGI scripts are working and can contact peos
+    - To make a request to "Start action", "Finish action", "Abort action" or "Suspend action": <IP/domain name of server>/cgi-bin/kernel_request.py/?event=<event>&login_name=<login_name>&process_id=<process_id>&action_name=<action_name>
 
 #Requirements:
 - Tested only on Ubuntu 12.04 32bit
