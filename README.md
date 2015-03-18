@@ -15,7 +15,7 @@
 
 #How to use
 - To view pathway support popup
-	- Go to go localhost/openemr and log in
+	- Go to http://localhost/openemr/ and log in
 	- Create a patient
 	- Click "Pathway Support" in the patient view screen
 - To test backend functionality
@@ -25,6 +25,7 @@
 	- If it is able to receive a request from the server it means the CGI scripts are working and can contact peos
 
 #Requirements:
+- Tested only on Ubuntu 12.04 32bit
 - The user installing the program must be able to use sudo
 - The following commands need to be run (if not using our install script)
 	- sudo apt-get update (required for flex to install properly)
