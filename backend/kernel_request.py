@@ -83,7 +83,7 @@ else:
     #peos [-l login_name] -n process_id action_name event
     process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-n", request.getvalue('process_id'), request.getvalue('action_name'), request.getvalue('event')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
-if (request['event'][0] != "GETLIST" and request['event'][0] != "GETLIST_PEOS"):
+if (request.getvalue('event') != "GETLIST" and request.getvalue('event') != "GETLIST_PEOS"):
     print("Waiting for process to finish")
     output, error = process.communicate()
     print("Process finished")
