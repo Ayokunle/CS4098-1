@@ -64,6 +64,7 @@ what:
 # 'build', it will build the system first.
 test: build
 	python3 test/parse_xml_process_table_test.py
+	python3 test/create_process_test.py
 
 # The 'build' rule should do things like compile any code, 
 # create a database if necessary, etc.
