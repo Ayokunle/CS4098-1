@@ -12,7 +12,7 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=popup.html actions.html pathways.html
+PAGES=popup.html actions.html pathways.html test/kernel_request.php
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
