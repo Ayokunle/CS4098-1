@@ -13,6 +13,17 @@
 - You may be prompted to create and/or enter a MySQL root password, please do so
 - If you want to install dependencies manually, see the below section
 
+#How to use
+- To view pathway support popup
+	- Go to go localhost/openemr and log in
+	- Create a patient
+	- Click "Pathway Support" in the patient view screen
+- To test backend functionality
+	- Enter CS4098/test directory
+	- Run "python3 create_process_test.py"
+	- Run "python3 parse_xml_process_table_test.py"
+	- If it is able to receive a request from the server it means the CGI scripts are working and can contact peos
+
 #Requirements:
 - The user installing the program must be able to use sudo
 - The following commands need to be run (if not using our install script)
