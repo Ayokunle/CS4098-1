@@ -38,56 +38,71 @@ h1 {
   margin-right: 2.04082%;
 }
 
+/* line 30, ../sass/popup.scss */
+li {
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* line 37, ../sass/popup.scss */
+.READY {
+  background-color: #00FF00;
+}
+
+/* line 43, ../sass/popup.scss */
+.BLOCKED {
+  background-color: #FF0000;
+}
+
+/* line 49, ../sass/popup.scss */
+.NONE {
+  background-color: #FFFFFF;
+}
+
 /**
  * Styles for AG grids & Container
  */
-/* line 37, ../sass/popup.scss */
-.container {
+/*.container {
   background-color: #fbeecb;
 }
 
-/* line 41, ../sass/popup.scss */
 .ag1, .ag3 {
   background-color: #71dad2;
 }
 
-/* line 45, ../sass/popup.scss */
+
 .ag2 {
   background-color: #fae7b3;
 }
 
-/* line 49, ../sass/popup.scss */
-.ag4, .ag5, .ag8, .ag9 {
+.ag4,.ag5,.ag8,.ag9 {
   background-color: #ee9e9c;
 }
 
-/* line 53, ../sass/popup.scss */
 .ag6 {
   background-color: #f09671;
 }
 
-/* line 57, ../sass/popup.scss */
 .ag7 {
   background-color: #f6d784;
 }
 
-/* line 61, ../sass/popup.scss */
 .ag10 {
   background-color: #ea9fc3;
-}
-
+}*/
 /**
  * Text Styles
  */
-/* line 69, ../sass/popup.scss */
+/* line 94, ../sass/popup.scss */
 h2 {
   text-align: center;
   font-size: 1rem;
   font-weight: normal;
   padding-top: 1.8rem;
   padding-bottom: 1.8rem;
+}
 
-/* line 1, ../sass/popup.scss */
+/* line 102, ../sass/popup.scss */
 .popupDialog {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
@@ -104,13 +119,13 @@ h2 {
   pointer-events: none;
 }
 
-/* line 17, ../sass/popup.scss */
+/* line 118, ../sass/popup.scss */
 .popupDialog:target {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* line 22, ../sass/popup.scss */
+/* line 123, ../sass/popup.scss */
 .popupDialog > div {
   width: 400px;
   position: relative;
@@ -123,7 +138,7 @@ h2 {
   background: -o-linear-gradient(#fff, #999);
 }
 
-/* line 34, ../sass/popup.scss */
+/* line 135, ../sass/popup.scss */
 .close {
   background: #606061;
   color: #FFFFFF;
@@ -143,7 +158,7 @@ h2 {
   box-shadow: 1px 1px 3px #000;
 }
 
-/* line 53, ../sass/popup.scss */
+/* line 154, ../sass/popup.scss */
 .close:hover {
   background: #00d9ff;
 }

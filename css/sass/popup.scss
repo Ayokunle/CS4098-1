@@ -27,6 +27,30 @@ h1 {
   @include span(5 of 10);
 }
 
+li {
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+//These are the action states
+.READY {
+  
+    background-color: #00FF00;
+
+}
+
+.BLOCKED {
+  
+    background-color: #FF0000;
+
+}
+
+.NONE {
+  
+    background-color: #FFFFFF;
+
+}
 
 
 
@@ -34,13 +58,14 @@ h1 {
  * Styles for AG grids & Container
  */
 
-.container {
+/*.container {
   background-color: #fbeecb;
 }
 
 .ag1, .ag3 {
   background-color: #71dad2;
 }
+
 
 .ag2 {
   background-color: #fae7b3;
@@ -60,7 +85,7 @@ h1 {
 
 .ag10 {
   background-color: #ea9fc3;
-}
+}*/
 
 
 /**

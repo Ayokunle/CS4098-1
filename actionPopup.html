@@ -18,18 +18,18 @@
 	</head>
 			
 
-	<div class="container">
+	<div class="container" ng-app="" ng-controller="actionController">
 		<!--h1 align="center">Action Popup</h1-->
 
 		<div class="ag ag1">
 		  <!--h2>Action</h2-->
-		  <li>
-		        <div class="expanded" ng-app="" ng-controller="actionController">
-					<div>State: {{ actionList.State }}</div>
+		 	<li ng-repeat = "action in actionList" class = "{{ action['@state'] }}">
+		        <div class="expanded">
+					<div>State: {{ action["@state"] }}</div>
 					<br>
-					<div>Required resources: {{ actionList.required_resources }}</div>
+					<div>Required resources: {{ action.req_resource["@name"] }}</div>
 					<br>
-					<div>Provided resources: {{ actionList.provided_resources }}</div>
+					<!--div>Provided resources: {{ actionList.provided_resources }}</div-->
 					<br>
 
 					<button type="button" onclick="alert('Hello world!')">Start</button>
@@ -37,20 +37,20 @@
 					<button type="button" onclick="alert('Hello world!')">Finish</button>
 					<button type="button" onclick="alert('Hello world!')">Abort</button>
 				</div>
-		        <div class="collapsed">Action 1</div>
+		        <div class="collapsed">{{ action["@name"] }}</div>
 		        <a href="javascript:void(0)" class="collapsed">Expand</a>
 		        <a href="javascript:void(0)" class="expanded">Collapse</a>
 		    </li>
 		</div>
 		<!-- /ag1 -->
 
-		<script>
+		<!--script>
 			function actionController($scope) {
 			    /*$scope.state= "Ready";
 			    $scope.required_resource= "Doe";*/
 			    $scope.actionList = {State:"Ready", required_resources:"patient_record: 001671458.hl7", provided_resources:"patient_symptoms:001671458.spt"};
 			}
-		</script>
+		</script-->
 
 	</div>
 		<!-- /container -->
