@@ -31,6 +31,7 @@
 	- sudo apt-get install flex
 	- sudo apt-get install python-pip
 	- sudo pip install https://github.com/hay/xml2json/zipball/master
+	- sudo apt-get install mysqltcl
 
 #To verify OpenEMR is working:
 
