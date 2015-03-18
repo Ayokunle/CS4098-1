@@ -11,7 +11,6 @@ sudo apt-get install python3
 sudo apt-get install bison
 sudo apt-get install flex
 sudo apt-get install python-pip
-sudo apt-get install dos2unix
 sudo pip install https://github.com/hay/xml2json/zipball/master
 sudo apt-get install mysqltcl
 sudo make install
