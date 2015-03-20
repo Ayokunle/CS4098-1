@@ -1,77 +1,0 @@
-pid: 0
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 1
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 2
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 3
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 4
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 5
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 6
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 7
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 8
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 9
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
-pid: 10
-model: ./../../models/test_commit.pml
-status: 2
-actions: 6  login_as_testuser 6 delete_old_workspace 0 checkout_workspace 8 run_tests 0 update_status_report 6 complete_commit 0
-other_nodes: 0 
-resources: 2  test_user "" working_dir ""
-
