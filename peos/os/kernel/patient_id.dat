@@ -1,0 +1,77 @@
+pid: 0
+model: ./../../models/web_test.pml
+status: 2
+actions: 18  overview 1 create_working_directory 8 create_test_file 0 create_makefile 0 verify_setup 0 create_baseline 0 select_inventory_item 8 retrieve_page 0 create_process 0 reset_process_table 0 verify_links 0 follow_link 0 verify_parameters 0 submit_form 0 examine_table 0 verify_test_method 0 create_readme 0 submit_results 0
+other_nodes: 1  (anonymous) 0
+resources: 4  working_directory "" junit_test_file "${working_directory}/WebUITest.java" Makefile "${working_directory}/Makefile" readme "${working_directory}/README"
+
+pid: 1
+model: ./../../models/web_test.pml
+status: 2
+actions: 18  overview 1 create_working_directory 8 create_test_file 0 create_makefile 0 verify_setup 0 create_baseline 0 select_inventory_item 8 retrieve_page 0 create_process 0 reset_process_table 0 verify_links 0 follow_link 0 verify_parameters 0 submit_form 0 examine_table 0 verify_test_method 0 create_readme 0 submit_results 0
+other_nodes: 1  (anonymous) 0
+resources: 4  working_directory "" junit_test_file "${working_directory}/WebUITest.java" Makefile "${working_directory}/Makefile" readme "${working_directory}/README"
+
+pid: 2
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 3
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 4
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 5
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 6
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 7
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 8
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 9
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 10
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+

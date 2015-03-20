@@ -1,0 +1,77 @@
+pid: 0
+model: ./../../models/run_peos.pml
+status: 2
+actions: 19  checkout 6 check_tcltk 8 goto_kernel_dir 0 build_kernel 0 fix_kernel_failures 8 goto_gtk_dir 0 build_gtk_app 0 fix_gtk_failures 8 run_gtk_app 0 goto_gtk_dir 0 set_java_env 8 build_java_app 0 fix_java_failures 8 run_java_app 0 goto_web_dir 0 set_html_dir 0 build_web_app 0 fix_web_failures 8 run_web_app 0
+other_nodes: 1  (anonymous) 0
+resources: 4  repository "" workspace "" html_dir "" peos_url ""
+
+pid: 1
+model: ./../../models/netbeans_req_release.pml
+status: 2
+actions: 36  ReviewNetBeans 6 SetReleaseDate 0 ReviewNetBeansVisionStatmenet 0 ReviewUncompletedMilestonesFromPreviousRelease 0 ReviewIssuzillaFeatureRequests 0 CompileListOfPossibleFeaturesToInclude 0 CategorizeFeaturesProposedFeatureSet 0 SendMessageToCommunityForFeedback 0 ReviewFeedbackFromCommunity 0 ReviseProposalBasedOnFeedback 0 PostFinalDevelopmentProposalToNetBeansWebsite 0 AssignDevelopersToCompleteProjectMilestones 0 SetFeatureFreezeDate 0 SetMilestoneCompletionDates 0 EmailSolicitationForReleaseManager 8 WaitForVolunteer 8 SendCandidacyAnnouncement 0 EstablishReleaseManagerConsensus 0 AnnounceNewReleaseManager 0 SolicitModuleMaintainersForInclusionInUpcomingRelease 0 ChangeBuildBranchName 0 MakeInstallTarForEachPlatform 0 UploadInstallTarFilesToWebRepository 0 UpdateWebPage 0 MakeReadmeInstallationNotesAndChangelog 0 SendReleaseNotificationToCommunityInvitingTheCommunityToDownloadAndTestIt 8 ExecuteAutomaticTestScripts 0 ExecuteManualTestScripts 0 ReportIssuesToIssuezilla 0 UpdateStandingIssueStatus 0 PostBugStats 0 ExamineTestReport 0 WriteBugFix 0 VerifyBugFix 0 CommitCodeToCvsCodeRepository 0 UpdateIssuezillaToReflectChanges 0
+other_nodes: 1  SunONEStudioDevelopmentMeeting 0
+resources: 53  NetBeansRoadmap "" ReleaseDate "" NetBeansVisionStatement "" PreviousVersionReleaseDocuments "" ProspectiveFeaturesForUpcomingRelease "" IssuzillaIssueRepository "" ProspectiveFeaturesGatheredFromIssuezilla "" ProspectiveFeaturesFromPreviousReleases "" FeatureSetForUpcomingRelease "" WeightedListOfFeaturesToImplement "" FeebackMessagesOnMail "" PotentialRevisionsToDevelopmentProposal "" RevisedDevelopmentProposal "" FinalDevelopmentProposal "" FeatureFreezeDate "" MilestoneCompletionDates "" ReleaseManagerRequest "" ReleaseManagerCandidacyAnnouncement "" ReleaseManagerCandidacyAnnouncements "" ReleaseManagerDecision "" ReleaseManagerAnnoucementToNbdevMailingList "" ModuleInclusionNoticeToNbdevMailingList "" CvsCodeRepository "" NewBranchForCurrentBuild "" DevelopmentSourceForEachPlatform "" InstallExecutableTar "" BinaryReleaseDownloads "" WebRepository "" ProjectWeb "" UpdatedWeb "" ChangesFromIndividualModules "" README "" InstallationNotes "" Changelog "" ReleaseNotice "" TestScripts "" ReleaseBinaries "" TestResults "" IssuezillaEntry "" St "" ingIssueFromIssuezilla "" UpdatedIssuezillaIssueRepository "" BugStatusReport "" TestResultReport "" TestReport "" BugStats "" ErroneousSource "" PotentialBugFix "" WorkingBugFix "" CVSCodeRepsository "" UpdatedSource "" IssuezillaIssueRepository "" UpdateIssueStatus ""
+
+pid: 2
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 3
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 4
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 5
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 6
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 7
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 8
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 9
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+
+pid: 10
+model: none
+status: 1
+actions: 0 
+other_nodes: 0 
+resources: 0 
+

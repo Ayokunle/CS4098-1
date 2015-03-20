@@ -1,6 +1,7 @@
-# This directory is where stuff served by Apache goes.
+# This directory is where stuff served by Apache goes. 	
 HTML.dir=/var/www/${PROJECT}
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
+APP.dir=/var/www/${PROJECT}/app
 JS.dir=/var/www/${PROJECT}/js
 OPENEMR.dir=/var/www/openemr
 
@@ -12,12 +13,13 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=index.php popup.html graph.html
+PAGES=popup.html app/actions/actions.html app/pathways/pathways.html
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
-JS=js/main.js js/emrinjection.js js/patientPathway.js js/popup.js
+CSS=css/stylesheets/mick.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathways.css
+JS=js/popup.js
+APP=app/pathways/pathwaycontroller.js app/actions/actioncontroller.js
 
 #
 # Values for creating the distribution.
@@ -63,7 +65,8 @@ what:
 # The 'test' rule should run any unit tests, but because it depends on
 # 'build', it will build the system first.
 test: build
-
+	python3 test/parse_xml_process_table_test.py
+	python3 test/create_process_test.py
 
 # The 'build' rule should do things like compile any code, 
 # create a database if necessary, etc.
@@ -77,18 +80,21 @@ build:
 	-sudo dpkg -i openemr_4.2.0-1_all.deb
 	-sudo apt-get install -f
 	chmod +x inject.sh
-
+	chmod +x setupCGI.sh
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
 install: test ${WSGI.script}
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES} ${HTML.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
+	${INSTALL} --mode ${FILE_MODE} ${APP} ${APP.dir}
+	dos2unix setupCGI.sh
 	sudo bash ./inject.sh
-	
+	sudo bash ./setupCGI.sh
 
 # Make a distribution archive from the current workspace.
 # the 'distclean' dependency insures that the distribution is 
