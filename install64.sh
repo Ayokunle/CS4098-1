@@ -5,7 +5,7 @@ sudo apt-get install expect
 sudo apt-get install libxml2
 sudo apt-get install tcl-dev
 sudo apt-get install libreadline-dev
-sudo apt-get install libn32curses5-dev
+sudo apt-get install lib32ncurses5-dev
 sudo apt-get install apache2
 sudo apt-get install python3
 sudo apt-get install bison
