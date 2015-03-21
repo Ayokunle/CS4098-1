@@ -17,6 +17,6 @@ sudo apt-get -y --force-yes install mysqltcl
 sudo apt-get -y --force-yes install dos2unix
 git clone https://github.com/jnoll/peos
 cd peos
-make
+sudo make
 cd ../
 sudo make install
