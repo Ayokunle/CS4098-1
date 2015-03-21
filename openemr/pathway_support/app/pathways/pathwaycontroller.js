@@ -1,5 +1,6 @@
 //Constants
-var KERNEL_REQUEST_URL = "../cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL_DEBUG = "/test/kernel_request.php";
 //Error constants
 var ERROR = "error"
 var ERROR_CODE = "error_code"
@@ -28,8 +29,8 @@ app.controller('pathwaycontroller', function($scope) {
             else {
                 //Display the list of pathways
                 $scope.pathways = data["process_table"]["process"];
-                $scope.$digest();
             }
+            $scope.$digest();
         };
         getPathway($scope.active_pid, ongetpathway);
     }
@@ -49,7 +50,7 @@ function opengraph(pathway) {
 function getPathway(pid, ondone, onfail) {
         getdata = {"event" : "GETLIST", "login_name" : pid};
 
-        $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+        $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
         .done(function(data){
                 ondone(data);
         })

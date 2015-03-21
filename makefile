@@ -1,8 +1,15 @@
-# This directory is where stuff served by Apache goes. 	
+# This directory is where stuff served by Apache goes. 
 HTML.dir=/var/www/${PROJECT}
+APP.dir=/var/www/${PROJECT}/app
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
 OPENEMR.dir=/var/www/openemr
+
+APP.PATHWAYS.dir=${APP.dir}/pathways
+APP.POPUP.dir=${APP.dir}/popup
+APP.ACTIONS.dir=${APP.dir}/actions
+
+TEST.dir=${HTML.dir}/test
 
 #####################################################################
 # Project-specific parameters that should not be modified by users.
@@ -12,29 +19,19 @@ OPENEMR.dir=/var/www/openemr
 #
 
 # Static web pages and forms to be installed:
-PAGES=popup.html actions.html pathways.html test/kernel_request.php
+PAGES.PATHWAYS=${APP.PATHWAYS}/pathways.html ${APP.PATHWAYS}/pathwaycontroller.js
+PAGES.ACTIONS=${APP.ACTIONS}/actions.html ${APP.ACTIONS}/actioncontroller.js
+PAGES.POPUP=${APP.POPUP}/popup.html
+PAGES.TEST=test/kernel_request.php
+
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css css/stylesheets/pathways.css
-JS=js/popup.js js/pathwaycontroller.js js/actionacontroller.js
-
-#
-# Values for creating the distribution.
-#
-
-# Set PROJECT to the name of your project.
-PROJECT=Shcyup
-# The upcoming release.
-RELEASE=0
-# The tar archive will be identified by version.  Increment this each
-# time you add new functionality.
-RELEASE_CANDIDATE=3
-RELEASE_NAME=${PROJECT}_R${RELEASE}_rc${RELEASE_CANDIDATE}
-# Things to be excluded from the tar archive, after the workspace is cleaned.
-TAR_EXCLUDE=--exclude='.svn' --exclude='.git' --exclude ${RELEASE_NAME}.tar.gz
+CSS=$PROJECT/css/stylesheets/mick.css $PROJECT/css/stylesheets/popup.css $PROJECT/css/stylesheets/ie.css $PROJECT/css/stylesheets/processaction.css $PROJECT/css/stylesheets/screen.css $PROJECT/css/stylesheets/pathways.css
+JS=$PROJECT/js/popup.js
 
 
+PROJECT=openemr/pathway_support
 # File creation modes.  Please do not modify these: they work on
 # proisis.lero.ie.
 FILE_MODE=ug+rwX,o+rX
@@ -84,7 +81,10 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES} ${HTML.dir}
+	${INSTALL} --mode ${FILE_MODE} ${PAGES.PATHWAYS} ${APP.PATHWAYS.dir}
+	${INSTALL} --mode ${FILE_MODE} ${PAGES.ACTIONS} ${APP.ACTIONS.dir}
+	${INSTALL} --mode ${FILE_MODE} ${PAGES.POPUP} ${APP.POPUP.dir}
+	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${APP.TEST.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	dos2unix setupCGI.sh
