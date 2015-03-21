@@ -1,6 +1,6 @@
 sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes install make
-sudo apt-get -y --force-yesinstall check
+sudo apt-get -y --force-yes install check
 sudo apt-get -y --force-yes install expect
 sudo apt-get -y --force-yes install libxml2
 sudo apt-get -y --force-yes install tcl-dev
