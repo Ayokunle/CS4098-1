@@ -84,12 +84,12 @@ install:
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES.PATHWAYS} ${APP.PATHWAYS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES.ACTIONS} ${APP.ACTIONS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES.POPUP} ${APP.POPUP.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${APP.TEST.dir}
-	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
+	${INSTALL} --mode ${FILE_MODE} -d ${PAGES.PATHWAYS} ${APP.PATHWAYS.dir}
+	${INSTALL} --mode ${FILE_MODE} -d ${PAGES.ACTIONS} ${APP.ACTIONS.dir}
+	${INSTALL} --mode ${FILE_MODE} -d ${PAGES.POPUP} ${APP.POPUP.dir}
+	${INSTALL} --mode ${FILE_MODE} -d ${PAGES.TEST} ${APP.TEST.dir}
+	${INSTALL} --mode ${FILE_MODE} -d ${CSS} ${CSS.dir}
+	${INSTALL} --mode ${FILE_MODE} -d ${JS} ${JS.dir}
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
 
