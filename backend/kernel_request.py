@@ -11,7 +11,7 @@ import cgi, cgitb
 
 #http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
 EXECUTION_PATH = "CS4098/peos/os/kernel/"
-MODEL_PATH = "CS4098/peos/models/"
+MODEL_PATH = "../../models/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -22,7 +22,7 @@ request = cgi.FieldStorage()
 
 if request.getvalue('event') == "CREATE":
     #peos [-l login_name] -c name_of_model_file
-    process = subprocess.Popen(["./peos", "-l", request['login_name'][0], "-c", MODEL_PATH + request['pathway_name'][0]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-c", MODEL_PATH + request.getvalue('pathway_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #print ("./peos ", " -l " + request['login_name'][0] + " -c " + MODEL_PATH + request['pathway_name'][0])
 
 elif request.getvalue('event') == "GETLIST_PEOS":
@@ -55,8 +55,8 @@ elif request.getvalue('event') == "GETLIST_PEOS":
                     
     JSON += "}"
             
-    print "Content-type:text/json\r\n\r\n"
-    print JSON
+    print ("Content-type:text/json\r\n\r\n")
+    print (JSON)
     
 elif request.getvalue('event') == "GETLIST":
     #python3 process_xml_parser.py <login_name>
@@ -72,8 +72,8 @@ elif request.getvalue('event') == "GETLIST":
     except:
         data = '{"error": "User does not exist", "error_code" : 1}'
     
-    print "Content-type:text/json\r\n\r\n"
-    print data
+    print ("Content-type:text/json\r\n\r\n")
+    print (data)
         
 elif request.getvalue('event') == "DELETE":
     #To delete a process: peos [-l login_name] -d pid
@@ -83,7 +83,8 @@ else:
     #peos [-l login_name] -n process_id action_name event
     process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-n", request.getvalue('process_id'), request.getvalue('action_name'), request.getvalue('event')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
-if (request['event'][0] != "GETLIST" and request['event'][0] != "GETLIST_PEOS"):
+if (request.getvalue('event') != "GETLIST" and request.getvalue('event') != "GETLIST_PEOS"):
+    print ("Content-type:text/json\r\n\r\n")
     print("Waiting for process to finish")
     output, error = process.communicate()
     print("Process finished")
@@ -91,5 +92,5 @@ if (request['event'][0] != "GETLIST" and request['event'][0] != "GETLIST_PEOS"):
     print(error)
     print("End")
        
-    print "Content-type:text/html\r\n\r\n"
-    print output
+    print ("Content-type:text/html\r\n\r\n")
+    print (output)

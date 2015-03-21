@@ -11,9 +11,11 @@ sudo apt-get install python3
 sudo apt-get install bison
 sudo apt-get install flex
 sudo apt-get install python-pip
-sudo apt-get install dos2unix
+sudo apt-get install mysqltcl
 sudo pip install https://github.com/hay/xml2json/zipball/master
-sudo make install
+sudo apt-get install dos2unix
 git clone https://github.com/jnoll/peos
 cd peos
 make
+cd ../
+sudo make install

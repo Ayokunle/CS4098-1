@@ -27,9 +27,13 @@ PAGES.TEST=test/kernel_request.php
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
+<<<<<<< HEAD
 CSS=$PROJECT/css/stylesheets/mick.css $PROJECT/css/stylesheets/popup.css $PROJECT/css/stylesheets/ie.css $PROJECT/css/stylesheets/processaction.css $PROJECT/css/stylesheets/screen.css $PROJECT/css/stylesheets/pathways.css
 JS=$PROJECT/js/popup.js
 
+#
+# Values for creating the distribution.
+#
 
 PROJECT=openemr/pathway_support
 # File creation modes.  Please do not modify these: they work on
@@ -60,7 +64,6 @@ what:
 # The 'test' rule should run any unit tests, but because it depends on
 # 'build', it will build the system first.
 test: build
-	python3 test/parse_xml_process_table_test.py
 
 # The 'build' rule should do things like compile any code, 
 # create a database if necessary, etc.
@@ -68,6 +71,10 @@ test: build
 # be created and populated here.  DO NOT do this by hand else you
 # won't have a repeatable, reliable build process.
 build: 
+
+# Install the application for deployment by Apache.
+# install -d creates a directory if necessary.
+install:
 	echo "build something"
 	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
 	-sudo apt-get update
@@ -75,9 +82,6 @@ build:
 	-sudo apt-get install -f
 	chmod +x inject.sh
 	chmod +x setupCGI.sh
-# Install the application for deployment by Apache.
-# install -d creates a directory if necessary.
-install: test ${WSGI.script}
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
@@ -87,7 +91,6 @@ install: test ${WSGI.script}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${APP.TEST.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	dos2unix setupCGI.sh
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
 
