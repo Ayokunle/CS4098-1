@@ -1,5 +1,6 @@
 sudo apt-get -y --force-yes update
 sudo apt-get -y --force-yes install make
+sudo apt-get -y --force-yes install libxml2-dev
 sudo apt-get -y --force-yes install check
 sudo apt-get -y --force-yes install expect
 sudo apt-get -y --force-yes install libxml2
