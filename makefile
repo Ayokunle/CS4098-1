@@ -27,7 +27,6 @@ PAGES.TEST=test/kernel_request.php
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-<<<<<<< HEAD
 CSS=$PROJECT/css/stylesheets/mick.css $PROJECT/css/stylesheets/popup.css $PROJECT/css/stylesheets/ie.css $PROJECT/css/stylesheets/processaction.css $PROJECT/css/stylesheets/screen.css $PROJECT/css/stylesheets/pathways.css
 JS=$PROJECT/js/popup.js
 
