@@ -16,6 +16,6 @@ sudo pip install https://github.com/hay/xml2json/zipball/master
 sudo apt-get install dos2unix
 git clone https://github.com/jnoll/peos
 cd peos
-make
+sudo make
 cd ../
 sudo make install
