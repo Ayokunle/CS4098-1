@@ -18,31 +18,10 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
                 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js"></script>
-                <script src="pathwaycontroller.js"></script>
-                <script src="../actions/actionsDirective.js"></script>
+                <script src="app/actions/actionsDirective.js"></script>
         </head>
 <body>
-        <div class="container" ng-controller="pathwaycontroller">
-                <h1>Pathway Support</h1>
-                <p>Active patient id: {{active_pid}}</p>
-                
-                <div ng-repeat="pathway in pathways">
-                        <div class="pathwaycontainer">
-                                <div class="ag ag1">{{pathway["@model"]}}</div>
-                                <div class="ag ag2">
-                                        <button ng-click="deletepathway(pathway)">X</button>
-                                </div>
-                                <div class="ag ag3">
-                                        <button ng-click="opengraph(pathway)">Graph</button>
-                                </div>
-                        </div>
-                        <div ng-repeat="act in pathway['action']">
-                                <actionbuttons action="act"></actionbuttons>
-                        </div>
-                </div>
-                <div>
-                        <button ng-click="createpathway()">+</button>
-                </div>
+        <div action-buttons>
         </div>
 </body>
 </html> 

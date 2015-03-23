@@ -25,7 +25,7 @@ SCRIPTS=hello.cgi
 
 CSS=$PROJECT/css/stylesheets/mick.css $PROJECT/css/stylesheets/popup.css $PROJECT/css/stylesheets/ie.css $PROJECT/css/stylesheets/processaction.css $PROJECT/css/stylesheets/screen.css $PROJECT/css/stylesheets/pathways.css
 JS=$PROJECT/js/popup.js
-JS.APP=${APP_FOLDER}/actions/actioncontroller.js ${APP_FOLDER}/pathways/pathwaycontroller.js
+JS.APP=${APP_FOLDER}/actions/actionsDirective.js ${APP_FOLDER}/pathways/pathwaycontroller.js
 
 #
 # Values for creating the distribution.
