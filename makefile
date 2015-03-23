@@ -4,12 +4,8 @@ APP.dir=/var/www/${PROJECT}/app
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
 JS.APP.dir=/var/www/${PROJECT}/js
-TEST.dir=/var/www/${PROJECT}/test
+TEST.dir=/var/www/test
 OPENEMR.dir=/var/www/openemr
-
-APP_FOLDER=$PROJECT/app
-
-TEST.dir=${HTML.dir}/test
 
 #####################################################################
 # Project-specific parameters that should not be modified by users.
@@ -17,6 +13,8 @@ TEST.dir=${HTML.dir}/test
 #
 # Content to be installed
 #
+
+APP_FOLDER=$PROJECT/app
 
 # Static web pages and forms to be installed:
 PAGES.APP={$APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/popup/popup.html

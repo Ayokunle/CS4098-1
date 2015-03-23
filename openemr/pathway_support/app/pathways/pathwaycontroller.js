@@ -17,7 +17,9 @@ app.controller('pathwaycontroller', function($scope) {
 
     $scope.deletepathway = deletepathway;
     $scope.opengraph = opengraph;
-    $scope.createpathway = createpathway;
+    $scope.createpathway = function() {
+        createpathway($scope)
+    };
 
     if ($scope.active_pid != null) {
         ongetpathway = function(data) {
@@ -36,8 +38,23 @@ app.controller('pathwaycontroller', function($scope) {
     }
 });
 
-function createpathway() {
-    alert("Create pathway: Not Yet Implemented");    
+function createpathway($scope) {
+    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid};
+
+    $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
+    .done(function(data){
+        if (ERROR in data) {
+            console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
+        }
+        else {
+            $scope.pathways= data["process_table"]["process"];
+        }
+        $scope.$digest();
+    })
+    .fail(function(data){
+        console.log("fail");
+        console.log(data);
+    });
 }
 
 function deletepathway(pathway) {
