@@ -84,6 +84,7 @@ install:
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.APP.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${TEST.dir}
+	
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
