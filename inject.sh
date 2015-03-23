@@ -1,25 +1,24 @@
 OPENEMR_DIR=/var/www/openemr
-INJECTION_FILE=${OPENEMR_DIR}/interface/main/main_title.php
-PROJECT=Shcyup
+INJECTION_FILE=${OPENEMR_DIR}/interface/patient_file/summary/demographics.php
+PROJECT=openemr/pathway_support
 
-SCRIPT_JQUERY="<script src=\"http://code.jquery.com/jquery-2.1.3.min.js\"></script>"
-SCRIPT_ANGULAR="<script src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js\"></script>"
-SCRIPT_ANGULAR_SANITIZE="<script src=\"http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js\"></script>"
-SCRIPT_ANGULAR_ROUTE="<script src = \"https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js\"></script>"
-SCRIPT_INJECT="<script src=\"/${PROJECT}/js/emrinjection.js\"></script>"
+#The location in the file to place the injected lines after
+INJECT_AFTER_LINE="<?php echo htmlspecialchars(xl('Issues'),ENT_NOQUOTES); ?></a>"
 
-POPUP_CSS="<link href=\"/${PROJECT}/Shcyup/css/stylesheets/popup.css\" rel=\"stylesheet\" type=\"text/css\" />"
+#The lines to be injected into the file
+INJECTED_LINE1="\n|"
+INJECTED_LINE2="<a href=\"/$PROJECT/app/pathways/pathways.html?patient_id=<?php echo \$pid;?>\" class='iframe large_modal' onclick='top.restoreSession()'>"
+INJECTED_LINE3="<?php echo htmlspecialchars(xl('Pathway Support'),ENT_NOQUOTES); ?></a>"
 
-echo "Injecting popup code"
+#Get the number of times the injected lines appear in the file
+S1=`grep -c "$INJECTED_LINE3" "$INJECTION_FILE"`
 
-#Inject popup app declaration into openemr main title frame
-sed -e "s@<html>@<html ng-app=\"popupApp\" />@" $INJECTION_FILE > $INJECTION_FILE.temp && mv $INJECTION_FILE.temp $INJECTION_FILE
-
-#Inject popup scripts into openemr main title frame
-sed -e "s@</head>@${SCRIPT_JQUERY}${SCRIPT_ANGULAR}\n${SCRIPT_ANGULAR_SANITIZE}\n${SCRIPT_ANGULAR_ROUTE}\n${SCRIPT_INJECT}\n&@" ${INJECTION_FILE} > ${INJECTION_FILE}.temp && mv ${INJECTION_FILE}.temp ${INJECTION_FILE}
-
-#Inject popup html into openemr main title frame
-sed -e "s@</html>@<div ng-controller=\"injection_controller\" ng-bind-html=\"InjectLocation\"></div>\n&@" ${INJECTION_FILE} > ${INJECTION_FILE}.temp && mv ${INJECTION_FILE}.temp ${INJECTION_FILE}
-
-#Inject popup css into openemr main title frame
-sed -e "s@<head>@&\n${POPUP_CSS}@" ${INJECTION_FILE} > ${INJECTION_FILE}.temp && mv ${INJECTION_FILE}.temp ${INJECTION_FILE}
+#If injected lines don't appear in the file, then inject them
+if [[ ${S1} < 1 ]]; then
+	sed -i "s:${INJECT_AFTER_LINE}:&${INJECTED_LINE1}\n${INJECTED_LINE2}\n${INJECTED_LINE3}:g" $INJECTION_FILE
+	echo "Injection successful"
+else
+	echo "Injection already present! No changes made."
+	S2=`grep "$INJECTED_LINE3" "$INJECTION_FILE"`
+	echo "Found: $S2"
+fi

@@ -1,7 +1,10 @@
-# This directory is where stuff served by Apache goes.
+# This directory is where stuff served by Apache goes. 
 HTML.dir=/var/www/${PROJECT}
+APP.dir=/var/www/${PROJECT}/app
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
+JS.APP.dir=/var/www/${PROJECT}/js
+TEST.dir=/var/www/test
 OPENEMR.dir=/var/www/openemr
 
 #####################################################################
@@ -11,30 +14,24 @@ OPENEMR.dir=/var/www/openemr
 # Content to be installed
 #
 
+APP_FOLDER=$PROJECT/app
+
 # Static web pages and forms to be installed:
-PAGES=index.html popup.html graph.html
+PAGES.APP={$APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/popup/popup.html
+PAGES.TEST=test/kernel_request.php
+
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=css/stylesheets/mick.css css/stylesheets/popup.css css/stylesheets/ie.css css/stylesheets/processaction.css css/stylesheets/screen.css
-JS=js/main.js js/emrinjection.js
+CSS=$PROJECT/css/stylesheets/mick.css $PROJECT/css/stylesheets/popup.css $PROJECT/css/stylesheets/ie.css $PROJECT/css/stylesheets/processaction.css $PROJECT/css/stylesheets/screen.css $PROJECT/css/stylesheets/pathways.css
+JS=$PROJECT/js/popup.js
+JS.APP=${APP_FOLDER}/actions/actionsDirective.js ${APP_FOLDER}/pathways/pathwaycontroller.js
 
 #
 # Values for creating the distribution.
 #
 
-# Set PROJECT to the name of your project.
-PROJECT=Shcyup
-# The upcoming release.
-RELEASE=0
-# The tar archive will be identified by version.  Increment this each
-# time you add new functionality.
-RELEASE_CANDIDATE=3
-RELEASE_NAME=${PROJECT}_R${RELEASE}_rc${RELEASE_CANDIDATE}
-# Things to be excluded from the tar archive, after the workspace is cleaned.
-TAR_EXCLUDE=--exclude='.svn' --exclude='.git' --exclude ${RELEASE_NAME}.tar.gz
-
-
+PROJECT=openemr/pathway_support
 # File creation modes.  Please do not modify these: they work on
 # proisis.lero.ie.
 FILE_MODE=ug+rwX,o+rX
@@ -64,31 +61,37 @@ what:
 # 'build', it will build the system first.
 test: build
 
-
 # The 'build' rule should do things like compile any code, 
 # create a database if necessary, etc.
 # CAUTION: if you need to ship a default populated database, it should
 # be created and populated here.  DO NOT do this by hand else you
 # won't have a repeatable, reliable build process.
 build: 
+
+# Install the application for deployment by Apache.
+# install -d creates a directory if necessary.
+install:
 	echo "build something"
 	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
 	-sudo apt-get update
 	-sudo dpkg -i openemr_4.2.0-1_all.deb
 	-sudo apt-get install -f
 	chmod +x inject.sh
-
-# Install the application for deployment by Apache.
-# install -d creates a directory if necessary.
-install: test ${WSGI.script}
+	chmod +x setupCGI.sh
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${APP.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES} ${HTML.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${JS.APP.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${TEST.dir}
+	
+	${INSTALL} --mode ${FILE_MODE} ${PAGES.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
+	${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${JS.APP.dir}
+	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${TEST.dir}
 	sudo bash ./inject.sh
-	
+	sudo bash ./setupCGI.sh
 
 # Make a distribution archive from the current workspace.
 # the 'distclean' dependency insures that the distribution is 

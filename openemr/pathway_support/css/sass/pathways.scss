@@ -1,0 +1,80 @@
+@import 'normalize';
+@import 'compass';
+@import 'susy';
+
+nav { @include span(25%); }
+main { @include span(75%); }
+
+$susy: (
+  global-box-sizing: border-box,
+  use-custom: (rem: true),
+  //gutter: 0
+);
+
+@include border-box-sizing;
+
+.container {
+    margin-left: span(1 of 10);
+    margin-right: span(1 of 10);
+    padding: span(1 of 20);
+}
+
+.pathwaycontainer {
+    @include container;
+    @include clearfix; 
+}
+
+.ag {
+  padding: span(1 of 50);
+}
+
+.ag1 {
+  @include span(8 of 10);
+  @include clearfix;
+}
+.ag2 {
+  @include span(1 of 10);
+  @include clearfix;
+}
+.ag3 {
+  @include span(1 of 10 last);
+  @include clearfix;
+}
+
+
+
+
+/**
+ * Styles for AG grids & Container
+ */
+
+.container {
+  background-color: #fbeecb;
+}
+
+.ag1, .ag3 {
+  background-color: #71dad2;
+}
+
+.ag2 {
+  background-color: #fae7b3;
+}
+
+/**
+ * Text Styles
+ */
+
+
+h1 {
+	text-align: center;
+    font-family: "Times New Roman", Times, serif;
+	font-size: 2rem;
+}
+
+h2 {
+	text-align: center;
+	font-size: 1rem;
+	font-weight: normal;
+	padding-top: 1.8rem;
+	padding-bottom: 1.8rem;
+}
