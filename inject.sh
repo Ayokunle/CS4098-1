@@ -15,5 +15,10 @@ S1=`grep -c "$INJECTED_LINE3" "$INJECTION_FILE"`
 
 #If injected lines don't appear in the file, then inject them
 if [[ ${S1} < 1 ]]; then
-        sed -i "s:${INJECT_AFTER_LINE}:&${INJECTED_LINE1}\n${INJECTED_LINE2}\n${INJECTED_LINE3}:g" $INJECTION_FILE
+	sed -i "s:${INJECT_AFTER_LINE}:&${INJECTED_LINE1}\n${INJECTED_LINE2}\n${INJECTED_LINE3}:g" $INJECTION_FILE
+	echo "Injection successful"
+else
+	echo "Injection already present! No changes made."
+	S2=`grep "$INJECTED_LINE3" "$INJECTION_FILE"`
+	echo "Found: $S2"
 fi
