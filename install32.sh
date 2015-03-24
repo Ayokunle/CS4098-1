@@ -15,6 +15,9 @@ sudo apt-get -y --force-yes install python-pip
 sudo pip install https://github.com/hay/xml2json/zipball/master
 sudo apt-get -y --force-yes install mysqltcl
 sudo apt-get -y --force-yes install dos2unix
+sudo apt-get -y --force-yes install zlibc 
+sudo apt-get -y --force-yes install zlib1g 
+sudo apt-get -y --force-yes install zlib1g-dev
 git clone https://github.com/jnoll/peos
 cd peos
 sudo make
