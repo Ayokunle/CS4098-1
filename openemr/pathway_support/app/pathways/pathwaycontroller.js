@@ -18,7 +18,7 @@ app.controller('pathwaycontroller', function($scope) {
     $scope.deletepathway = deletepathway;
     $scope.opengraph = opengraph;
     $scope.createpathway = function() {
-        createpathway($scope)
+        createpathway($scope);
     };
 
     if ($scope.active_pid != null) {
@@ -39,9 +39,9 @@ app.controller('pathwaycontroller', function($scope) {
 });
 
 function createpathway($scope) {
-    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid};
+    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : "test_commit.pml"};
 
-    $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
+    $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -67,7 +67,7 @@ function opengraph(pathway) {
 function getPathway(pid, ondone, onfail) {
         getdata = {"event" : "GETLIST", "login_name" : pid};
 
-        $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
+        $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data){
                 ondone(data);
         })

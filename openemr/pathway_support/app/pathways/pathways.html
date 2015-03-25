@@ -22,7 +22,8 @@
                 <script src="../actions/actionsDirective.js"></script>
         </head>
 <body>
-        <div class="container" ng-controller="pathwaycontroller">
+<div ng-controller="pathwaycontroller">
+        <div class="container">
                 <h1>Pathway Support</h1>
                 <p>Active patient id: {{active_pid}}</p>
                 
@@ -44,5 +45,39 @@
                         <button ng-click="createpathway()">+</button>
                 </div>
         </div>
+
+        <div class="container" ng-controller="actionController">
+                <!--h1 align="center">Action Popup</h1-->
+
+                <div class="ag ag1">
+                  <!--h2>Action</h2-->
+                        <li ng-repeat = "action in selectedPathway['action']" class = "{{ action['@state'] }}">
+                        <div class="expanded">
+                                        <div>State: {{ action["@state"] }}</div>
+                                        <br>
+                                        <div>Required resources: {{ action.req_resource["@name"] }}</div>
+                                        <br>
+                                        <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
+                                        <br>
+
+                                        <actionbuttons action="action"></actionbuttons>
+                                </div>
+                        <div class="collapsed">{{ action["@name"] }}</div>
+                        <a ng-click="expand()" class="collapsed">Expand</a>
+                        <a ng-click="expand()" class="expanded">Collapse</a>
+                    </li>
+                </div>
+                <!-- /ag1 -->
+
+                <!--script>
+                        function actionController($scope) {
+                            /*$scope.state= "Ready";
+                            $scope.required_resource= "Doe";*/
+                            $scope.actionList = {State:"Ready", required_resources:"patient_record: 001671458.hl7", provided_resources:"patient_symptoms:001671458.spt"};
+                        }
+                </script-->
+
+        </div>
+</div>
 </body>
 </html> 
