@@ -1,5 +1,7 @@
 #CS4098
 
+#Only works on 32 bit - do not use 64 bit
+
 #Installation:
 - Go to where you want the program to be installed
 - Run "sudo apt-get install git"
