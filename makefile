@@ -1,11 +1,13 @@
 # This directory is where stuff served by Apache goes. 
 HTML.dir=/var/www/${PROJECT}
-APP.dir=/var/www/${PROJECT}/app
+APP.PATHWAYS.dir=/var/www/${PROJECT}/app/pathways
+APP.ACTIONS.dir=/var/www/${PROJECT}/app/actions
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
-JS.APP.dir=/var/www/${PROJECT}/js
 TEST.dir=/var/www/test
+JQUERY.dir=${OPENEMR.dir}/library/js
 OPENEMR.dir=/var/www/openemr
+
 
 #####################################################################
 # Project-specific parameters that should not be modified by users.
@@ -14,18 +16,18 @@ OPENEMR.dir=/var/www/openemr
 # Content to be installed
 #
 
-APP_FOLDER=$PROJECT/app
+APP_FOLDER=${PROJECT}/app
 
 # Static web pages and forms to be installed:
-PAGES.APP={$APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/popup/popup.html
+APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js
+APP.ACTIONS=${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/actions/actionsDirective.js
 PAGES.TEST=test/kernel_request.php
 
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=$PROJECT/css/stylesheets/mick.css $PROJECT/css/stylesheets/popup.css $PROJECT/css/stylesheets/ie.css $PROJECT/css/stylesheets/processaction.css $PROJECT/css/stylesheets/screen.css $PROJECT/css/stylesheets/pathways.css
-JS=$PROJECT/js/popup.js
-JS.APP=${APP_FOLDER}/actions/actionsDirective.js ${APP_FOLDER}/pathways/pathwaycontroller.js
+CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css
+JQUERY=openemr/library/js/jquery-2.1.3.min.js
 
 #
 # Values for creating the distribution.
@@ -79,17 +81,19 @@ install:
 	chmod +x inject.sh
 	chmod +x setupCGI.sh
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
-	${INSTALL} --mode ${DIR_MODE} -d ${APP.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${APP.PATHWAYS.dir}
+	${INSTALL} --mode ${DIR_MODE} -d ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
-	${INSTALL} --mode ${DIR_MODE} -d ${JS.APP.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${TEST.dir}
 	
-	${INSTALL} --mode ${FILE_MODE} ${PAGES.APP} ${APP.dir}
+	${INSTALL} --mode ${FILE_MODE} ${APP.PATHWAYS} ${APP.PATHWAYS.dir}
+	${INSTALL} --mode ${FILE_MODE} ${APP.ACTIONS} ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${JS.APP.dir}
+	${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${TEST.dir}
+	${INSTALL} --mode ${FILE_MODE} ${JQUERY} ${JQUERY.dir}
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
 
