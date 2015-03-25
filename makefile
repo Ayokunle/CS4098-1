@@ -26,7 +26,7 @@ PAGES.TEST=test/kernel_request.php
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css
+CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css ${PROJECT}/css/stylesheets/popup.css
 JQUERY=openemr/library/js/jquery-2.1.3.min.js
 
 #
@@ -90,8 +90,8 @@ install:
 	${INSTALL} --mode ${FILE_MODE} ${APP.PATHWAYS} ${APP.PATHWAYS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${APP.ACTIONS} ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${APP.dir}
+	#${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
+	#${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${TEST.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JQUERY} ${JQUERY.dir}
 	sudo bash ./inject.sh
