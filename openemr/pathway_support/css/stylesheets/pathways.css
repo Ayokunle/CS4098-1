@@ -359,17 +359,22 @@ main {
   background-color: #fae7b3;
 }
 
+/* line 64, ../sass/pathways.scss */
+.pathway.ag1:hover {
+  background-color: #000077;
+}
+
 /**
  * Text Styles
  */
-/* line 68, ../sass/pathways.scss */
+/* line 73, ../sass/pathways.scss */
 h1 {
   text-align: center;
   font-family: "Times New Roman", Times, serif;
   font-size: 2rem;
 }
 
-/* line 74, ../sass/pathways.scss */
+/* line 79, ../sass/pathways.scss */
 h2 {
   text-align: center;
   font-size: 1rem;
