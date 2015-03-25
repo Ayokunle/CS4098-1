@@ -14,10 +14,21 @@
 - If you want to install dependencies manually, see the below section
 
 #How to use
-- To view pathway support popup
+- To view pathway support modal dialog popup
 	- Go to http://localhost/openemr/ and log in
 	- Create a patient
 	- Click "Pathway Support" in the patient view screen
+	- Verify that modal dialog box with header "Pathway Support" appears
+- To show pathway support action list
+	- Go to pathway support popup
+	- Click the "+" button to create a new pathway (Currently using test data so it will "create" 3 pathways and no more than that)
+	- Click on the pathway when it turns dark blue
+	- Verify that the action list appears below the pathway list
+- To update status of individual actions
+	- Click on a pathway to display the action list
+	- Click the expand button on one of the actions
+	- Click either "Start", "Suspend", "Finish" or "Abort" button when they appear
+	- Verify that the text beside "State: " changes upon clicking any of the buttons
 - To test backend functionality
 	- Enter CS4098/test directory
 	- Run "python3 create_process_test.py"
