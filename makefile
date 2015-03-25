@@ -17,13 +17,13 @@ OPENEMR.dir=/var/www/openemr
 APP_FOLDER=${PROJECT}/app
 
 # Static web pages and forms to be installed:
-PAGES.APP={$APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/popup/popup.html
+PAGES.APP=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/popup/popup.html
 PAGES.TEST=test/kernel_request.php
 
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/popup.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css
+CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css
 JS=${PROJECT}/js/popup.js
 JS.APP=${APP_FOLDER}/actions/actionsDirective.js ${APP_FOLDER}/pathways/pathwaycontroller.js
 
