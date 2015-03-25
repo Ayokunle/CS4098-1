@@ -1,5 +1,5 @@
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL_DEBUG = "/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/test/kernel_request.php";
 
 var app
 if (app == null)
@@ -48,7 +48,7 @@ function peos_request($scope, event_type) {
 
 	//Send a get request
 	$.get(
-		KERNEL_REQUEST_URL_DEBUG,
+		KERNEL_REQUEST_URL,
 		getdata)
 			.done(done)
 			.fail(fail);

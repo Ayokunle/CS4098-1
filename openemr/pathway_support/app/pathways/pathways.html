@@ -28,17 +28,17 @@
         </head>
 <body>
 <div ng-controller="pathwaycontroller">
-        <div class="container">
+        <div class="container pathway">
                 <h1>Pathway Support</h1>
                 <p>Active patient id: {{active_pid}}</p>
                 
                 <div ng-repeat="pathway in pathways">
                         <div class="pathwaycontainer">
-                                <div class="ag ag1">{{pathway["@model"]}}</div>
-                                <div class="ag ag2">
+                                <div class="pathway ag1">{{pathway["@model"]}}</div>
+                                <div class="pathway ag2">
                                         <button ng-click="deletepathway(pathway)">X</button>
                                 </div>
-                                <div class="ag ag3">
+                                <div class="pathway ag3">
                                         <button ng-click="opengraph(pathway)">Graph</button>
                                 </div>
                         </div>
@@ -51,12 +51,12 @@
                 </div>
         </div>
 
-        <div class="container" ng-controller="actionController">
+        <div class="container" ng-controller="actionController" ng-show="selectedPathway != -1">
                 <!--h1 align="center">Action Popup</h1-->
 
                 <div class="ag ag1">
                   <!--h2>Action</h2-->
-                        <li ng-repeat = "action in selectedPathway['action']" class = "{{ action['@state'] }}">
+                        <li ng-repeat = "action in pathway[selectedPathway]['action']" class = "{{ action['@state'] }}">
                         <div class="expanded">
                                         <div>State: {{ action["@state"] }}</div>
                                         <br>
