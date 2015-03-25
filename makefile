@@ -3,7 +3,6 @@ HTML.dir=/var/www/${PROJECT}
 APP.dir=/var/www/${PROJECT}/app
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
-JS.APP.dir=/var/www/${PROJECT}/js
 TEST.dir=/var/www/test
 OPENEMR.dir=/var/www/openemr
 
@@ -88,7 +87,7 @@ install:
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${JS.APP.dir}
+	${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${TEST.dir}
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
