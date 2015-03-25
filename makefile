@@ -2,7 +2,6 @@
 HTML.dir=/var/www/${PROJECT}
 APP.PATHWAYS.dir=/var/www/${PROJECT}/app/pathways
 APP.ACTIONS.dir=/var/www/${PROJECT}/app/actions
-APP.POPUP.dir=/var/www/${PROJECT}/app/popup
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
 TEST.dir=/var/www/test
@@ -20,17 +19,14 @@ OPENEMR.dir=/var/www/openemr
 APP_FOLDER=${PROJECT}/app
 
 # Static web pages and forms to be installed:
-APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html
-APP.ACTIONS=${APP_FOLDER}/actions/actions.html
-APP.POPUP=${APP_FOLDER}/popup/popup.html
+APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js
+APP.ACTIONS=${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/actions/actionsDirective.js
 PAGES.TEST=test/kernel_request.php
 
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
 CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css
-JS=${PROJECT}/js/popup.js
-JS.APP=${APP_FOLDER}/actions/actionsDirective.js ${APP_FOLDER}/pathways/pathwaycontroller.js
 JQUERY=openemr/library/js/jquery-2.1.3.min.js
 
 #
@@ -86,14 +82,12 @@ install:
 	chmod +x setupCGI.sh
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${APP.PATHWAYS.dir}
-	${INSTALL} --mode ${DIR_MODE} -d ${APP.POPUP.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${TEST.dir}
 	
 	${INSTALL} --mode ${FILE_MODE} ${APP.PATHWAYS} ${APP.PATHWAYS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${APP.POPUP} ${APP.POPUP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${APP.ACTIONS} ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
