@@ -27,22 +27,20 @@
                 <script src="popup.js"></script>
         </head>
 <body>
-        <div class="container" ng-controller="pathwaycontroller">
+<div ng-controller="pathwaycontroller">
+        <div class="container pathway">
                 <h1>Pathway Support</h1>
                 <p>Active patient id: {{active_pid}}</p>
                 
-                <div ng-repeat="pathway in pathways">
+                <div ng-repeat="pathway in pathways track by $index">
                         <div class="pathwaycontainer">
-                                <div class="ag ag1">{{pathway["@model"]}}</div>
-                                <div class="ag ag2">
+                                <div class="pathway ag1" ng-click="selectpathway($index)">{{pathway["@model"]}}</div>
+                                <div class="pathway ag2">
                                         <button ng-click="deletepathway(pathway)">X</button>
                                 </div>
-                                <div class="ag ag3">
+                                <div class="pathway ag3">
                                         <button ng-click="opengraph(pathway)">Graph</button>
                                 </div>
-                        </div>
-                        <div ng-repeat="act in pathway['action']">
-                                <actionbuttons action="act"></actionbuttons>
                         </div>
                 </div>
                 <div>
@@ -50,26 +48,30 @@
                 </div>
         </div>
 
-        <div class="container" ng-app="" ng-controller="actionController">
+        <div class="container" ng-controller="actionController" ng-show="selectedPathway != -1">
                 <!--h1 align="center">Action Popup</h1-->
 
                 <div class="ag ag1">
                   <!--h2>Action</h2-->
-                        <li ng-repeat = "action in selectedPathway['action']" class = "{{ action['@state'] }}">
-                        <div class="expanded">
-                                        <div>State: {{ action["@state"] }}</div>
-                                        <br>
-                                        <div>Required resources: {{ action.req_resource["@name"] }}</div>
-                                        <br>
-                                        <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
-                                        <br>
+                        <li ng-controller = "actionController" ng-repeat = "action in pathways[selectedPathway]['action']" class = "{{ action['@state'] }}">
+                                <div class="expanded" ng-show = "visible">
+                                                <div>State: {{ action["@state"] }}</div>
+                                                <br>
+                                                <div>Required resources: {{ action.req_resource["@name"] }}</div>
+                                                <br>
+                                                <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
+                                                <br>
 
-                                        <actionbuttons action="action"></actionbuttons>
+                                                <actionbuttons action="action"></actionbuttons>
+
+                                                <div><button ng-click="expand()" >Collapse</button></div>
                                 </div>
-                        <div class="collapsed">{{ action["@name"] }}</div>
-                        <a ng-click="expand()" class="collapsed">Expand</a>
-                        <a ng-click="expand()" class="expanded">Collapse</a>
-                    </li>
+                                <div class="collapsed" ng-hide = "visible">
+                                        {{ action["@name"] }} 
+                                        <div><button ng-click="expand()" >Expand</button></div>
+                                </div>
+                        </li>
+
                 </div>
                 <!-- /ag1 -->
 
@@ -82,5 +84,6 @@
                 </script-->
 
         </div>
+</div>
 </body>
 </html> 

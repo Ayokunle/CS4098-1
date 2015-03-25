@@ -1,6 +1,6 @@
 //Constants
 var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL_DEBUG = "/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/test/kernel_request.php";
 //Error constants
 var ERROR = "error"
 var ERROR_CODE = "error_code"
@@ -14,11 +14,16 @@ app.controller('pathwaycontroller', function($scope) {
     console.log("Starting pathway controller");
 
     $scope.active_pid = getUrlParameter("patient_id");
+    $scope.selectedPathway = -1;
 
     $scope.deletepathway = deletepathway;
     $scope.opengraph = opengraph;
+    $scope.selectpathway = function(pathwayindex) {
+        selectpathway($scope, pathwayindex);
+    }
+
     $scope.createpathway = function() {
-        createpathway($scope)
+        createpathway($scope);
     };
 
     if ($scope.active_pid != null) {
@@ -38,10 +43,16 @@ app.controller('pathwaycontroller', function($scope) {
     }
 });
 
-function createpathway($scope) {
-    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid};
+function selectpathway($scope, pathwayindex) {
+    $scope.selectedPathway = pathwayindex;
+    console.log(pathwayindex);
+    //$scope.$digest();
+}
 
-    $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
+function createpathway($scope) {
+    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : "test_commit.pml"};
+
+    $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -67,7 +78,7 @@ function opengraph(pathway) {
 function getPathway(pid, ondone, onfail) {
         getdata = {"event" : "GETLIST", "login_name" : pid};
 
-        $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
+        $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data){
                 ondone(data);
         })

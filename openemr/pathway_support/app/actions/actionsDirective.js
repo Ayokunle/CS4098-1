@@ -1,18 +1,18 @@
 var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL_DEBUG = "/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/test/kernel_request.php";
 
 var app
 if (app == null)
-    app = angular.module('popupApp', ['ngRoute']);
+    app = angular.module('popupApp', ['ngRoute', 'rootScope']);
 
 app.directive('actionbuttons', function() {
 	return {
 		restrict: 'E',
-		controller: function($scope) {
-			$scope.start = function() { peos_request($scope, "START") };
-			$scope.finish = function() { peos_request($scope, "FINISH") };
-			$scope.suspend = function() { peos_request($scope, "SUSPEND") };
-			$scope.abort = function() { peos_request($scope, "ABORT") };
+		controller: function($scope, $rootScope) {
+			$scope.start = function() { peos_request($scope, $rootScope, "START") };
+			$scope.finish = function() { peos_request($scope, $rootScope, "FINISH") };
+			$scope.suspend = function() { peos_request($scope, $rootScope, "SUSPEND") };
+			$scope.abort = function() { peos_request($scope, $rootScope, "ABORT") };
 		},
 		scope: {
 			pathwayAction : '=action'
@@ -22,7 +22,7 @@ app.directive('actionbuttons', function() {
 });
 
 
-function peos_request($scope, event_type) {
+function peos_request($scope, $rootScope, event_type) {
 	getdata = {event : event_type,
 				login_name : $scope.pid,
 				action_name : $scope.pathwayAction["@name"],
@@ -32,12 +32,12 @@ function peos_request($scope, event_type) {
 	done = function(result, status, xhr) {
   		if (xhr.status=="200") {
   			$scope.pathwayAction["@state"] = result.new_state;
-  			$scope.$digest(); //Force update of ui
 		}
 		else {
 			console.log("Failed request");
 			$scope.pathwayAction["@state"] = "Failed request";
 		}
+  		$rootScope.$digest(); //Force update of ui
 	};
 
 	//The function that runs when the http request fails
@@ -48,7 +48,7 @@ function peos_request($scope, event_type) {
 
 	//Send a get request
 	$.get(
-		KERNEL_REQUEST_URL_DEBUG,
+		KERNEL_REQUEST_URL,
 		getdata)
 			.done(done)
 			.fail(fail);
