@@ -85,7 +85,7 @@ function getPathway(pid, ondone, onfail) {
         getdata = {"event" : "GETLIST", "login_name" : pid};
         console.log("PID: " + pid)
         console.log("Requesting pathways from backend")
-        $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+        $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data){
                 console.log("Request successful")
                 ondone(data);
