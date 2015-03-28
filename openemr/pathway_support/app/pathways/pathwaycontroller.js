@@ -25,16 +25,22 @@ app.controller('pathwaycontroller', function($scope) {
     $scope.createpathway = function() {
         createpathway($scope);
     };
-
+    
+    console.log("$scope.active_pid: " + $scope.active_pid)
+    
     if ($scope.active_pid != null) {
         ongetpathway = function(data) {
             if (ERROR in data) {
+                console.log(data)
+                console.log("An error was returned from backend")
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
+                    console.log("The user does not exist in peos")
                    $scope.pathways = {}
                 }
             }
             else {
                 //Display the list of pathways
+                console.log("Displaying list of pathways")
                 $scope.pathways = data["process_table"]["process"];
             }
             $scope.$digest();
@@ -51,7 +57,7 @@ function selectpathway($scope, pathwayindex) {
 
 function createpathway($scope) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : "test_commit.pml"};
-
+    console.log("Requesting backend to create process")
     $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {
@@ -77,13 +83,15 @@ function opengraph(pathway) {
 
 function getPathway(pid, ondone, onfail) {
         getdata = {"event" : "GETLIST", "login_name" : pid};
-
+        console.log("PID: " + pid)
+        console.log("Requesting pathways from backend")
         $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data){
+                console.log("Request successful")
                 ondone(data);
         })
         .fail(function(data) {
-                console.log("fail");
+                console.log("Request failed")
                 console.log(data);
                 if (onfail != null)
                     onfail(data);

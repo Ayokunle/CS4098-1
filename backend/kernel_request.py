@@ -12,6 +12,7 @@ import cgi, cgitb
 #http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
 EXECUTION_PATH = "CS4098/peos/os/kernel/"
 MODEL_PATH = "../../models/"
+XML_PARSER_PATH = "CS4098/backend/"
 MAX_CONNECTION_REQUEST_QUEUE = 5
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -28,9 +29,12 @@ if request.getvalue('event') == "CREATE":
     #print ("./peos ", " -l " + request['login_name'][0] + " -c " + MODEL_PATH + request['pathway_name'][0])
     output, error = process.communicate()
     
-    process = subprocess.Popen(["python3", "CS4098/backend/process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    os.chdir(XML_PARSER_PATH)
+    process = subprocess.Popen(["python3", "process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     output, error = process.communicate()
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
     
     try:
         jsonFile = open("CS4098/backend/" + request.getvalue('login_name') + ".json", "r")
@@ -40,6 +44,8 @@ if request.getvalue('event') == "CREATE":
         data = '{"error": "User does not exist", "error_code" : 1}'
     
     print ("Content-type:text/json\r\n\r\n")
+    #print(output)
+    #print(error)
     print (data)
     
 elif request.getvalue('event') == "GETLIST_PEOS":
@@ -78,9 +84,11 @@ elif request.getvalue('event') == "GETLIST_PEOS":
 elif request.getvalue('event') == "GETLIST":
     #python3 process_xml_parser.py <login_name>
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    process = subprocess.Popen(["python3", "CS4098/backend/process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    os.chdir(XML_PARSER_PATH)
+    process = subprocess.Popen(["python3", "process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     output, error = process.communicate()
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
     
     try:
         jsonFile = open("CS4098/backend/" + request.getvalue('login_name') + ".json", "r")
@@ -90,6 +98,9 @@ elif request.getvalue('event') == "GETLIST":
         data = '{"error": "User does not exist", "error_code" : 1}'
     
     print ("Content-type:text/json\r\n\r\n")
+    #print(output)
+    #print(error)
+    #print("Bye")
     print (data)
         
 elif request.getvalue('event') == "DELETE":
