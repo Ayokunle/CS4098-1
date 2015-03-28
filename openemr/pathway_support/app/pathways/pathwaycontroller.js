@@ -30,8 +30,8 @@ app.controller('pathwaycontroller', function($scope) {
     
     if ($scope.active_pid != null) {
         ongetpathway = function(data) {
+            console.log(data)
             if (ERROR in data) {
-                console.log(data)
                 console.log("An error was returned from backend")
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
                     console.log("The user does not exist in peos")

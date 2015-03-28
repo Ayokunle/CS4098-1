@@ -100,7 +100,7 @@ elif request.getvalue('event') == "GETLIST":
     print ("Content-type:text/json\r\n\r\n")
     #print(output)
     #print(error)
-    #print("Bye")
+    #print("Hello")
     print (data)
         
 elif request.getvalue('event') == "DELETE":
