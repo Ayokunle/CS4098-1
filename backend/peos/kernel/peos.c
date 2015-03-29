@@ -22,12 +22,19 @@
 #include "peos_util.h"
 
 char* patient_id;
-
+//
 int create_process(char *model) {
     int pid;
     int num_resources;
     peos_resource_t *resources;
     char* res_file;
+
+    FILE *f = fopen("model.txt", "w");
+    if (f == NULL)
+    {
+        printf("Error opening file!\n");
+        exit(1);
+    }
     
     resources = (peos_resource_t *) peos_get_resource_list(model,&num_resources);    //see events.c
 
@@ -37,6 +44,16 @@ int create_process(char *model) {
     }
     
     printf("Executing %s:\n", model);
+
+    int i=0;
+    for (i = 13; i < strlen(model)-4; i++)
+    {
+     //printf("%c", model[i]);  
+     fprintf(f, "%c", model[i]); 
+    }
+    //printf("\n");
+    
+    fclose(f);
     
     if ((pid = peos_run(model,resources,num_resources)) < 0) {    //see events.c
         printf("couldn't create process\n");

@@ -1,6 +1,6 @@
 //Constants
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL_DEBUG = "/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/test/kernel_request.php";
 //Error constants
 var ERROR = "error"
 var ERROR_CODE = "error_code"
@@ -14,20 +14,34 @@ app.controller('pathwaycontroller', function($scope) {
     console.log("Starting pathway controller");
 
     $scope.active_pid = getUrlParameter("patient_id");
+    $scope.selectedPathway = -1;
 
     $scope.deletepathway = deletepathway;
     $scope.opengraph = opengraph;
-    $scope.createpathway = createpathway;
+    $scope.selectpathway = function(pathwayindex) {
+        selectpathway($scope, pathwayindex);
+    }
 
+    $scope.createpathway = function() {
+        createpathway($scope);
+    };
+    
+    console.log("$scope.active_pid: " + $scope.active_pid)
+    
     if ($scope.active_pid != null) {
         ongetpathway = function(data) {
+            console.log(data)
+            //alert(data["process_table"]["process"][0]["action"][0]["@state"]);
             if (ERROR in data) {
+                console.log("An error was returned from backend")
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
+                    console.log("The user does not exist in peos")
                    $scope.pathways = {}
                 }
             }
             else {
                 //Display the list of pathways
+                console.log("Displaying list of pathways")
                 $scope.pathways = data["process_table"]["process"];
             }
             $scope.$digest();
@@ -36,8 +50,29 @@ app.controller('pathwaycontroller', function($scope) {
     }
 });
 
-function createpathway() {
-    alert("Create pathway: Not Yet Implemented");    
+function selectpathway($scope, pathwayindex) {
+    $scope.selectedPathway = pathwayindex;
+    console.log(pathwayindex);
+    //$scope.$digest();
+}
+
+function createpathway($scope) {
+    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : "test_commit.pml"};
+    console.log("Requesting backend to create process")
+    $.get(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+    .done(function(data){
+        if (ERROR in data) {
+            console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
+        }
+        else {
+            $scope.pathways= data["process_table"]["process"];
+        }
+        $scope.$digest();
+    })
+    .fail(function(data){
+        console.log("fail");
+        console.log(data);
+    });
 }
 
 function deletepathway(pathway) {
@@ -49,13 +84,15 @@ function opengraph(pathway) {
 
 function getPathway(pid, ondone, onfail) {
         getdata = {"event" : "GETLIST", "login_name" : pid};
-
-        $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
+        console.log("PID: " + pid)
+        console.log("Requesting pathways from backend")
+        $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data){
+                console.log("Request successful")
                 ondone(data);
         })
         .fail(function(data) {
-                console.log("fail");
+                console.log("Request failed")
                 console.log(data);
                 if (onfail != null)
                     onfail(data);

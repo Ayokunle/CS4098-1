@@ -24,19 +24,19 @@ $susy: (
     @include clearfix; 
 }
 
-.ag {
+.pathway.ag {
   padding: span(1 of 50);
 }
 
-.ag1 {
+.pathway.ag1{
   @include span(8 of 10);
   @include clearfix;
 }
-.ag2 {
+.pathway.ag2{
   @include span(1 of 10);
   @include clearfix;
 }
-.ag3 {
+.pathway.ag3{
   @include span(1 of 10 last);
   @include clearfix;
 }
@@ -60,6 +60,11 @@ $susy: (
   background-color: #fae7b3;
 }
 
+
+.pathway.ag1:hover {
+  background-color: #000077;
+}
+
 /**
  * Text Styles
  */
@@ -70,7 +75,7 @@ h1 {
     font-family: "Times New Roman", Times, serif;
 	font-size: 2rem;
 }
-
+  
 h2 {
 	text-align: center;
 	font-size: 1rem;

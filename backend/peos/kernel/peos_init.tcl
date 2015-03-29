@@ -7,11 +7,29 @@ proc default { path } {
 }
 
 proc exists { path } {
-#    puts $path
-    if {[catch {set r $path}]} {
-        return 0
-    }
-    expr [file exists $path]
+    
+    set fp [open "patient_id.txt" r]
+    set patient_id [read $fp]
+    close $fp
+    
+    #puts $patient_id
+    set symptoms "_symptoms.txt"
+    set file [concat $patient_id$symptoms]
+    file mkdir -booleanresult data
+    set f [open ../../models/$file w+]
+
+    set mfp [open "model.txt" r]
+    set model [read $mfp]
+    close $mfp
+   # puts $model
+
+    set format ".res"
+    set file1 [concat $model$format]
+    set f [open ../../models/$file1 w+]   
+    puts $f [concat $path : $file]
+    close $f
+
+    expr [file exists ../../models/$file1]
 }
 
 proc ax { path } {
@@ -89,6 +107,74 @@ proc Confirmed_Dementia { resource } {
     return 0
 }
 
-proc requests_privacy { patient_id }  {
+proc requests_privacy { resource }  {
+    return 0
+}
+
+proc suspect_diabetes { resource }  {
+    set fp [open "patient_id.txt" r]
+    set file_data [read $fp]
+    close $fp
+
+    set handle [mysqlconnect -user root]
+    mysqluse $handle mysql
+    #puts $handle
+    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = $file_data" -list] {
+        if {[string match -nocase *diabetes* [lindex $res 1] ]} {
+            return 1
+        }
+    }
+    mysqlclose $handle
+    return 0
+}
+
+proc glucose_test { resource }  {
+    set fp [open "patient_id.txt" r]
+    set file_data [read $fp]
+    close $fp
+
+    set handle [mysqlconnect -user root]
+    mysqluse $handle mysql
+    #puts $handle
+    foreach res [mysqlsel $handle "select foreign_id, url from openemr.documents where foreign_id = $file_data" -list] {
+        if {[string match -nocase *glucose_test* [lindex $res 1] ]} {
+            return 1
+        }
+    }
+    mysqlclose $handle
+    return 0
+}
+
+proc cholesterol_test { resource }  {
+    set fp [open "patient_id.txt" r]
+    set file_data [read $fp]
+    close $fp
+
+    set handle [mysqlconnect -user root]
+    mysqluse $handle mysql
+    #puts $handle
+    foreach res [mysqlsel $handle "select foreign_id, url from openemr.documents where foreign_id = $file_data" -list] {
+        if {[string match -nocase *cholesterol_test* [lindex $res 1] ]} {
+            return 1
+        }
+    }
+    mysqlclose $handle
+    return 0
+}
+
+proc diabetes { resource }  {
+    set fp [open "patient_id.txt" r]
+    set file_data [read $fp]
+    close $fp
+
+    set handle [mysqlconnect -user root]
+    mysqluse $handle mysql
+    #puts $handle
+    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = $file_data" -list] {
+        if {[string match -nocase *diabetes* [lindex $res 1] ]} {
+            return 1
+        }
+    }
+    mysqlclose $handle
     return 0
 }
