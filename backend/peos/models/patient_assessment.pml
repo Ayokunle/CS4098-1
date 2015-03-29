@@ -4,7 +4,7 @@ process Diabetes_assessment {
 		requires {patient_record}
 		provides {patient_symptoms}
 	}
-	
+	 
 	action Assess_patient_symptoms {
 		requires {patient_symptoms}
 		provides {assessment.diagnosis}
