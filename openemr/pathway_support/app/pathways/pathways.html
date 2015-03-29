@@ -5,7 +5,6 @@
                 <!--[if IE]>
                         <link href="test/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
                 <![endif]-->
-                <link href="/openemr/pathway_support/css/stylesheets/processaction.css" rel="stylesheet" type="text/css" />
 
                 <link href="/openemr/pathway_support/css/stylesheets/pathways.css" rel="stylesheet" type="text/css" />
                 <link href="/openemr/pathway_support/css/stylesheets/joint.css" rel="stylesheet" />
@@ -23,23 +22,25 @@
                 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.js"></script>
                 <script src="pathwaycontroller.js"></script>
                 <script src="../actions/actionsDirective.js"></script>
+                <script src="graphcontroller.js"></script>
 
                 <script src="popup.js"></script>
         </head>
 <body>
 <div ng-controller="pathwaycontroller">
-        <div class="container pathway">
-                <h1>Pathway Support</h1>
+
+        <!-- Pathway selection screen -->
+        <div class="pathway container" ng-show="ispathwayselectscreen()">
+                <h1>Pathways</h1>
                 <p>Active patient id: {{active_pid}}</p>
-                
                 <div ng-repeat="pathway in pathways track by $index">
-                        <div class="pathwaycontainer">
+                        <div class="pathwaycontainer ag1">
                                 <div class="pathway ag1" ng-click="selectpathway($index)">{{pathway["@model"]}}</div>
                                 <div class="pathway ag2">
-                                        <button ng-click="deletepathway(pathway)">X</button>
+                                        <button ng-click="opengraph(pathway)">Pathway View</button>
                                 </div>
                                 <div class="pathway ag3">
-                                        <button ng-click="opengraph(pathway)">Graph</button>
+                                        <button ng-click="deletepathway(pathway)">Delete</button>
                                 </div>
                         </div>
                 </div>
@@ -48,42 +49,41 @@
                 </div>
         </div>
 
-        <div class="container" ng-controller="actionController" ng-show="selectedPathway != -1">
-                <!--h1 align="center">Action Popup</h1-->
+        <!-- Pathway Notifications screen -->
+        <div class="popup container" ng-controller="actionController" ng-show="ispathwaynotifyscreen()">
+                <h1>Pathway Actions</h1>
 
-                <div class="ag ag1">
-                  <!--h2>Action</h2-->
-                        <li ng-controller = "actionController" ng-repeat = "action in pathways[selectedPathway]['action']" class = "{{ action['@state'] }}">
+                <div class="ag1">
+                        <div ng-controller = "actionController" ng-repeat = "action in pathways[selectedpathway]['action']" class = "action {{ action['@state'] }}">
                                 <div class="expanded" ng-show = "visible">
-                                                <div>State: {{ action["@state"] }}</div>
-                                                <br>
-                                                <div>Required resources: {{ action.req_resource["@name"] }}</div>
-                                                <br>
-                                                <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
-                                                <br>
+                                        <div><button ng-click="expand()" >Collapse</button></div>
+                                        <div>State: {{ action["@state"] }}</div>
+                                        <br>
+                                        <div>Required resources: {{ action.req_resource["@name"] }}</div>
+                                        <br>
+                                        <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
+                                        <br>
 
-                                                <actionbuttons action="action"></actionbuttons>
-
-                                                <div><button ng-click="expand()" >Collapse</button></div>
+                                        <actionbuttons action="action"></actionbuttons>
                                 </div>
                                 <div class="collapsed" ng-hide = "visible">
-                                        {{ action["@name"] }} 
                                         <div><button ng-click="expand()" >Expand</button></div>
+                                        {{ action["@name"] }}
                                 </div>
-                        </li>
-
+                        </div>
                 </div>
-                <!-- /ag1 -->
+                <div>
+                        <button ng-click="openpathwayselect()">< Back to pathway List</button>
+                </div>
+        </div>
 
-                <!--script>
-                        function actionController($scope) {
-                            /*$scope.state= "Ready";
-                            $scope.required_resource= "Doe";*/
-                            $scope.actionList = {State:"Ready", required_resources:"patient_record: 001671458.hl7", provided_resources:"patient_symptoms:001671458.spt"};
-                        }
-                </script-->
-
+        <!-- Graph View Screen -->
+        <div class="container" ng-controller="graphcontroller" ng-show="ispathwaygraphscreen()">
+                <h1>Pathway Graph</h1>
+                <div>
+                        <button ng-click="openpathwayselect()">< Back to pathway List</button>
+                </div>
         </div>
 </div>
 </body>
-</html> 
+</html>
