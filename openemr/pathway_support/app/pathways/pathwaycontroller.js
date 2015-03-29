@@ -62,6 +62,7 @@ function createpathway($scope) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : "test_commit.pml"};
 
     $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+    console.log("Requesting backend to create process")
     .done(function(data){
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -104,6 +105,7 @@ function getpathways($scope) {
         .fail(function(data) {
                 console.log("fail");
                 console.log("http " + data.status + ":\n" + data.responseText);
+
         });
     }
 }
