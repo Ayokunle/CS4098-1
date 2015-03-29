@@ -310,29 +310,35 @@ main {
 }
 
 /* line 27, ../sass/pathways.scss */
-.pathway.ag {
-  padding: 1.60643%;
+.pathwaycontainer .ag1 {
+  margin-bottom: 0.5em;
 }
 
 /* line 31, ../sass/pathways.scss */
+.pathway.ag {
+  padding: 1.60643%;
+  margin-bottom: 2em;
+}
+
+/* line 36, ../sass/pathways.scss */
 .pathway.ag1 {
-  width: 79.59184%;
+  width: 69.38776%;
   float: left;
   margin-right: 2.04082%;
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 35, ../sass/pathways.scss */
+/* line 40, ../sass/pathways.scss */
 .pathway.ag2 {
-  width: 8.16327%;
+  width: 18.36735%;
   float: left;
   margin-right: 2.04082%;
   overflow: hidden;
   *zoom: 1;
 }
 
-/* line 39, ../sass/pathways.scss */
+/* line 44, ../sass/pathways.scss */
 .pathway.ag3 {
   width: 8.16327%;
   float: right;
@@ -344,37 +350,36 @@ main {
 /**
  * Styles for AG grids & Container
  */
-/* line 51, ../sass/pathways.scss */
+/* line 56, ../sass/pathways.scss */
 .container {
   background-color: #fbeecb;
 }
 
-/* line 55, ../sass/pathways.scss */
-.ag1, .ag3 {
+/* line 60, ../sass/pathways.scss */
+.pathway.ag1, .pathway.ag3 {
   background-color: #71dad2;
 }
 
-/* line 59, ../sass/pathways.scss */
-.ag2 {
+/* line 64, ../sass/pathways.scss */
+.pathway.ag2 {
   background-color: #fae7b3;
 }
 
-/* line 64, ../sass/pathways.scss */
+/* line 69, ../sass/pathways.scss */
 .pathway.ag1:hover {
-  background-color: #000077;
+  background-color: #001177;
 }
 
 /**
  * Text Styles
  */
-/* line 73, ../sass/pathways.scss */
+/* line 78, ../sass/pathways.scss */
 h1 {
   text-align: center;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 2rem;
+  font-size: 2em;
 }
 
-/* line 79, ../sass/pathways.scss */
+/* line 84, ../sass/pathways.scss */
 h2 {
   text-align: center;
   font-size: 1rem;

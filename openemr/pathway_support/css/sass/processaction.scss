@@ -12,46 +12,22 @@ $susy: (
   flow: ltr,
 );
 
-.ag1 {
+.action.ag1 {
 	@include gutter();
 }
 
-.ag2 {
+.action.ag2 {
 	@include span(5 of 10);
-}
-
-.nav {
-	@include span(10 of 10);
 }
 
 /*
 Styles for AG grids and container
 */
 
-.ag1, .ag3 {
+.action.ag1, .action.ag3 {
   background-color: #71dad2;
 }
 
-.ag2 {
+.action.ag2 {
   background-color: #fae7b3;
-}
-
-.ag4,.ag5,.ag8,.ag9 {
-  background-color: #ee9e9c;
-}
-
-.ag6 {
-  background-color: #f09671;
-}
-
-.ag7 {
-  background-color: #f6d784;
-}
-
-.ag10 {
-  background-color: #ea9fc3;
-}
-
-.nav {
-	background-color: #C090D0;
 }

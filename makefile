@@ -4,7 +4,7 @@ APP.PATHWAYS.dir=/var/www/${PROJECT}/app/pathways
 APP.ACTIONS.dir=/var/www/${PROJECT}/app/actions
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
-TEST.dir=/var/www/test
+TEST.dir=/var/www/${PROJECT}/test
 JQUERY.dir=${OPENEMR.dir}/library/js
 OPENEMR.dir=/var/www/openemr
 
@@ -19,9 +19,9 @@ OPENEMR.dir=/var/www/openemr
 APP_FOLDER=${PROJECT}/app
 
 # Static web pages and forms to be installed:
-APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js
+APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js ${APP_FOLDER}/pathways/graphcontroller.js
 APP.ACTIONS=${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/actions/actionsDirective.js
-PAGES.TEST=test/kernel_request.php
+PAGES.TEST=${PROJECT}/test/kernel_request.php
 
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
@@ -90,8 +90,6 @@ install:
 	${INSTALL} --mode ${FILE_MODE} ${APP.PATHWAYS} ${APP.PATHWAYS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${APP.ACTIONS} ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
-	#${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
-	#${INSTALL} --mode ${FILE_MODE} ${JS.APP} ${APP.dir}
 	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${TEST.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JQUERY} ${JQUERY.dir}
 	sudo bash ./inject.sh
