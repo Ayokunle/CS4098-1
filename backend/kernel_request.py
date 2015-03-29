@@ -101,6 +101,9 @@ elif request.getvalue('event') == "GETLIST":
     #print(output)
     #print(error)
     #print("Hello")
+    if (data[30] == "{"):
+        data = data[0:29] + "[" + data[30:-2] + "]" + data[-2:]
+        
     print (data)
         
 elif request.getvalue('event') == "DELETE":
