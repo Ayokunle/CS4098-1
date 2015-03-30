@@ -32,7 +32,7 @@
                 <p>Active patient id: {{active_pid}}</p>
                 <div ng-repeat="pathway in pathways track by $index">
                         <div class="pathwaycontainer ag1">
-                                <div class="pathway ag1" ng-click="selectpathway($index)">{{pathway["@model"]}}</div>
+                                <div class="pathway ag1" ng-click="selectpathway($index)">{{getmodelname(pathway)}}</div>
                                 <div class="pathway ag2">
                                         <button ng-click="opengraph(pathway)">Pathway View</button>
                                 </div>
@@ -42,7 +42,15 @@
                         </div>
                 </div>
                 <div>
-                        <button ng-click="createpathway()">+</button>
+                        <button ng-hide="iscreatingpathway" ng-click="openpathwaycreate()">+</button>
+                        <div class="pathwaycreate container" ng-show="iscreatingpathway">
+                                <div>Choose a pml model</div>
+                                <select ng-model="selectedpml" ng-options="pml for pml in pmlfiles"></select>
+                                <div ng-show="pmlfiles.length > 0">
+                                        <button ng-click="createpathway()">Ok</button>
+                                        <button ng-click="closepathwaycreate()">Cancel</button>
+                                </div>
+                        </div>
                 </div>
         </div>
 

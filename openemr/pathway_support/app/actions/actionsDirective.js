@@ -1,5 +1,5 @@
-//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var app
 if (app == null)
@@ -30,6 +30,7 @@ function peos_request($scope, $rootScope, event_type) {
 
 	//The function that runs when the http request succeeds
 	done = function(result, status, xhr) {
+		console.log()
   		if (xhr.status=="200") {
   			$scope.$parent.getpathways();
 		}
