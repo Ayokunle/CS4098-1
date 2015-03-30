@@ -21,7 +21,7 @@ APP_FOLDER=${PROJECT}/app
 # Static web pages and forms to be installed:
 APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js ${APP_FOLDER}/pathways/graphcontroller.js
 APP.ACTIONS=${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/actions/actionsDirective.js
-PAGES.TEST=${PROJECT}/test/kernel_request.php
+PAGES.TEST=${PROJECT}/test/kernel_request.php ${PROJECT}/test/python_gateway.py
 
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
