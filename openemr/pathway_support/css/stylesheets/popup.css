@@ -26,35 +26,37 @@ main {
 }
 
 /* line 21, ../sass/popup.scss */
-h1 {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 40px;
-}
-
-/* line 26, ../sass/popup.scss */
-.ag1 {
-  width: 48.97959%;
+.popup .ag1 {
+  width: 100%;
   float: left;
-  margin-right: 2.04082%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
-/* line 30, ../sass/popup.scss */
-li {
+/* line 27, ../sass/popup.scss */
+.popup .action {
   border-style: solid;
   border-width: 1px;
 }
 
-/* line 37, ../sass/popup.scss */
+/* line 32, ../sass/popup.scss */
+.popup button {
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* line 39, ../sass/popup.scss */
 .READY {
   background-color: #00FF00;
 }
 
-/* line 43, ../sass/popup.scss */
+/* line 45, ../sass/popup.scss */
 .BLOCKED {
   background-color: #FF0000;
 }
 
-/* line 49, ../sass/popup.scss */
+/* line 51, ../sass/popup.scss */
 .NONE {
   background-color: #FFFFFF;
 }
@@ -93,72 +95,11 @@ li {
 /**
  * Text Styles
  */
-/* line 94, ../sass/popup.scss */
+/* line 96, ../sass/popup.scss */
 h2 {
   text-align: center;
   font-size: 1rem;
   font-weight: normal;
   padding-top: 1.8rem;
   padding-bottom: 1.8rem;
-}
-
-/* line 102, ../sass/popup.scss */
-.popupDialog {
-  position: fixed;
-  font-family: Arial, Helvetica, sans-serif;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99999;
-  opacity: 0;
-  -webkit-transition: opacity 400ms ease-in;
-  -moz-transition: opacity 400ms ease-in;
-  transition: opacity 400ms ease-in;
-  pointer-events: none;
-}
-
-/* line 118, ../sass/popup.scss */
-.popupDialog:target {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* line 123, ../sass/popup.scss */
-.popupDialog > div {
-  width: 400px;
-  position: relative;
-  margin: 10% auto;
-  padding: 5px 20px 13px 20px;
-  border-radius: 10px;
-  background: #fff;
-  background: -moz-linear-gradient(#fff, #999);
-  background: -webkit-linear-gradient(#fff, #999);
-  background: -o-linear-gradient(#fff, #999);
-}
-
-/* line 135, ../sass/popup.scss */
-.close {
-  background: #606061;
-  color: #FFFFFF;
-  line-height: 25px;
-  position: absolute;
-  right: -12px;
-  text-align: center;
-  top: -10px;
-  width: 24px;
-  text-decoration: none;
-  font-weight: bold;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  -moz-box-shadow: 1px 1px 3px #000;
-  -webkit-box-shadow: 1px 1px 3px #000;
-  box-shadow: 1px 1px 3px #000;
-}
-
-/* line 154, ../sass/popup.scss */
-.close:hover {
-  background: #00d9ff;
 }

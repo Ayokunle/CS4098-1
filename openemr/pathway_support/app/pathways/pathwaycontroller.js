@@ -1,6 +1,11 @@
 //Constants
 var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL_DEBUG = "/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+
+var PATHWAY_SELECT = 0;
+var PATHWAY_NOTIFY = 1;
+var PATHWAY_GRAPH = 2;
+
 //Error constants
 var ERROR = "error"
 var ERROR_CODE = "error_code"
@@ -13,16 +18,125 @@ if (app == null)
 app.controller('pathwaycontroller', function($scope) {
     console.log("Starting pathway controller");
 
-    $scope.active_pid = getUrlParameter("patient_id");
+    //
+    //Assign scope member functions
+    //
 
+    $scope.getmodelname = getmodelname;
     $scope.deletepathway = deletepathway;
-    $scope.opengraph = opengraph;
-    $scope.createpathway = function() {
-        createpathway($scope)
+    $scope.opengraph = function (pathwayindex) { 
+        opengraph($scope, pathwayindex);
+    }
+
+    $scope.openpathwayselect = function() {
+        openpathwayselect($scope);
+    };
+    $scope.openpathwaycreate = function() {
+        openpathwaycreate($scope);
+    }
+
+
+    $scope.getpathways = function() {
+        getpathways($scope);
     };
 
+    $scope.selectpathway = function(pathwayindex) {
+        selectpathway($scope, pathwayindex);
+    };
+    $scope.createpathway = function(pathwayname) {
+        createpathway($scope, pathwayname);
+    };
+    $scope.closepathwaycreate = function() {
+        closepathwaycreate($scope);
+    };
+
+
+    $scope.ispathwayselectscreen = function () { return $scope.currentscreen == PATHWAY_SELECT; };
+    $scope.ispathwaynotifyscreen = function () { return $scope.currentscreen == PATHWAY_NOTIFY; };
+    $scope.ispathwaygraphscreen = function () { return $scope.currentscreen == PATHWAY_GRAPH; };
+    
+    //
+    //Initialize pathway selection
+    //
+    $scope.currentscreen = PATHWAY_SELECT;
+    $scope.active_pid = getUrlParameter("patient_id");
+    $scope.getpathways();
+    $scope.selectedpathway = -1;
+    $scope.selectedpml = "";
+});
+
+function openpathwayselect($scope) {
+    $scope.selectedpathway = -1;
+    $scope.currentscreen = PATHWAY_SELECT;
+}
+
+function openpathwaycreate($scope) {
+    getdata = {"event" : "GETLIST_PEOS"};
+
+    $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
+    .done(function(data) {
+        if (ERROR in data) {
+            console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
+        }
+        else {
+            console.log(data);
+
+            //Now display the dropdown list of pml files and ok/cancel buttons
+            $scope.iscreatingpathway = true;
+            $scope.pmlfiles = data;
+            $scope.$digest();
+        }
+    })
+    .fail(function(data){
+        console.log("fail");
+        console.log("http " + data.status + ":\n" + data.responseText);  
+    });
+}
+
+function closepathwaycreate($scope) {
+    $scope.iscreatingpathway = false;
+}
+
+function selectpathway($scope, pathwayindex) {
+    $scope.selectedpathway = pathwayindex;
+    $scope.currentscreen = PATHWAY_NOTIFY;
+}
+
+function createpathway($scope, pathwayname) {
+    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
+    console.log("Chosen pathway: " + pathwayname)
+    console.log("Requesting backend to create process");
+    $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
+    .done(function(data){
+        if (ERROR in data) {
+            console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
+        }
+        else {
+            console.log(data);
+            $scope.getpathways();
+        }
+    })
+    .fail(function(data){
+        console.log("fail");
+        console.log("http " + data.status + ":\n" + data.responseText);
+    });
+}
+
+function deletepathway(pathway) {
+    alert("Delete pathway \"" + pathway["@pid"] + "\": Not Yet Implemented");
+}
+function opengraph($scope, pathwayindex) {
+    $scope.selectedpathway = pathwayindex;
+    $scope.currentscreen = PATHWAY_GRAPH;
+}
+
+function getpathways($scope) {
     if ($scope.active_pid != null) {
-        ongetpathway = function(data) {
+        getdata = {"event" : "GETLIST", "login_name" : $scope.active_pid};
+
+        console.log("Getting list of pathways");
+        $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
+        .done(function(data) {
             if (ERROR in data) {
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
                    $scope.pathways = {}
@@ -33,50 +147,29 @@ app.controller('pathwaycontroller', function($scope) {
                 $scope.pathways = data["process_table"]["process"];
             }
             $scope.$digest();
-        };
-        getPathway($scope.active_pid, ongetpathway);
-    }
-});
-
-function createpathway($scope) {
-    getdata = {"event" : "CREATE", "login_name" : $scope.active_pid};
-
-    $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
-    .done(function(data){
-        if (ERROR in data) {
-            console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
-        }
-        else {
-            $scope.pathways= data["process_table"]["process"];
-        }
-        $scope.$digest();
-    })
-    .fail(function(data){
-        console.log("fail");
-        console.log(data);
-    });
-}
-
-function deletepathway(pathway) {
-    alert("Delete pathway \"" + pathway["@pid"] + "\": Not Yet Implemented");
-}
-function opengraph(pathway) {
-    alert("Open graph for pathway \"" + pathway["@pid"] + "\": Not Yet Implemented");
-}
-
-function getPathway(pid, ondone, onfail) {
-        getdata = {"event" : "GETLIST", "login_name" : pid};
-
-        $.get(KERNEL_REQUEST_URL_DEBUG, getdata, datatype = 'json')
-        .done(function(data){
-                ondone(data);
         })
         .fail(function(data) {
                 console.log("fail");
-                console.log(data);
-                if (onfail != null)
-                    onfail(data);
+                console.log("http " + data.status + ":\n" + data.responseText);
         });
+    }
+}
+
+function getmodelname(pathway)
+{
+    modelpath = pathway["@model"];
+
+    //Strip off the parent folders in the path until we get the filename
+    pathparts = modelpath.split("/");
+    modelfile = pathparts[pathparts.length-1];
+
+    //Strip off the file extension
+    fileparts = modelfile.split(".");
+    filename = fileparts[0]
+
+    //Make it more readable
+    filename = filename.replace("_", " ");
+    return filename.charAt(0).toUpperCase() + filename.slice(1);
 }
 
 function getUrlParameter(sParam) {
