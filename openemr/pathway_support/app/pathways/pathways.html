@@ -61,19 +61,21 @@
                 <div class="ag1">
                         <div ng-controller = "actionController" ng-repeat = "action in pathways[selectedpathway]['action']" class = "action {{ action['@state'] }}">
                                 <div class="expanded" ng-show = "visible">
-                                        <div><button ng-click="expand()" >Collapse</button></div>
+                                        <div><button ng-click="expand()" >Collapse</button> {{ action["@name"] }} </div>
                                         <div>State: {{ action["@state"] }}</div>
                                         <br>
                                         <div>Required resources: {{ action.req_resource["@name"] }}</div>
                                         <br>
                                         <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
+                                        
+                                        <div>Script: {{ action.script }}</div>
                                         <br>
 
                                         <actionbuttons action="action"></actionbuttons>
                                 </div>
                                 <div class="collapsed" ng-hide = "visible">
-                                        <div><button ng-click="expand()" >Expand</button></div>
-                                        {{ action["@name"] }}
+                                        <div><button ng-click="expand()" >Expand</button> {{ action["@name"] }} </div>
+                                        
                                 </div>
                         </div>
                 </div>
