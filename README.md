@@ -6,11 +6,8 @@
 - Go to where you want the program to be installed
 - Run "sudo apt-get install git"
 - Run "git clone https://github.com/thysol/CS4098"
-- Copy the files in backend/peos/.. into their respective folders [This will be automated later]
 - Enter the CS4098 directory and run "sudo chmod +x install32.sh"
-	- Do "sudo chmod +x install64.sh" instead if using 64 bit
 - Run "sudo ./install32.sh"
-	- "sudo ./install64.sh" if 64 bit
 - This script will now install all dependencies then install the program
 - Answer "yes" to all confirmation prompts
 - You may be prompted to create and/or enter a MySQL root password, please do so
@@ -24,14 +21,13 @@
 	- Verify that modal dialog box with header "Pathway Support" appears
 - To show pathway support action list
 	- Go to pathway support popup
-	- Click the "+" button to create a new pathway (Currently using test data so it will "create" 3 pathways and no more than that)
-	- Click on the pathway when it turns dark blue
+	- Click the "+" button
+	- Select the pathway you want to create an instance of
+	- Click ok
+	- Mouse over the pathway and click it when it turns dark blue
 	- Verify that the action list appears below the pathway list
-- To update status of individual actions
-	- Click on a pathway to display the action list
-	- Click the expand button on one of the actions
-	- Click either "Start", "Suspend", "Finish" or "Abort" button when they appear
-	- Verify that the text beside "State: " changes upon clicking any of the buttons
+	- Click "expand" on the action you want to select
+	- Verify that the start, suspend, abort and finish buttons appear (these are currently unfinished)
 - To test backend functionality
 	- Enter CS4098/test directory
 	- Run "python3 create_process_test.py"
@@ -48,10 +44,7 @@
 	- sudo apt-get install check
 	- sudo apt-get install tcl-dev
 	- sudo apt-get install libreadline-dev
-	- if 64 bit
-		- sudo apt-get install lib32ncurses5-dev
-	- if 32 bit
-		- sudo apt-get install libncurses5-dev
+	- sudo apt-get install libncurses5-dev
 	- sudo apt-get install apache2
 	- sudo apt-get install python3
 	- sudo apt-get install git
