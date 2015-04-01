@@ -73,7 +73,7 @@ function openpathwayselect($scope) {
 function openpathwaycreate($scope) {
     getdata = {"event" : "GETLIST_PEOS"};
 
-    $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+    $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
     .done(function(data) {
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -104,9 +104,9 @@ function selectpathway($scope, pathwayindex) {
 
 function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
-
+    console.log("Chosen pathway: " + pathwayname)
     console.log("Requesting backend to create process");
-    $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+    $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -135,7 +135,7 @@ function getpathways($scope) {
         getdata = {"event" : "GETLIST", "login_name" : $scope.active_pid};
 
         console.log("Getting list of pathways");
-        $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+        $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
         .done(function(data) {
             if (ERROR in data) {
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
