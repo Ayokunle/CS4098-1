@@ -84,6 +84,7 @@ function openpathwaycreate($scope) {
             //Now display the dropdown list of pml files and ok/cancel buttons
             $scope.iscreatingpathway = true;
             $scope.pmlfiles = data;
+            $scope.selectedpml = data[0];
             $scope.$digest();
         }
     })
@@ -104,8 +105,9 @@ function selectpathway($scope, pathwayindex) {
 
 function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
-    console.log("Chosen pathway: " + pathwayname)
-    console.log("Requesting backend to create process");
+
+    console.log("Requesting backend to create process: " + pathwayname);
+
     $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {

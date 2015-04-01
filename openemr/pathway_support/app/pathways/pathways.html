@@ -47,7 +47,7 @@
                                 <div>Choose a pml model</div>
                                 <select ng-model="selectedpml" ng-options="pml for pml in pmlfiles"></select>
                                 <div ng-show="pmlfiles.length > 0">
-                                        <button ng-click="createpathway()">Ok</button>
+                                        <button ng-click="createpathway(selectedpml)">Ok</button>
                                         <button ng-click="closepathwaycreate()">Cancel</button>
                                 </div>
                         </div>
