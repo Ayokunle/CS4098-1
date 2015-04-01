@@ -1,6 +1,6 @@
 //Constants
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var PATHWAY_SELECT = 0;
 var PATHWAY_NOTIFY = 1;
@@ -107,6 +107,7 @@ function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
 
     console.log("Requesting backend to create process: " + pathwayname);
+
     $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {
