@@ -1,5 +1,5 @@
-//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var app
 if (app == null)
