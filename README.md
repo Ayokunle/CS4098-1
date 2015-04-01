@@ -23,6 +23,7 @@
 	- Go to pathway support popup
 	- Click the "+" button
 	- Select the pathway you want to create an instance of
+		- Note that only "web_test", "run_peos", "netbeans_req_release", "test_commit" and "simple" work
 	- Click ok
 	- Mouse over the pathway and click it when it turns dark blue
 	- Verify that the action list appears below the pathway list
