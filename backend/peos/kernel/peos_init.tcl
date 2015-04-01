@@ -6,30 +6,50 @@ proc default { path } {
     exists $path
 }
 
+proc strlen s {
+    set n 0
+    foreach char [split $s ""] {incr n}
+    set n
+ } ;# RS
+
 proc exists { path } {
     
-    set fp [open "patient_id.txt" r]
-    set patient_id [read $fp]
-    close $fp
+    puts $path
+    if {[catch {set r $path}]} {
+        return 0
+    }
+    expr [file exists $path]
     
-    #puts $patient_id
-    set symptoms "_symptoms.txt"
-    set file [concat $patient_id$symptoms]
-    file mkdir -booleanresult data
-    set f [open ../../models/$file w+]
+   #  set fp [open "patient_id.txt" r]
+   #  set patient_id [read $fp]
+   #  close $fp
+    
+   #  #puts $patient_id
+   #  set symptoms "_symptoms.txt"
+   #  set file [concat $patient_id$symptoms]
+   #  file mkdir -booleanresult data
+   #  set f [open ../../models/$file w+]
 
-    set mfp [open "model.txt" r]
-    set model [read $mfp]
-    close $mfp
-   # puts $model
+   #  set mfp [open "model.txt" r]
+   #  set model [read $mfp]
+   #  close $mfp
+   # # puts $model
 
-    set format ".res"
-    set file1 [concat $model$format]
-    set f [open ../../models/$file1 w+]   
-    puts $f [concat $path : $file]
-    close $f
+   #  set format ".res"
+   #  set file1 [concat $model$format]
+   #  set f [open ../../models/$file1 w+]   
+    
+   #  set len [strlen $path]
+   #  set path [ string replace $path 0 1 ]
+   #  set len [strlen $path]
+   #  puts  [concat $path <-]
+   #  set path [ string replace $path $len-1 $len ]
+   #  puts [concat $path -><-]
 
-    expr [file exists ../../models/$file1]
+   #  puts $f [concat $path : $file]
+   #  close $f
+
+   #  expr [file exists ../../models/$file1]
 }
 
 proc ax { path } {
