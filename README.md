@@ -6,6 +6,7 @@
 - Go to where you want the program to be installed
 - Run "sudo apt-get install git"
 - Run "git clone https://github.com/thysol/CS4098"
+- Copy the files in backend/peos/.. into their respective folders [This will be automated later]
 - Enter the CS4098 directory and run "sudo chmod +x install32.sh"
 	- Do "sudo chmod +x install64.sh" instead if using 64 bit
 - Run "sudo ./install32.sh"
