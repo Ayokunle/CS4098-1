@@ -65,8 +65,8 @@ shell: shell.o $(LIBRARY)
 	$(CC) $(LDFLAGS) -o $@ $< $(CORE_LIBS) $(LIBS) -lreadline -lhistory -lncurses -ltcl	
 
 # Unit tests.
-# test: $(CORE_OBJS)
-# 	$(MAKE) -C test 
+ test: $(CORE_OBJS)
+ 	$(MAKE) -C test 
 
 shell_test:
 	@for t in $(SHELL_TESTS) ; do sh $$t ; done
