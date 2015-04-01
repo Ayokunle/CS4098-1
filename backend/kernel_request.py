@@ -51,7 +51,7 @@ if request.getvalue('event') == "CREATE":
     print (data)
     
 elif request.getvalue('event') == "GETLIST_PEOS":
-    models = [ f for f in listdir(MODEL_PATH) if isfile(join(MODEL_PATH,f)) ]
+    models = [ f for f in listdir(MODEL_PATH) if isfile(join(MODEL_PATH,f)) and f.endswith(".pml") ]
     JSON = json.dumps(models)  
     
     print ("Content-type:text/json\r\n\r\n")

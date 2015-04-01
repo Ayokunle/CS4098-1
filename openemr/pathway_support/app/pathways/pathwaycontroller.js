@@ -73,7 +73,7 @@ function openpathwayselect($scope) {
 function openpathwaycreate($scope) {
     getdata = {"event" : "GETLIST_PEOS"};
 
-    $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
+    $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data) {
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -84,6 +84,7 @@ function openpathwaycreate($scope) {
             //Now display the dropdown list of pml files and ok/cancel buttons
             $scope.iscreatingpathway = true;
             $scope.pmlfiles = data;
+            $scope.selectedpml = data[0];
             $scope.$digest();
         }
     })
@@ -104,9 +105,9 @@ function selectpathway($scope, pathwayindex) {
 
 function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
-    console.log("Chosen pathway: " + pathwayname)
-    console.log("Requesting backend to create process");
-    $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
+
+    console.log("Requesting backend to create process: " + pathwayname);
+    $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {
             console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
@@ -135,7 +136,7 @@ function getpathways($scope) {
         getdata = {"event" : "GETLIST", "login_name" : $scope.active_pid};
 
         console.log("Getting list of pathways");
-        $.getJSON("/cgi-bin/kernel_request.py", getdata, datatype = 'json')
+        $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data) {
             if (ERROR in data) {
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
