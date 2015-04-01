@@ -8,6 +8,8 @@ import urllib
 import socket             
 import subprocess
 import cgi, cgitb 
+from os import listdir
+from os.path import isfile, join
 
 #http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
 EXECUTION_PATH = "CS4098/peos/os/kernel/"
@@ -49,35 +51,9 @@ if request.getvalue('event') == "CREATE":
     print (data)
     
 elif request.getvalue('event') == "GETLIST_PEOS":
-    #peos [-l login_name] -i
-    process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-i"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            
-    #print("Waiting for process to finish")
-    output, error = process.communicate()
-    #print("Process finished")
-    #print(output)
-    #print(error)
-    #print("End")
-    first = True
-            
-    processes = str(output)[2:-1].split("\\")
-            
-    JSON = "{"
-            
-    for process in processes:
-        #print(process)
-        if (len(process) > 4):
-            if (not first):
-                JSON += ", "
-                JSON +=  process[1:3] + " : " + (process.split("/")[-1])
-                        
-            else:
-                JSON +=  process[0:2] + " : " + (process.split("/")[-1])
-                        
-            first = False
-                    
-    JSON += "}"
-            
+    models = [ f for f in listdir(MODEL_PATH) if isfile(join(MODEL_PATH,f)) ]
+    JSON = json.dumps(models)  
+    
     print ("Content-type:text/json\r\n\r\n")
     print (JSON)
     
