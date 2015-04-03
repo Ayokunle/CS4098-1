@@ -4,7 +4,6 @@ APP.PATHWAYS.dir=/var/www/${PROJECT}/app/pathways
 APP.ACTIONS.dir=/var/www/${PROJECT}/app/actions
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
 JS.dir=/var/www/${PROJECT}/js
-TEST.dir=/var/www/${PROJECT}/test
 JQUERY.dir=${OPENEMR.dir}/library/js
 OPENEMR.dir=/var/www/openemr
 
@@ -17,23 +16,23 @@ OPENEMR.dir=/var/www/openemr
 #
 
 APP_FOLDER=${PROJECT}/app
+LIBRARY_FOLDER=/openemr/library
 
 # Static web pages and forms to be installed:
 APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js ${APP_FOLDER}/pathways/graphcontroller.js
 APP.ACTIONS=${APP_FOLDER}/actions/actions.html ${APP_FOLDER}/actions/actionsDirective.js
-PAGES.TEST=${PROJECT}/test/kernel_request.php ${PROJECT}/test/python_gateway.py
 
 # CGI (and other) scripts to be installed:
 SCRIPTS=hello.cgi
 
-CSS=${PROJECT}/css/stylesheets/mick.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css ${PROJECT}/css/stylesheets/popup.css
-JQUERY=openemr/library/js/jquery-2.1.3.min.js
+CSS=${PROJECT}/css/stylesheets/print.css ${PROJECT}/css/stylesheets/ie.css ${PROJECT}/css/stylesheets/processaction.css ${PROJECT}/css/stylesheets/screen.css ${PROJECT}/css/stylesheets/pathways.css ${PROJECT}/css/stylesheets/popup.css
+JS=${LIBRARY_FOLDER}/js/jquery-2.1.3.min.js ${LIBRARY_FOLDER}/js/raphael-min.js ${LIBRARY_FOLDER}/js/raphael-addons.js
 
 #
 # Values for creating the distribution.
 #
 
-PROJECT=openemr/pathway_support
+PROJECT=/openemr/pathway_support
 # File creation modes.  Please do not modify these: they work on
 # proisis.lero.ie.
 FILE_MODE=ug+rwX,o+rX
@@ -85,12 +84,10 @@ install:
 	${INSTALL} --mode ${DIR_MODE} -d ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${CSS.dir}
 	${INSTALL} --mode ${DIR_MODE} -d ${JS.dir}
-	${INSTALL} --mode ${DIR_MODE} -d ${TEST.dir}
 	
 	${INSTALL} --mode ${FILE_MODE} ${APP.PATHWAYS} ${APP.PATHWAYS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${APP.ACTIONS} ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${PAGES.TEST} ${TEST.dir}
 	${INSTALL} --mode ${FILE_MODE} ${JQUERY} ${JQUERY.dir}
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
