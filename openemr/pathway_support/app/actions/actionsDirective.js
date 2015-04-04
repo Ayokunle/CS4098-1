@@ -16,10 +16,10 @@ app.directive('actionbuttons', function() {
 	return {
 		restrict: 'E',
 		controller: function($scope, $rootScope) {
-			$scope.start = function() { peos_request($scope, $rootScope, "START") };
-			$scope.finish = function() { peos_request($scope, $rootScope, "FINISH") };
-			$scope.suspend = function() { peos_request($scope, $rootScope, "SUSPEND") };
-			$scope.abort = function() { peos_request($scope, $rootScope, "ABORT") };
+			$scope.start = function() { peos_request($scope, $rootScope, "start") };
+			$scope.finish = function() { peos_request($scope, $rootScope, "finish") };
+			$scope.suspend = function() { peos_request($scope, $rootScope, "suspend") };
+			$scope.abort = function() { peos_request($scope, $rootScope, "abort") };
 		},
 		scope: {
 			pathwayAction : '=action'
