@@ -112,6 +112,7 @@ function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
 
     console.log("Requesting backend to create process: " + pathwayname);
+
     $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
     .done(function(data){
         if (ERROR in data) {

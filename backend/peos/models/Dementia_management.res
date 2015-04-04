@@ -1,2 +1,0 @@
-Guidelines_For_Treatment_Of_Patients : Guidelines_For_Treatment_Of_Patients.txt
-non_cognitive_symptoms : non_cognitive_symptoms.txt
