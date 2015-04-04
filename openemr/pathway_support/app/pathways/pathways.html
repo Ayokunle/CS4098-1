@@ -7,12 +7,12 @@
                 <![endif]-->
 
                 <link href="/openemr/pathway_support/css/stylesheets/pathways.css" rel="stylesheet" type="text/css" />
-                <link href="/openemr/pathway_support/css/stylesheets/joint.css" rel="stylesheet" />
 
                 <link href="/openemr/pathway_support/css/stylesheets/popup.css" rel="stylesheet" type="text/css" />
-                <script src="http://code.jquery.com/jquery-2.1.3.js"></script>
 
                 <script src="/openemr/library/js/jquery-2.1.3.min.js"></script>
+                <script src="/openemr/library/js/raphael-min.js"></script>
+                <script src="/openemr/library/js/raphael-addons.js"></script>
 
                 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
                 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.js"></script>
@@ -88,6 +88,7 @@
         <div class="container" ng-controller="graphcontroller" ng-show="ispathwaygraphscreen()">
                 <h1>Pathway Graph</h1>
                 <div>
+                        <div id="graphtag"></div>
                         <button ng-click="openpathwayselect()">< Back to pathway List</button>
                 </div>
         </div>

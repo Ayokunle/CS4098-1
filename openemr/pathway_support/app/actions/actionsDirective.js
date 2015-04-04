@@ -1,5 +1,12 @@
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+
+//Error constants
+var ERROR = "error"
+var ERROR_CODE = "error_code"
+var ERR_USER_NOT_EXIST = 1
+var ERR_SCRIPT_FAIL = 2
+
 
 var app
 if (app == null)
@@ -24,31 +31,37 @@ app.directive('actionbuttons', function() {
 
 function peos_request($scope, $rootScope, event_type) {
 	getdata = {event : event_type,
-				login_name : $scope.pid,
+				login_name : $scope.$parent.active_pid,
 				action_name : $scope.pathwayAction["@name"],
-				process_id : $scope.pathwayAction["@process_id"] };
+				process_id : $scope.$parent.getselectedpathway()["@pid"] };
+
 
 	//The function that runs when the http request succeeds
-	done = function(result, status, xhr) {
-		console.log()
-  		if (xhr.status=="200") {
-  			$scope.$parent.getpathways();
+	done = function(data) {
+		if (ERROR in data) {
+			console.log(data);
 		}
 		else {
-			console.log("Failed request");
-			$scope.pathwayAction["@state"] = "Failed request";
-		}
+  			if (data["status"] == "success") {
+  				console.log(data);
+  				$scope.$parent.getpathways();
+  			}
+  			else {
+  				console.log("Unexpected output from backend:\n");
+  				console.log(data);
+  			}
+  		}
   		$rootScope.$digest(); //Force update of ui
 	};
 
 	//The function that runs when the http request fails
-	fail =  function(xhr, status, error) {
-		alert( xhr.responseText);
-		console.log("error: " + error);
+	fail =  function(data) {
+		console.log("fail");
+        console.log("http " + data.status + ":\n" + data.responseText);
 	};
 
 	//Send a get request
-	$.get(
+	$.getJSON(
 		KERNEL_REQUEST_URL,
 		getdata)
 			.done(done)
