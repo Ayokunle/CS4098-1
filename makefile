@@ -3,8 +3,7 @@ HTML.dir=/var/www/${PROJECT}
 APP.PATHWAYS.dir=/var/www/${PROJECT}/app/pathways
 APP.ACTIONS.dir=/var/www/${PROJECT}/app/actions
 CSS.dir=/var/www/${PROJECT}/css/stylesheets
-JS.dir=/var/www/${PROJECT}/js
-JQUERY.dir=${OPENEMR.dir}/library/js
+JS.dir=${OPENEMR.dir}/library/js
 OPENEMR.dir=/var/www/openemr
 
 
@@ -16,7 +15,7 @@ OPENEMR.dir=/var/www/openemr
 #
 
 APP_FOLDER=${PROJECT}/app
-LIBRARY_FOLDER=/openemr/library
+LIBRARY_FOLDER=openemr/library
 
 # Static web pages and forms to be installed:
 APP.PATHWAYS=${APP_FOLDER}/pathways/pathways.html ${APP_FOLDER}/pathways/pathwaycontroller.js ${APP_FOLDER}/pathways/popup.js ${APP_FOLDER}/pathways/graphcontroller.js
@@ -88,7 +87,7 @@ install:
 	${INSTALL} --mode ${FILE_MODE} ${APP.PATHWAYS} ${APP.PATHWAYS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${APP.ACTIONS} ${APP.ACTIONS.dir}
 	${INSTALL} --mode ${FILE_MODE} ${CSS} ${CSS.dir}
-	${INSTALL} --mode ${FILE_MODE} ${JQUERY} ${JQUERY.dir}
+	${INSTALL} --mode ${FILE_MODE} ${JS} ${JS.dir}
 	sudo bash ./inject.sh
 	sudo bash ./setupCGI.sh
 
