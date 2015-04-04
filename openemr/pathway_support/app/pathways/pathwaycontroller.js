@@ -10,6 +10,7 @@ var PATHWAY_GRAPH = 2;
 var ERROR = "error"
 var ERROR_CODE = "error_code"
 var ERR_USER_NOT_EXIST = 1
+var ERR_SCRIPT_FAIL = 2
 
 var app
 if (app == null)
@@ -61,7 +62,11 @@ app.controller('pathwaycontroller', function($scope) {
     $scope.currentscreen = PATHWAY_SELECT;
     $scope.active_pid = getUrlParameter("patient_id");
     $scope.getpathways();
+
+    $scope.pathways = {};
     $scope.selectedpathway = -1;
+    $scope.getselectedpathway = function () { return $scope.pathways[$scope.selectedpathway]; };
+
     $scope.selectedpml = "";
 });
 
