@@ -116,7 +116,11 @@ function generateaction($scope, paper, currentaction) {
 		)
 		.hover(hoverin, hoverout);
 
-	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, currentaction["@name"]);
+	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, currentaction["@name"])
+		.click(
+			function() {
+				$scope.selectaction(currentaction);
+			};
 	sh.attr({text:actionText});
 
 	shapes.push(sh);
