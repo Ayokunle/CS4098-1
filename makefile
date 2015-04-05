@@ -31,7 +31,7 @@ JS=${LIBRARY_FOLDER}/js/jquery-2.1.3.min.js ${LIBRARY_FOLDER}/js/raphael-min.js 
 # Values for creating the distribution.
 #
 
-PROJECT=/openemr/pathway_support
+PROJECT=openemr/pathway_support
 # File creation modes.  Please do not modify these: they work on
 # proisis.lero.ie.
 FILE_MODE=ug+rwX,o+rX
