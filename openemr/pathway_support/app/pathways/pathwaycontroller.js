@@ -1,6 +1,6 @@
 //Constants
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var PATHWAY_SELECT = 0;
 var PATHWAY_NOTIFY = 1;
@@ -65,7 +65,8 @@ app.controller('pathwaycontroller', function($scope) {
 
     $scope.pathways = {};
     $scope.selectedpathway = -1;
-    $scope.getselectedpathway = function () { return $scope.pathways[$scope.selectedpathway]; };
+    $scope.getselectedpathway = function () { return $scope.pathways[$scope.selectedpathway];
+        console.log("getting selected pathway"); };
 
     $scope.selectedpml = "";
 });

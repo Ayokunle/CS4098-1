@@ -19,44 +19,29 @@ main {
 }
 
 /* line 17, ../sass/popup.scss */
-.sidebar {
-  width: 21.05263%;
+.popup.ag1 {
+  width: 48.97959%;
   float: left;
-  margin-right: 5.26316%;
+  margin-right: 2.04082%;
 }
 
 /* line 21, ../sass/popup.scss */
-.popup .ag1 {
-  width: 100%;
-  float: left;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-/* line 27, ../sass/popup.scss */
-.popup .action {
+.popup {
   border-style: solid;
   border-width: 1px;
 }
 
-/* line 32, ../sass/popup.scss */
-.popup button {
-  margin-left: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-/* line 39, ../sass/popup.scss */
+/* line 29, ../sass/popup.scss */
 .READY {
   background-color: #00FF00;
 }
 
-/* line 45, ../sass/popup.scss */
+/* line 35, ../sass/popup.scss */
 .BLOCKED {
   background-color: #FF0000;
 }
 
-/* line 51, ../sass/popup.scss */
+/* line 41, ../sass/popup.scss */
 .NONE {
   background-color: #FFFFFF;
 }
@@ -95,7 +80,7 @@ main {
 /**
  * Text Styles
  */
-/* line 96, ../sass/popup.scss */
+/* line 86, ../sass/popup.scss */
 h2 {
   text-align: center;
   font-size: 1rem;

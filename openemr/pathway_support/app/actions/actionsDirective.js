@@ -1,5 +1,5 @@
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 //Error constants
 var ERROR = "error"
@@ -22,7 +22,10 @@ app.directive('actionbuttons', function() {
 			$scope.abort = function() { peos_request($scope, $rootScope, "abort") };
 		},
 		scope: {
-			pathwayAction : '=action'
+			pathwayaction : '=action',
+			pathway : '=pathway',
+			active_pid: '=patient',
+			oncompleterequest: '=oncompleterequest'
 		},
 		templateUrl: '/openemr/pathway_support/app/actions/actions.html'
 	}
@@ -31,9 +34,9 @@ app.directive('actionbuttons', function() {
 
 function peos_request($scope, $rootScope, event_type) {
 	getdata = {event : event_type,
-				login_name : $scope.$parent.active_pid,
-				action_name : $scope.pathwayAction["@name"],
-				process_id : $scope.$parent.getselectedpathway()["@pid"] };
+				login_name : $scope.active_pid,
+				action_name : $scope.pathwayaction["@name"],
+				process_id : $scope.pathway["@pid"] };
 
 
 	//The function that runs when the http request succeeds
@@ -44,7 +47,7 @@ function peos_request($scope, $rootScope, event_type) {
 		else {
   			if (data["status"] == "success") {
   				console.log(data);
-  				$scope.$parent.getpathways();
+  				$scope.oncompleterequest();
   			}
   			else {
   				console.log("Unexpected output from backend:\n");

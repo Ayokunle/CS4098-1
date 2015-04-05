@@ -47,7 +47,7 @@
                                 <div>Choose a pml model</div>
                                 <select ng-model="selectedpml" ng-options="pml for pml in pmlfiles"></select>
                                 <div ng-show="pmlfiles.length > 0">
-                                        <button ng-click="createpathway(selectedpml)">Ok</button>
+                                        <button ng-click="createpathway(selectedpml)">Create</button>
                                         <button ng-click="closepathwaycreate()">Cancel</button>
                                 </div>
                         </div>
@@ -55,13 +55,12 @@
         </div>
 
         <!-- Pathway Notifications screen -->
-        <div class="popup container" ng-controller="actionController" ng-show="ispathwaynotifyscreen()">
+        <div class="container" ng-show="ispathwaynotifyscreen()">
                 <h1>Pathway Actions</h1>
-
-                <div class="ag1">
-                        <div ng-controller = "actionController" ng-repeat = "action in pathways[selectedpathway]['action']" class = "action {{ action['@state'] }}">
+                <div>
+                        <div ng-controller = "actionController" ng-repeat = "action in pathways[selectedpathway]['action']" class = "popup action {{ action['@state'] }}">
                                 <div class="expanded" ng-show = "visible">
-                                        <div><button ng-click="expand()" >Collapse</button> {{ action["@name"] }} </div>
+                                        <div><button ng-click="expand()">Collapse</button> {{ action["@name"] }} </div>
                                         <div>State: {{ action["@state"] }}</div>
                                         <br>
                                         <div>Required resources: {{ action.req_resource["@name"] }}</div>
@@ -71,11 +70,10 @@
                                         <div>Script: {{ action.script }}</div>
                                         <br>
 
-                                        <actionbuttons action="action"></actionbuttons>
+                                        <actionbuttons action="action" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways()"></actionbuttons>
                                 </div>
                                 <div class="collapsed" ng-hide = "visible">
                                         <div><button ng-click="expand()" >Expand</button> {{ action["@name"] }} </div>
-                                        
                                 </div>
                         </div>
                 </div>
@@ -85,10 +83,29 @@
         </div>
 
         <!-- Graph View Screen -->
-        <div class="container" ng-controller="graphcontroller" ng-show="ispathwaygraphscreen()">
+        <div class="container" ng-show="ispathwaygraphscreen()">
                 <h1>Pathway Graph</h1>
                 <div>
-                        <div id="graphtag"></div>
+                        <div class="graph ag1" id="graphtag"></div>
+                        <div class="popup action graph ag2" ng-controller="graphcontroller">
+                                <div ng-show="selectedaction != null" class="expanded {{ selectedaction['@state'] }}">
+                                        <div><button ng-click="hideaction()" >Close</button> {{ selectedaction["@name"] }} </div>
+                                        <div>State: {{ selectedaction["@state"] }}</div>
+                                        <br>
+                                        <div>Required resources: {{ selectedaction.req_resource["@name"] }}</div>
+                                        <br>
+                                        <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
+                                        
+                                        <div>Script: {{ selectedaction.script }}</div>
+                                        <br>
+                                        <actionbuttons action="selectedaction" pathway="selectedpathway" patient="active_pid" oncompleterequest="generategraph"></actionbuttons>
+                                </div>
+                                <div ng-hide="selectedaction != null">
+                                        Select an action to display more information!
+                                </div>
+                        </div>
+                </div>
+                <div class="fullrow">
                         <button ng-click="openpathwayselect()">< Back to pathway List</button>
                 </div>
         </div>
