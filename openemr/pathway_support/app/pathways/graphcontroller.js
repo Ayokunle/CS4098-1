@@ -120,7 +120,8 @@ function generateaction($scope, paper, currentaction) {
 		.click(
 			function() {
 				$scope.selectaction(currentaction);
-			};
+			}
+		);
 	sh.attr({text:actionText});
 
 	shapes.push(sh);
