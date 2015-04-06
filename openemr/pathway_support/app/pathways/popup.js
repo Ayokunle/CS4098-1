@@ -21,6 +21,4 @@ app.controller('actionController', function($scope) {
 	$scope.expand = function(){
 		$scope.visible = !$scope.visible;
 	};
-
-
 });

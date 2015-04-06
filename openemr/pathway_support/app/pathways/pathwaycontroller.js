@@ -65,7 +65,8 @@ app.controller('pathwaycontroller', function($scope) {
 
     $scope.pathways = {};
     $scope.selectedpathway = -1;
-    $scope.getselectedpathway = function () { return $scope.pathways[$scope.selectedpathway]; };
+    $scope.getselectedpathway = function () { return $scope.pathways[$scope.selectedpathway];
+        console.log("getting selected pathway"); };
 
     $scope.selectedpml = "";
 });
@@ -144,6 +145,7 @@ function getpathways($scope) {
         console.log("Getting list of pathways");
         $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data) {
+            console.log(data);
             if (ERROR in data) {
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
                    $scope.pathways = {}

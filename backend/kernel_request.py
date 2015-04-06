@@ -34,30 +34,16 @@ request = cgi.FieldStorage()
 print ("Content-type:text/json\r\n\r\n")
 
 if request.getvalue('event') == "CREATE":
-    #os.chdir(EXECUTION_PATH)
-
-    #peos [-l login_name] -c name_of_model_file
-    process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-c", MODEL_PATH + request.getvalue('pathway_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #print ("./peos ", " -l " + request['login_name'][0] + " -c " + MODEL_PATH + request['pathway_name'][0])
-    output, error = process.communicate()
-
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
-    os.chdir(XML_PARSER_PATH)
-    process = subprocess.Popen(["python3", "process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-    output, error = process.communicate()
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
-
     try:
-        jsonFile = open("CS4098/backend/" + request.getvalue('login_name') + ".json", "r")
-        data = jsonFile.read()
+        #peos [-l login_name] -c name_of_model_file
+        process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-c", MODEL_PATH + request.getvalue('pathway_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        output, error = process.communicate()
 
-    except:
-        data = '{"error": "User does not exist", "error_code" : %d}' % ERROR_USER_NOT_EXIST
+        jsonreply = {"status" : "success", "output" : {"o" : output, "e" : error}}
+    except Exception as ex:
+        jsonreply = {"error": "%s\n%s" % (type(ex), ex), "error_code" : ERROR_SCRIPT_FAIL}
 
-    #print(output)
-    #print(error)
-    print (data)
+    print json.dumps(jsonreply)
 
 elif request.getvalue('event') == "GETLIST_PEOS":
     models = [ f for f in listdir(MODEL_PATH) if isfile(join(MODEL_PATH,f)) and f.endswith(".pml") ]
@@ -76,17 +62,16 @@ elif request.getvalue('event') == "GETLIST":
 
     try:
         jsonFile = open("CS4098/backend/" + request.getvalue('login_name') + ".json", "r")
-        data = jsonFile.read()
-
+        data = json.loads(jsonFile.read())
     except:
-        data = '{"error": "User does not exist", "error_code" : 1}'
+        data = {"error": "User does not exist", "error_code" : 1}
 
-    #print(output)
-    #print(error)
-    #print("Hello")
-    if (data[30] == "{"):
-        data = data[0:29] + "[" + data[30:-2] + "]" + data[-2:]
-    print (data)
+    #Convert process key to list
+    if (not isinstance(data["process_table"]["process"], list)):
+        data["process_table"]["process"] = [data["process_table"]["process"]]
+
+    print json.dumps(data)
+
 
 elif request.getvalue('event') == "DELETE":
     #To delete a process: peos [-l login_name] -d pid
