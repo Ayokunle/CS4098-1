@@ -145,6 +145,7 @@ function getpathways($scope) {
         console.log("Getting list of pathways");
         $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data) {
+            console.log(data);
             if (ERROR in data) {
                 if (data[ERROR_CODE] == ERR_USER_NOT_EXIST) {
                    $scope.pathways = {}
