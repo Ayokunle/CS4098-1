@@ -1,6 +1,6 @@
 #CS4098
 
-#Only works on 32 bit - do not use 64 bit
+#Only works on 64 bit - do not use 32 bit
 
 #Installation:
 - Go to where you want the program to be installed
@@ -37,7 +37,7 @@
     - To make a request to "Start action", "Finish action", "Abort action" or "Suspend action": "IP/domain name of server"/cgi-bin/kernel_request.py/?event="event"&login_name="login_name"&process_id="process_id"&action_name="action_name"
 
 #Requirements:
-- Tested only on Ubuntu 12.04 32bit
+- Tested only on Ubuntu 12.04 64bit
 - The user installing the program must be able to use sudo
 - The following commands need to be run (if not using our install script)
 	- sudo apt-get update (required for flex to install properly)
