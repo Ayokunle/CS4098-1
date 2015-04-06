@@ -6,8 +6,8 @@
 - Go to where you want the program to be installed
 - Run "sudo apt-get install git"
 - Run "git clone https://github.com/thysol/CS4098"
-- Enter the CS4098 directory and run "sudo chmod +x install32.sh"
-- Run "sudo ./install32.sh"
+- Enter the CS4098 directory and run "sudo chmod +x install64.sh"
+- Run "sudo ./install64.sh"
 - This script will now install all dependencies then install the program
 - Answer "yes" to all confirmation prompts
 - You may be prompted to create and/or enter a MySQL root password, please do so
