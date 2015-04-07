@@ -28,29 +28,34 @@ $susy: (
   margin-bottom: 0.5em;
 }
 
-.pathway.ag {
-  padding: span(1 of 50);
-  margin-bottom: 2em;
+.pathway {
+  padding-left: span(1 of 50);
+  padding-right: span(1 of 50);
+  padding-bottom: span(1 of 200);
+  padding-top: span(1 of 200);
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  //margin-bottom: 2em;
+}
+
+.pathway.name {
+  font-size: 1.5em;
 }
 
 .pathway.ag1{
-  @include span(7 of 10);
+  @include span(3 of 10);
   @include clearfix;
 }
-.pathway.ag2{
-  @include span(2 of 10);
-  @include clearfix;
-}
-.pathway.ag3{
-  @include span(1 of 10 last);
+.pathway.ag2 {
+  @include span(7 of 10 last);
   @include clearfix;
 }
 
-.graph.ag1 {
+.graph.ag1{
   @include span(6 of 10);
   @include clearfix;
 }
-
 .graph.ag2 {
   @include span(4 of 10 last);
   @include clearfix;
@@ -64,21 +69,28 @@ $susy: (
  * Styles for AG grids & Container
  */
 
+.subtitle {
+  text-align: center;
+  font-size: 1.5em;
+  padding-bottom: span(1 of 50);
+}
+
 .container {
   background-color: #fbeecb;
 }
 
-.pathway.ag1, .pathway.ag3 {
-  background-color: #71dad2;
+.pathwaycontainer {
+  background-color: #fedf98;
+  border: solid gray 1px;
 }
 
-.pathway.ag2 {
-  background-color: #fae7b3;
+.graph {
+  margin-left: 0;
+  margin-right: 0;
 }
 
-
-.pathway.ag1:hover {
-  background-color: #001177;
+.graph.ag1 {
+  text-align: center;
 }
 
 .graph.ag2 {
@@ -89,6 +101,11 @@ $susy: (
 
 .selected {
   background-color: #ffaaff;
+}
+
+.fullrow {
+  padding-top: span(1 of 40);
+  padding-bottom: span(1 of 40);
 }
 
 /**
