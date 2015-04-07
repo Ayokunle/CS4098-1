@@ -34,7 +34,17 @@ app.controller('graphcontroller', function($scope) {
     }
 
     $scope.getselectedpathway = function() { return $scope.selectedpathway;};
+
+    $scope.closegraphscreen = function() { closegraphscreen($scope); };
 });
+
+function closegraphscreen($scope) {
+	if ($scope.selectedaction) {
+		$scope.selectedaction.deselect;
+		$scope.selectedaction = null;
+	}
+	$scope.openpathwayselect();
+}
 
 function generategraph($scope, pathway) {
 	console.log(pathway);
@@ -116,11 +126,12 @@ function generateaction($scope, paper, currentaction) {
 		)
 		.hover(hoverin, hoverout);
 
-	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, currentaction["@name"])
+	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, $scope.fixname(currentaction["@name"]))
 		.click(
 			function() {
 				$scope.selectaction(currentaction);
 			});
+
 	sh.attr({text:actionText});
 
 	shapes.push(sh);

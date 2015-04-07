@@ -23,7 +23,7 @@ app.controller('pathwaycontroller', function($scope) {
     //Assign scope member functions
     //
 
-    $scope.getmodelname = getmodelname;
+    $scope.fixname = fixname;
     $scope.deletepathway = deletepathway;
     $scope.opengraph = function (pathwayindex) { 
         opengraph($scope, pathwayindex);
@@ -105,6 +105,8 @@ function closepathwaycreate($scope) {
 }
 
 function selectpathway($scope, pathwayindex) {
+    console.log("selecting pathway: ");
+    console.log(pathwayindex);
     $scope.selectedpathway = pathwayindex;
     $scope.currentscreen = PATHWAY_NOTIFY;
 }
@@ -142,6 +144,8 @@ function getpathways($scope) {
     if ($scope.active_pid != null) {
         getdata = {"event" : "GETLIST", "login_name" : $scope.active_pid};
 
+        console.log($scope.selectedpathway);
+        var storedpathway = $scope.selectedpathway;
         console.log("Getting list of pathways");
         $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data) {
@@ -155,6 +159,7 @@ function getpathways($scope) {
                 //Display the list of pathways
                 $scope.pathways = data["process_table"]["process"];
             }
+            $scope.selectedpathway = storedpathway;
             $scope.$digest();
         })
         .fail(function(data) {
@@ -164,12 +169,26 @@ function getpathways($scope) {
     }
 }
 
-function getmodelname(pathway)
+//Added function for replacing all occurences of an item in a string
+String.prototype.replaceAll = function(search, replace)
 {
-    modelpath = pathway["@model"];
+    //if replace is null, return original string otherwise it will
+    //replace search string with 'undefined'.
+    if(!replace) 
+        return this;
 
+    return this.replace(new RegExp('[' + search + ']', 'g'), replace);
+};
+
+//Fix a name such as "diabetes_assessment.pml" to a more human readable "Diabetes assessment"
+function fixname(name)
+{
+    if (name == null)
+    {
+        return "";
+    }
     //Strip off the parent folders in the path until we get the filename
-    pathparts = modelpath.split("/");
+    pathparts = name.split("/");
     modelfile = pathparts[pathparts.length-1];
 
     //Strip off the file extension
@@ -177,7 +196,7 @@ function getmodelname(pathway)
     filename = fileparts[0]
 
     //Make it more readable
-    filename = filename.replace("_", " ");
+    filename = filename.replaceAll("_", " ");
     return filename.charAt(0).toUpperCase() + filename.slice(1);
 }
 
