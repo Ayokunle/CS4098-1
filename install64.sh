@@ -15,7 +15,7 @@ sudo apt-get -y --force-yes install tcl-dev
 sudo apt-get -y --force-yes install libxml2-dev
 sudo apt-get -y --force-yes install dos2unix
 sudo apt-get -y --force-yes install libxslt-dev
-sudo apt-get -y --force-yes installpython-dev
+sudo apt-get -y --force-yes install python-dev
 sudo apt-get -y --force-yes install python-lxml
 
 if [ ! -d "/var/www/openemr" ]; then
@@ -53,3 +53,6 @@ sudo make install
 sudo a2enmod cgi
 sudo service apache2 restart
 
+cd test
+sudo chmod +x test.sh
+./test.sh
