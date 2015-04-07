@@ -35,8 +35,8 @@ app.directive('actionbuttons', function() {
 function peos_request($scope, $rootScope, event_type) {
 	getdata = {event : event_type,
 				login_name : $scope.active_pid,
-				action_name : $scope.pathwayaction["@name"],
-				process_id : $scope.pathway["@pid"] };
+				action_name : $scope.pathwayaction["name"],
+				process_id : $scope.pathway["pid"] };
 
 
 	//The function that runs when the http request succeeds
