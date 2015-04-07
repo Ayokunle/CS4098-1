@@ -1,15 +1,26 @@
-echo "Running Shcyup tests"
+echo "******"
+echo "Running Shcyup automated tests"
+
+error=0
 
 if [ -f "../peos/os/kernel/peos" ]; then
-	echo "SUCCESS: peos executable exists"
+	echo "OK: Peos executable exists"
 else
-	echo "ERROR: peos executable does not exist"
+	echo "ERROR: Peos executable does not exist"
+	error=1
 fi
 
 if [ -f "/usr/lib/cgi-bin/kernel_request.py" ]; then
-	echo "SUCCESS: kernel request script exists"
+	echo "OK: Kernel request script exists"
 else
-	echo "ERROR: kernel request script does not exist"
+	echo "ERROR: Kernel request script does not exist"
+	error=1
 fi
 
-python3 testCGI.py; echo $?
+if [[ "$error" -eq 1 ]]; then
+	echo "FAIL: Errors were encountered in testing"
+else
+	echo "SUCCESS: All tests passed"
+fi
+
+echo "******"
