@@ -257,3 +257,9 @@ proc symptoms { resource } {
 proc status { resource } {
     return 0
 }
+
+set non_cognitive_symptoms 1
+set challenging_behaviour 1
+set early_assessment 1
+set risk_of_harm_or_distress 1
+set medication 1
