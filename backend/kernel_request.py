@@ -66,6 +66,10 @@ elif request.getvalue('event') == "GETLIST":
     except:
         data = {"error": "User does not exist", "error_code" : 1}
 
+
+    #Remove outer body tag (it's only boilerplate)
+    data = data["body"]
+
     #Convert process key to list
     if (not isinstance(data["process_table"]["process"], list)):
         data["process_table"]["process"] = [data["process_table"]["process"]]

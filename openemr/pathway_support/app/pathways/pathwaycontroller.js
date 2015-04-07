@@ -64,7 +64,6 @@ app.controller('pathwaycontroller', function($scope) {
     $scope.getpathways();
 
     $scope.pathways = {};
-    $scope.selectedpathway = -1;
     $scope.getselectedpathway = function () { return $scope.pathways[$scope.selectedpathway];
         console.log("getting selected pathway"); };
 
