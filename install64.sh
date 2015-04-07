@@ -49,3 +49,6 @@ rm models/web_test.pml
 cd ../
 sudo make install
 
+sudo a2enmod cgi
+sudo service apache2 restart
+
