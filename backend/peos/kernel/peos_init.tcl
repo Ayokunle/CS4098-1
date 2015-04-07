@@ -249,7 +249,11 @@ proc stroke { resource } {
 proc anxiety { resource } {
     return 0
 }
+
 proc symptoms { resource } {
     return 0
 }
 
+proc status { resource } {
+    return 0
+}
