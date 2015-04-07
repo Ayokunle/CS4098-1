@@ -71,11 +71,6 @@ build:
 # Install the application for deployment by Apache.
 # install -d creates a directory if necessary.
 install:
-	echo "build something"
-	wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb 
-	-sudo apt-get update
-	-sudo dpkg -i openemr_4.2.0-1_all.deb
-	-sudo apt-get install -f
 	chmod +x inject.sh
 	chmod +x setupCGI.sh
 	${INSTALL} --mode ${DIR_MODE} -d ${HTML.dir}
