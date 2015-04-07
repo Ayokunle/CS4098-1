@@ -98,7 +98,7 @@
                                         
                                         <div>Script: {{ selectedaction.script }}</div>
                                         <br>
-                                        <actionbuttons action="selectedaction" pathway="selectedpathway" patient="active_pid" oncompleterequest="generategraph"></actionbuttons>
+                                        <actionbuttons action="selectedaction" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
                                 </div>
                                 <div ng-hide="selectedaction != null">
                                         Select an action to display more information!
