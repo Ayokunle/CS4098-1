@@ -120,7 +120,7 @@ function generateaction($scope, paper, currentaction) {
 		.click(
 			function() {
 				$scope.selectaction(currentaction);
-			};
+			});
 	sh.attr({text:actionText});
 
 	shapes.push(sh);
@@ -151,6 +151,55 @@ function getFillFromActionState(state, isselected) {
 			return "#AAA"
 		}
 	}
+	else if (state == "BLOCKED") {
+		if (isselected) {
+			return "#FF0000";
+		}
+		else {
+			return "#CC0000"
+		}
+	}
+	else if (state == "AVAILABLE") {
+		if (isselected) {
+			return "#990099";
+		}
+		else {
+			return "#7A007A"
+		}
+	}
+	else if (state == "RUN") {
+		if (isselected) {
+			return "#FF0066";
+		}
+		else {
+			return "#CC0052"
+		}
+	}
+	else if (state == "SUSPEND") {
+		if (isselected) {
+			return "#FFFF00";
+		}
+		else {
+			return "#CCCC00"
+		}
+	}
+	else if (state == "PENDING") {
+		if (isselected) {
+			return "#FF3300";
+		}
+		else {
+			return "#CC2900"
+		}
+	}
+	else if (state == "DONE") {
+		if (isselected) {
+			return "#66CCFF";
+		}
+		else {
+			return "#52A3CC"
+		}
+	}
+
 	else {
 		if (isselected) {
 			return "#DDD";

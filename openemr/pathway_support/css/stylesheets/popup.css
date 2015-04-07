@@ -46,6 +46,31 @@ main {
   background-color: #FFFFFF;
 }
 
+/* line 47, ../sass/popup.scss */
+.AVAILABLE {
+  background-color: #990099;
+}
+
+/* line 53, ../sass/popup.scss */
+.RUN {
+  background-color: #FF0066;
+}
+
+/* line 59, ../sass/popup.scss */
+.SUSPEND {
+  background-color: #FFFF00;
+}
+
+/* line 65, ../sass/popup.scss */
+.PENDING {
+  background-color: #FF3300;
+}
+
+/* line 71, ../sass/popup.scss */
+.DONE {
+  background-color: #66CCFF;
+}
+
 /**
  * Styles for AG grids & Container
  */
@@ -80,7 +105,7 @@ main {
 /**
  * Text Styles
  */
-/* line 86, ../sass/popup.scss */
+/* line 116, ../sass/popup.scss */
 h2 {
   text-align: center;
   font-size: 1rem;
