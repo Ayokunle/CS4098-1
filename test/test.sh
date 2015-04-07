@@ -3,7 +3,7 @@ echo "Running Shcyup automated tests"
 
 error=0
 
-if [ -f "../peos/os/kernel/peos" ]; then
+if [ -f "/peos/os/kernel/peos" ]; then
 	echo "OK: Peos executable exists"
 else
 	echo "ERROR: Peos executable does not exist"
@@ -17,7 +17,7 @@ else
 	error=1
 fi
 
-if [[ "$error" -eq 1 ]]; then
+if [ "$error" -eq 1 ]; then
 	echo "FAIL: Errors were encountered in testing"
 else
 	echo "SUCCESS: All tests passed"
