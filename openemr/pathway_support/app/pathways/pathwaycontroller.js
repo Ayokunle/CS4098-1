@@ -105,6 +105,8 @@ function closepathwaycreate($scope) {
 }
 
 function selectpathway($scope, pathwayindex) {
+    console.log("selecting pathway: ");
+    console.log(pathwayindex);
     $scope.selectedpathway = pathwayindex;
     $scope.currentscreen = PATHWAY_NOTIFY;
 }
@@ -142,6 +144,8 @@ function getpathways($scope) {
     if ($scope.active_pid != null) {
         getdata = {"event" : "GETLIST", "login_name" : $scope.active_pid};
 
+        console.log($scope.selectedpathway);
+        var storedpathway = $scope.selectedpathway;
         console.log("Getting list of pathways");
         $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data) {
@@ -155,6 +159,7 @@ function getpathways($scope) {
                 //Display the list of pathways
                 $scope.pathways = data["process_table"]["process"];
             }
+            $scope.selectedpathway = storedpathway;
             $scope.$digest();
         })
         .fail(function(data) {
