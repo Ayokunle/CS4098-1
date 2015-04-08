@@ -79,7 +79,7 @@ fi
 python3 test/contact_backend_test.py
 rc=$?
 
-if [[ $rc != 0 ]]; then
+if [ ! $rc -eq 0 ]; then
         echo "ERROR: Could not communicate with CGI script"
         error=1
 else
@@ -89,7 +89,7 @@ fi
 python3 test/GETLIST_test.py
 rc=$?
 
-if [[ $rc != 0 ]]; then
+if [ ! $rc -eq 0 ]; then
         echo "ERROR: Could not create a process"
         error=1
 else
@@ -99,7 +99,7 @@ fi
 python3 test/CREATE_PROCESS_test.py
 rc=$?
 
-if [[ $rc != 0 ]]; then
+if [ ! $rc -eq 0 ]; then
         echo "ERROR: Script was not able to create a process"
         error=1
 else
