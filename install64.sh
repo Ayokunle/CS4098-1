@@ -86,6 +86,36 @@ else
         echo "OK: Can communicate with CGI script"
 fi
 
+python3 test/GETLIST_test.py
+rc=$?
+
+if [ ! $rc -eq 0 ]; then
+        echo "ERROR: Could not create a process directly"
+        error=1
+else
+        echo "OK: Can created a process directly"
+fi
+
+python3 test/CREATE_PROCESS_test.py
+rc=$?
+
+if [ ! $rc -eq 0 ]; then
+        echo "ERROR: Script was not able to create a process"
+        error=1
+else
+        echo "OK: Script was able to create a process"
+fi
+
+python3 test/DELETE_PROCESS_test.py
+rc=$?
+
+if [ ! $rc -eq 0 ]; then
+	echo "OK: Script was able to delete a process"
+else
+        echo "ERROR: Script was not able to delete a process"
+        error=1
+fi
+
 if [ -d "/var/www/openemr" ]; then
         echo "OK: OpenEMR seems to be installed"
 else
