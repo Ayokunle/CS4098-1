@@ -38,7 +38,7 @@ if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 
 import process_xml_parser
-
+import peos_notify
 
 #Set header content type to json for frontend
 print ("Content-type:text/json\r\n\r\n")
@@ -102,4 +102,5 @@ else:
     except Exception as ex:
         jsonreply = {"error": "%s\n%s" % (type(ex), ex), "error_code" : ERROR_SCRIPT_FAIL}
 
+    peos_notify(request.getvalue('login_name'))
     print json.dumps(jsonreply)
