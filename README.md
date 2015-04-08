@@ -1,7 +1,7 @@
 #CS4098
 
 #Tested only to work on Ubuntu 14.04 64 bit - will not work on 32 bit
-#See documentation.pdf for technical information, feature lists and user guides
+#See CS4098-Shcyup-Documentation.pdf cofor technical information, feature lists and user guides
 
 #Installation:
 - Go to where you want the program to be installed
@@ -16,7 +16,7 @@
 - Once the install is finished automated tests will be run. Please observe their output and note any errors.
 
 #How to use
-- For detailed usage instructions on each feature (with screenshots included) see documentation.pdf
+- For detailed usage instructions on each feature (with screenshots included) see CS4098-Shcyup-Documentation.pdf
 - To view pathway support modal dialog popup
 	- Go to http://localhost/openemr/ and log in
 	- Create a patient
