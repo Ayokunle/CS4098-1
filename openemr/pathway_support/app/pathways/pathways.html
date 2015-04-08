@@ -69,7 +69,7 @@
                                         <br>
                                         <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
                                         
-                                        <span>Script:</span><span ng-bind-html="action['action'].script"></span>
+                                        <div>Script:</div><div ng-bind-html="action['action']['children'][0].script | to_trusted"></div>
                                         <br>
 
                                         <actionbuttons action="action" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
@@ -99,7 +99,7 @@
                                          <br>
                                         <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
                                         
-                                        <div>Script: {{ selectedaction["children"][0]["script"] }}</div>
+                                        <div>Script:</div><div ng-bind-html="selectedaction['children'][0]['script'] | to_trusted"></div>
                                         <br>
                                         <actionbuttons action='selectedaction["action"]' pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
                                 </div>
