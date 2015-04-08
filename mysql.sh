@@ -10,10 +10,12 @@ while true; do
 		then
 			echo "Wrong password, please try again."
 		else
+			echo "Success."
 			break;
 		fi
 		
 	else
+		echo "Success."
 		break;
 	fi
 done
