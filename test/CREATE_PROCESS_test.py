@@ -8,6 +8,7 @@ import urllib.request
 EXECUTION_PATH = "../peos/os/kernel/"
 MODEL_PATH = "../../models/"
 
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
 os.chdir(EXECUTION_PATH)
 
 #Creating a process
