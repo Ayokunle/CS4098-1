@@ -33,6 +33,8 @@ app.directive('actionbuttons', function() {
 
 
 function peos_request($scope, $rootScope, event_type) {
+	console.log("Sending peos request " + event_type);
+	console.log($scope.pathwayaction);
 	getdata = {event : event_type,
 				login_name : $scope.active_pid,
 				action_name : $scope.pathwayaction["name"],
