@@ -1,6 +1,6 @@
 //Constants
-//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var PATHWAY_SELECT = 0;
 var PATHWAY_NOTIFY = 1;
@@ -43,7 +43,6 @@ app.controller('pathwaycontroller', function($scope) {
     //
 
     $scope.fixname = fixname;
-    $scope.deletepathway = deletepathway;
     $scope.opengraph = function (pathwayindex) { 
         opengraph($scope, pathwayindex);
     }
@@ -66,6 +65,10 @@ app.controller('pathwaycontroller', function($scope) {
     $scope.createpathway = function(pathwayname) {
         createpathway($scope, pathwayname);
     };
+    $scope.deletepathway = function(pathwayname) {
+        deletepathway($scope, pathwayname);
+    };
+
     $scope.closepathwaycreate = function() {
         closepathwaycreate($scope);
     };
@@ -151,8 +154,27 @@ function createpathway($scope, pathwayname) {
     });
 }
 
-function deletepathway(pathway) {
-    alert("Delete pathway \"" + pathway["@pid"] + "\": Not Yet Implemented");
+function deletepathway($scope, pathway) {
+    if (window.confirm("Are you sure you want to DELETE the pathway " + fixname(pathway["model"]) + "? \n\nOnce a pathway is DELETED it cannot be recovered!")) {
+        getdata = {"event" : "DELETE", "login_name" : $scope.active_pid, "process_id" : pathway["pid"]};
+
+        console.log("Requesting backend to delete process: " + pathway["model"] + " with process id = " + pathway["pid"]);
+
+        $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+        .done(function(data){
+            if (ERROR in data) {
+                console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
+            }
+            else {
+                console.log(data);
+                $scope.getpathways();
+            }
+        })
+        .fail(function(data){
+            console.log("fail");
+            console.log("http " + data.status + ":\n" + data.responseText);
+        });
+    }
 }
 function opengraph($scope, pathwayindex) {
     $scope.selectedpathway = pathwayindex;
