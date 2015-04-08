@@ -22,7 +22,7 @@ if [ ! -d "/var/www/openemr" ]; then
 	echo "Installing OpenEMR"
         wget downloads.sourceforge.net/openemr/openemr_4.2.0-1_all.deb
         sudo dpkg -i openemr_4.2.0-1_all.deb
-        sudo apt-get install -f
+        sudo apt-get -y --force-yes install -f
 else
 	echo "OpenEMR is already installed"
 fi
