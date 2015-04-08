@@ -23,6 +23,5 @@ process = subprocess.Popen(["./peos", "-l", "1", "-d", "0"], stdout=subprocess.P
 
 if ("Dementia_management" in response):
     sys.exit(0)
-    
 else:
     sys.exit(1)
