@@ -17,6 +17,13 @@ else
 	error=1
 fi
 
+if [ -d "/var/www/openemr" ]; then
+        echo "OK: Openemr seems to be installed"
+else
+        echo "ERROR: Openemr is not installed"
+        error=1
+fi
+
 if [ "$error" -eq 1 ]; then
 	echo "FAIL: Errors were encountered in testing"
 else
