@@ -37,7 +37,7 @@ fi
 cp backend/peos/kernel/. peos/os/kernel/ -R
 cp backend/peos/models/. peos/models/ -R
 chmod u+x mysql.sh
-sh ./mysql.sh
+./mysql.sh
 cd peos
 sudo make
 rm models/build_test.pml
