@@ -115,7 +115,7 @@ function generatesequence($scope, paper, sequence, xStart, yStart, isLooped, par
 }
 
 function generatepart($scope, paper, partname, part, xStart, yStart, parentindices) {
-	console.log("-------------------------------------")
+	/*console.log("-------------------------------------")
 	console.log("Generating part " + partname);
 	console.log("location " + xStart + "," + yStart);
 	console.log(part);
@@ -127,6 +127,7 @@ function generatepart($scope, paper, partname, part, xStart, yStart, parentindic
 	pstring += "]"
 	console.log("parents " + pstring);
 	console.log("------------------------------------");
+	*/
 
 	var x = xStart;
 	var y = yStart;
@@ -166,8 +167,10 @@ function generatepart($scope, paper, partname, part, xStart, yStart, parentindic
 		var sequence = part;
 		return generatesequence($scope, paper, sequence, x, y, false, parentindices);
 	}
-	else
-		console.log("oops");
+	else {
+		console.log("not a recognized part: " + partname);
+		return [parentindices, yStart];
+	}
 }
 
 function generatebranch($scope, paper, branch, xStart, yStart, parentindices) {
@@ -184,7 +187,7 @@ function generatebranch($scope, paper, branch, xStart, yStart, parentindices) {
 	if (shapes.length > 1) {
 		//console.log(parentindices);
 		for (i in parentindices) {
-			console.log("Connection between " + parentindices[i] + " and " + shapes.length - 1);
+			//console.log("Connection between " + parentindices[i] + " and " + shapes.length - 1);
 			connections.push(paper.connection(shapes[parentindices[i]], shapes[shapes.length - 1], "#000"));
 		}
 	}
@@ -202,8 +205,8 @@ function generatebranch($scope, paper, branch, xStart, yStart, parentindices) {
     //Generate the child nodes of the branch
     //
 	for (child in branch["children"]) {
-		console.log("child:");
-		console.log(child);
+		//console.log("child:");
+		//console.log(child);
 
 		var xb = x - ((COLUMN_WIDTH / 2) * (numchildren - 1));
 		xb += (COLUMN_WIDTH * child);
@@ -238,7 +241,7 @@ function generateaction($scope, paper, currentaction, x, y) {
 		)
 		.hover(hoverin, hoverout);
 
-	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, fixnamewidth($scope.fixname(currentaction["name"])))
+	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2 - 5, fixnamewidth($scope.fixname(currentaction["name"])))
 		.click(
 			function() {
 				$scope.selectaction(currentaction);
@@ -371,12 +374,13 @@ function fixnamewidth(name)
     currentline = parts[0];
     for (var i = 1; i < parts.length; i++)
     {
-        currentline += " " + parts[i];
-
-        if (currentline.length > 15) {
+        if (currentline.length + parts[i].length > 23) {
         	newname += currentline + "\n";
-        	currentline = ""
+        	currentline = parts[i];
         }
+        else {
+        	currentline += " " + parts[i];
+    	}
     }
 
     return newname + currentline;

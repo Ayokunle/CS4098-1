@@ -66,10 +66,10 @@
                                         <div><button ng-click="expand()">Collapse</button> {{ fixname(action["action"]["name"]) }} </div>
                                         <div>State: {{ action["action"]["state"] }}</div>
                                         <br>
-                                        <div>Required resources: {{ fixname(action["action"].req_resource["name"]) }}</div>
+                                        <div>Required resources: {{ fixname(action["action"]['children'][1].req_resource["name"]) }}</div>
                                         <br>
-                                        <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
-                                        
+                                        <div>Provided resources: {{ fixname(action["action"]['children'][2].prov_resource["name"])}}</div>
+                                        <br>
                                         <div>Script:</div><div ng-bind-html="action['action']['children'][0].script | to_trusted"></div>
                                         <br>
 
@@ -96,10 +96,10 @@
                                         <div><button ng-click="hideaction()" >Close</button> {{ fixname(selectedaction["name"]) }} </div>
                                         <div>State: {{ selectedaction["state"] }}</div>
                                         <br>
-                                        <div>Required resources: {{ fixname(selectedaction.req_resource["name"]) }}</div>
-                                         <br>
-                                        <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
-                                        
+                                        <div>Required resources: {{ fixname(selectedaction["action"]['children'][1].req_resource["name"]) }}</div>
+                                        <br>
+                                        <div>Provided resources: {{ fixname(selectedaction["action"]['children'][2].prov_resource["name"])}}</div>
+                                        <br>
                                         <div>Script:</div><div class="script" ng-bind-html="selectedaction['children'][0]['script'] | to_trusted"></div>
                                         <br>
                                         <actionbuttons action='selectedaction["action"]' pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
