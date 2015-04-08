@@ -1,6 +1,6 @@
 //Constants
-//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var PATHWAY_SELECT = 0;
 var PATHWAY_NOTIFY = 1;
