@@ -10,7 +10,7 @@ var ERR_SCRIPT_FAIL = 2
 
 var app
 if (app == null)
-    app = angular.module('popupApp', ['ngRoute', 'rootScope']);
+    app = angular.module('popupApp', ['ngRoute', 'rootScope', 'ngSanitize']);
 
 app.directive('actionbuttons', function() {
 	return {

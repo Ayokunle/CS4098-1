@@ -1,7 +1,7 @@
 
 var app;
 if (app == null)
-    app = angular.module('popupApp', ['ngRoute']);
+    app = angular.module('popupApp', ['ngRoute', 'ngSanitize']);
 
 
 app.controller('popupController', function($scope) {
