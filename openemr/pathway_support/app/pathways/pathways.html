@@ -70,7 +70,7 @@
                                         <br>
                                         <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
                                         
-                                        <div>Script: {{ action["action"].script }}</div>
+                                        <div>Script:</div><div ng-bind-html="action['action']['children'][0].script | to_trusted"></div>
                                         <br>
 
                                         <actionbuttons action="action" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
@@ -90,8 +90,7 @@
                 <h1>Pathway Graph</h1>
                 <div class="subtitle">Active Pathway: {{ fixname(selectedpathway["model"]) }}</div>
                 <div>
-                        <div class="graph ag1" id="graphtag"></div>
-                        <div class="graph ag2 popup action">
+                        <div class="graph popup action">
                                 <div class="expanded {{ selectedaction['state'] }}" ng-show="selectedaction != null">
                                         <div><button ng-click="hideaction()" >Close</button> {{ fixname(selectedaction["name"]) }} </div>
                                         <div>State: {{ selectedaction["state"] }}</div>
@@ -100,7 +99,7 @@
                                          <br>
                                         <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
                                         
-                                        <div>Script: {{ selectedaction["children"][0]["script"] }}</div>
+                                        <div>Script:</div><div class="script" ng-bind-html="selectedaction['children'][0]['script'] | to_trusted"></div>
                                         <br>
                                         <actionbuttons action='selectedaction["action"]' pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
                                 </div>
@@ -108,6 +107,7 @@
                                         Select an action to display more information!
                                 </div>
                         </div>
+                        <div class="graph" id="graphtag"></div>
                 </div>
                 <div class="fullrow">
                         <button ng-click="closegraphscreen()">< Back to pathway List</button>

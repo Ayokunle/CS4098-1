@@ -16,15 +16,33 @@ var app
 if (app == null)
     app = angular.module('popupApp', ['ngRoute']);
 
+app.filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            if (text != null) {
+
+                //Remove the quotes from the start and end of the html string
+                if (text.charAt(1) == "\"") {
+                    text = text.substring(2);
+                }
+                if (text.charAt(text.length - 2) == "\"") {
+                    text = text.substring(0, text.length - 2);
+                }
+                return $sce.trustAsHtml(text);
+            }
+            else
+            {
+                return "";
+            }
+        };
+    }]);
+
 app.controller('pathwaycontroller', function($scope) {
     console.log("Starting pathway controller");
-
     //
     //Assign scope member functions
     //
 
     $scope.fixname = fixname;
-    $scope.deletepathway = deletepathway;
     $scope.opengraph = function (pathwayindex) { 
         opengraph($scope, pathwayindex);
     }
@@ -47,6 +65,10 @@ app.controller('pathwaycontroller', function($scope) {
     $scope.createpathway = function(pathwayname) {
         createpathway($scope, pathwayname);
     };
+    $scope.deletepathway = function(pathwayname) {
+        deletepathway($scope, pathwayname);
+    };
+
     $scope.closepathwaycreate = function() {
         closepathwaycreate($scope);
     };
@@ -113,6 +135,7 @@ function selectpathway($scope, pathwayindex) {
 function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
 
+    $scope.closepathwaycreate();
     console.log("Requesting backend to create process: " + pathwayname);
 
     $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
@@ -131,8 +154,27 @@ function createpathway($scope, pathwayname) {
     });
 }
 
-function deletepathway(pathway) {
-    alert("Delete pathway \"" + pathway["@pid"] + "\": Not Yet Implemented");
+function deletepathway($scope, pathway) {
+    if (window.confirm("Are you sure you want to DELETE the pathway " + fixname(pathway["model"]) + "? \n\nOnce a pathway is DELETED it cannot be recovered!")) {
+        getdata = {"event" : "DELETE", "login_name" : $scope.active_pid, "process_id" : pathway["pid"]};
+
+        console.log("Requesting backend to delete process: " + pathway["model"] + " with process id = " + pathway["pid"]);
+
+        $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
+        .done(function(data){
+            if (ERROR in data) {
+                console.log("error[" + data[ERROR_CODE] + "]: " + data[ERROR]);
+            }
+            else {
+                console.log(data);
+                $scope.getpathways();
+            }
+        })
+        .fail(function(data){
+            console.log("fail");
+            console.log("http " + data.status + ":\n" + data.responseText);
+        });
+    }
 }
 function opengraph($scope, pathwayindex) {
     $scope.selectedpathway = pathwayindex;
