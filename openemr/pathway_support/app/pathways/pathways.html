@@ -69,7 +69,7 @@
                                         <br>
                                         <!--div>Provided resources: {{ actionList.provided_resources }}</div-->
                                         
-                                        <div>Script: {{ action["action"].script }}</div>
+                                        <span>Script:</span><span ng-bind-html="action["action"].script"></span>
                                         <br>
 
                                         <actionbuttons action="action" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>

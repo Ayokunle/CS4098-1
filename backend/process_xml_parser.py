@@ -1,20 +1,30 @@
 from lxml import etree
-import json
+import json, sys
+
+from xml.sax.saxutils import escape, unescape
+
+# escape() and unescape() takes care of &, < and >.
+html_escape_table = {
+    '"': "&quot;",
+    "'": "&apos;"
+}
+
+def html_escape(text):
+    return text
+    return escape(text, html_escape_table)
 
 def main():
-    parsexml("1")
+    #root = (xml_to_etree("../peos/os/kernel/%s.dat.xml" % "2"))
+    #print (etree.tostring(root, pretty_print=True))
+    
+    parsexml(sys.argv[1])
 
 def parsexml(patient_id):
-    with open("CS4098/peos/os/kernel/%s.dat.xml" % patient_id) as f:
-    data = f.read()
+    return xml_to_json("../peos/os/kernel/%s.dat.xml" % patient_id)
 
-    output = "CS4098/backend/%s.json" % patient_id
-    xml_to_json("CS4098/peos/os/kernel/%s.dat.xml" % patient_id, output)
-    
-
-def xml_to_json(xml_input, json_output):
+def xml_to_json(xml_input):
     '''Converts an xml file to json.'''
-    dict_to_json(etree_to_dict(xml_to_etree(xml_input), True), json_output)
+    return etree_to_dict(xml_to_etree(xml_input), True)
 
 def xml_to_etree(xml_input):
     '''Converts xml to a lxml etree.'''
@@ -25,6 +35,10 @@ def xml_to_etree(xml_input):
  
 def etree_to_dict(tree, only_child):
     '''Converts an lxml etree into a dictionary.'''
+
+    if (tree.tag == "script"):
+        return {tree.tag: tree.text}
+
     mydict = dict([(item[0], item[1]) for item in tree.items()])
     children = tree.getchildren()
     if children:
@@ -40,9 +54,10 @@ def etree_to_dict(tree, only_child):
 
 def dict_to_json(dictionary, json_output):
     '''Coverts a dictionary into a json file.'''
-    f = open(json_output, 'w')
-    f.write(json.dumps(dictionary, ensure_ascii=False))
-    f.close()
+    #f = open(json_output, 'w')
+    #f.write(json.dumps(dictionary, ensure_ascii=False))
+    #f.close()
+    return json.dumps(dictionary, ensure_ascii=False)
 
 if __name__== "__main__":
     main()
