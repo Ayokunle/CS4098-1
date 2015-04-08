@@ -89,6 +89,7 @@
                 <h1>Pathway Graph</h1>
                 <div class="subtitle">Active Pathway: {{ fixname(selectedpathway["model"]) }}</div>
                 <div>
+                        <div class="graph" id="graphtag"></div>
                         <div class="graph popup action">
                                 <div class="expanded {{ selectedaction['state'] }}" ng-show="selectedaction != null">
                                         <div><button ng-click="hideaction()" >Close</button> {{ fixname(selectedaction["name"]) }} </div>
@@ -106,7 +107,6 @@
                                         Select an action to display more information!
                                 </div>
                         </div>
-                        <div class="graph" id="graphtag"></div>
                 </div>
                 <div class="fullrow">
                         <button ng-click="closegraphscreen()">< Back to pathway List</button>
