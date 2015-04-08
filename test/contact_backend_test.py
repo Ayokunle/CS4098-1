@@ -12,9 +12,7 @@ response = str(response)
 #print("Received response from server")
 
 if ("404" in response or "500" in response or response == ""):
-    print("Test failed")
     sys.exit(1)
  
 else:
-    print("Test passed")
     sys.exit(0)
