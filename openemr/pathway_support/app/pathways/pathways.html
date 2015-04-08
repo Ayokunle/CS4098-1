@@ -59,7 +59,8 @@
         <div class="container" ng-show="ispathwaynotifyscreen()">
                 <h1>Pathway Actions</h1>
                 <div>
-                        <select ng-model="selectedpml" ng-options="pml for pml in pmlfiles"></select>
+                        Filter by state: <select ng-model="selectedpml" ng-controller="popupController" ng-options="state for state in stateArray"></select>
+
                         <div ng-controller = "actionController" ng-repeat = "action in pathways[selectedpathway]['children']" class = "popup action {{ action['action']['state'] }}">
                                 <div class="expanded" ng-show = "visible">
                                         <div><button ng-click="expand()">Collapse</button> {{ fixname(action["action"]["name"]) }} </div>
