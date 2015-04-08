@@ -22,6 +22,6 @@ response = str(response)
 response = urllib.request.urlopen("http://127.0.0.1/cgi-bin/kernel_request.py/?event=DELETE&login_name=28&process_id=0").read()
 
 if ("Dementia_management" in response):
-    sys.exit(1)
-else:
     sys.exit(0)
+else:
+    sys.exit(1)
