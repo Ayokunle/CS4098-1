@@ -2,7 +2,7 @@
 ACTION_WIDTH = 120;
 ACTION_HEIGHT = 40;
 
-COLUMN_WIDTH = ACTION_WIDTH + 10;
+COLUMN_WIDTH = ACTION_WIDTH + 30;
 ROW_HEIGHT = ACTION_HEIGHT + 20;
 
 var app
@@ -67,8 +67,8 @@ function generategraph($scope, pathway) {
 
     $scope.xMax = COLUMN_WIDTH; $scope.yMax = ROW_HEIGHT;
 
-    var xStart = 5;
-    var yStart = 2;
+    var xStart = 15;
+    var yStart = 15;
 
     //Assume the top layer is a pathway
     generatesequence($scope, $scope.paper, pathway, xStart, yStart, false);
