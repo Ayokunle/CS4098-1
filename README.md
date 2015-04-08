@@ -1,6 +1,7 @@
 #CS4098
 
 #Only works on 64 bit - do not use 32 bit
+#See documentation.pdf for technical information and user guides
 
 #Installation:
 - Go to where you want the program to be installed
@@ -12,8 +13,10 @@
 - Answer "yes" to all confirmation prompts
 - You may be prompted to create and/or enter a MySQL root password, please do so
 - This install script performs actions other than just installing dependencies. Please do not try to run the project without having ran the install script.
+- Once the install is finished automated tests will be run. Please observer their output and note any errors.
 
 #How to use
+- For detailed usage instructions on each feature (with screenshots included) see documentation.pdf
 - To view pathway support modal dialog popup
 	- Go to http://localhost/openemr/ and log in
 	- Create a patient
@@ -23,13 +26,13 @@
 	- Go to pathway support popup
 	- Click the "+" button
 	- Select the pathway you want to create an instance of
-		- Note that only "web_test", "run_peos", "netbeans_req_release", "test_commit" and "simple" work
 	- Click ok
 	- Mouse over the pathway and click it when it turns dark blue
 	- Verify that the action list appears below the pathway list
 	- Click "expand" on the action you want to select
 	- Verify that the start, suspend, abort and finish buttons appear (these are currently unfinished)
 - To test backend functionality
+	- Automated tests are performed at the end of the install process. If you want to do manual tests then see below
 	- Enter CS4098/test directory
 	- Run "python3 create_process_test.py"
 	- Run "python3 parse_xml_process_table_test.py"
