@@ -28,9 +28,9 @@ os.chdir(EXECUTION_PATH)
 
 request = cgi.FieldStorage()
 
-def peos_notify():
+def peos_notify(patient_id):
 	try:
-	    process = subprocess.Popen(["./peos", "-l", 2, "-u" ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	    process = subprocess.Popen(["./peos", "-l", patient_id, "-u" ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	    output, error = process.communicate()
 
     	jsonreply = {"status" : "success", "output" : {"o" : output, "e" : error}}
