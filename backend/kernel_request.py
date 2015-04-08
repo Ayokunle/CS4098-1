@@ -55,7 +55,7 @@ elif request.getvalue('event') == "GETLIST":
     #python3 process_xml_parser.py <login_name>
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     os.chdir(XML_PARSER_PATH)
-    process = subprocess.Popen(["python3", "process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    process = subprocess.Popen(["python", "process_xml_parser.py", request.getvalue('login_name')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     output, error = process.communicate()
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
