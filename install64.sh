@@ -84,30 +84,17 @@ else
         echo "OK: Can communicate with CGI script"
 fi
 
-python3 test/GETLIST_test.py
-rc=$?
-
-if [ ! $rc -eq 0 ]; then
-        echo "ERROR: Could not create a process"
-        error=1
-else
-        echo "OK: Process was created"
-fi
-
-python3 test/CREATE_PROCESS_test.py
-rc=$?
-
-if [ ! $rc -eq 0 ]; then
-        echo "ERROR: Script was not able to create a process"
-        error=1
-else
-        echo "OK: Script was able to create a process"
-fi
-
 if [ -d "/var/www/openemr" ]; then
         echo "OK: OpenEMR seems to be installed"
 else
         echo "ERROR: OpenEMR is not installed"
+        error=1
+fi
+
+if [ -d "/var/www/openemr/pathway_support" ]; then
+        echo "OK: Our code seems to be installed"
+else
+        echo "ERROR: Our code is not installed"
         error=1
 fi
 
