@@ -13,6 +13,5 @@ response = str(response)
 
 if ("404" in response or "500" in response or response == ""):
     sys.exit(1)
- 
 else:
     sys.exit(0)
