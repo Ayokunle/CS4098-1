@@ -18,9 +18,9 @@ else
 fi
 
 if [ -d "/var/www/openemr" ]; then
-        echo "OK: Openemr seems to be installed"
+        echo "OK: OpenEMR seems to be installed"
 else
-        echo "ERROR: Openemr is not installed"
+        echo "ERROR: OpenEMR is not installed"
         error=1
 fi
 
