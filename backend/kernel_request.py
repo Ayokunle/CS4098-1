@@ -38,7 +38,7 @@ if cmd_subfolder not in sys.path:
     sys.path.insert(0, cmd_subfolder)
 
 import process_xml_parser
-
+import peos_notify
 
 #Set header content type to json for frontend
 print ("Content-type:text/json\r\n\r\n")
@@ -87,7 +87,10 @@ elif request.getvalue('event') == "GETLIST":
 elif request.getvalue('event') == "DELETE":
     #To delete a process: peos [-l login_name] -d pid
     process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-d", request.getvalue('process_id')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+    
+    jsonreply = {"status" : "success"}
+    print json.dumps(jsonreply)
+    
 else:
     #peos [-l login_name] -n process_id action_name event
     try:
@@ -102,4 +105,5 @@ else:
     except Exception as ex:
         jsonreply = {"error": "%s\n%s" % (type(ex), ex), "error_code" : ERROR_SCRIPT_FAIL}
 
+    peos_notify(request.getvalue('login_name'))
     print json.dumps(jsonreply)
