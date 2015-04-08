@@ -31,47 +31,54 @@ main {
   border-width: 1px;
 }
 
-/* line 29, ../sass/popup.scss */
+/* line 27, ../sass/popup.scss */
+.script {
+  margin: 1em;
+  background-color: #CCCCCC;
+  border: 1px solid black;
+}
+
+/* line 34, ../sass/popup.scss */
 .READY {
   background-color: #00FF00;
 }
 
-/* line 35, ../sass/popup.scss */
+/* line 40, ../sass/popup.scss */
 .BLOCKED {
   background-color: #FF0000;
 }
 
-/* line 41, ../sass/popup.scss */
+/* line 46, ../sass/popup.scss */
 .NONE {
   background-color: #FFFFFF;
 }
 
-/* line 47, ../sass/popup.scss */
+/* line 52, ../sass/popup.scss */
 .AVAILABLE {
   background-color: #990099;
 }
 
-/* line 53, ../sass/popup.scss */
+/* line 58, ../sass/popup.scss */
 .RUN {
   background-color: #FF0066;
 }
 
-/* line 59, ../sass/popup.scss */
+/* line 64, ../sass/popup.scss */
 .SUSPEND {
   background-color: #FFFF00;
 }
 
-/* line 65, ../sass/popup.scss */
+/* line 70, ../sass/popup.scss */
 .PENDING {
   background-color: #FF3300;
 }
 
-/* line 71, ../sass/popup.scss */
+/* line 76, ../sass/popup.scss */
 .DONE {
   background-color: #66CCFF;
 }
 
-/* line 77, ../sass/popup.scss */
+/* line 82, ../sass/popup.scss */
 .SATISFIED {
   background-color: #CCFF33;
 }
@@ -110,7 +117,7 @@ main {
 /**
  * Text Styles
  */
-/* line 122, ../sass/popup.scss */
+/* line 127, ../sass/popup.scss */
 h2 {
   text-align: center;
   font-size: 1rem;

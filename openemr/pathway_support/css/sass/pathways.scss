@@ -52,15 +52,6 @@ $susy: (
   @include clearfix;
 }
 
-.graph.ag1{
-  @include span(6 of 10);
-  @include clearfix;
-}
-.graph.ag2 {
-  @include span(4 of 10 last);
-  @include clearfix;
-}
-
 .fullrow {
   @include span(10 of 10);
 }
@@ -89,14 +80,10 @@ $susy: (
   margin-right: 0;
 }
 
-.graph.ag1 {
-  text-align: center;
-}
-
-.graph.ag2 {
+.graph.action {
   background-color: #eeeeee;
   border: solid black 1px;
-  min-height: span(2 of 10);
+  margin-bottom: 1em;
 }
 
 .selected {
