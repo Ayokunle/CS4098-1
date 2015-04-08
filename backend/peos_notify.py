@@ -14,7 +14,7 @@ from os.path import isfile, join
 #http://178.62.51.54:13930/event=CREATE&login_name=henrik&pathway_name=test_commit.pml
 
 def peos_notify(patient_id):
-    EXECUTION_PATH = "CS4098/peos/os/kernel/"
+    EXECUTION_PATH = "../peos/os/kernel/"
 
     #Error constants
     ERROR_USER_NOT_EXIST = 1

@@ -38,7 +38,7 @@ function peos_request($scope, $rootScope, event_type) {
 	getdata = {event : event_type,
 				login_name : $scope.active_pid,
 				action_name : $scope.pathwayaction["name"],
-				process_id : $scope.pathway["pid"] };
+				process_id : $scope.$parent.getselectedpathway()["pid"] };
 
 
 	//The function that runs when the http request succeeds
