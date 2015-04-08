@@ -10,14 +10,13 @@ html_escape_table = {
 }
 
 def html_escape(text):
-    return text
     return escape(text, html_escape_table)
 
 def main():
-    #root = (xml_to_etree("../peos/os/kernel/%s.dat.xml" % "2"))
-    #print (etree.tostring(root, pretty_print=True))
+    root = (xml_to_etree("../peos/os/kernel/%s.dat.xml" % "2"))
+    print (etree.tostring(root, pretty_print=True))
     
-    parsexml(sys.argv[1])
+    #parsexml(sys.argv[1])
 
 def parsexml(patient_id):
     return xml_to_json("../peos/os/kernel/%s.dat.xml" % patient_id)
@@ -37,7 +36,7 @@ def etree_to_dict(tree, only_child):
     '''Converts an lxml etree into a dictionary.'''
 
     if (tree.tag == "script"):
-        return {tree.tag: tree.text}
+        return {tree.tag: html_escape(tree.text)}
 
     mydict = dict([(item[0], item[1]) for item in tree.items()])
     children = tree.getchildren()
