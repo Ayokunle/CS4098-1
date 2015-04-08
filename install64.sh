@@ -93,7 +93,7 @@ if [ ! $rc -eq 0 ]; then
         echo "ERROR: Could not create a process directly"
         error=1
 else
-        echo "OK: Can created a process directly"
+        echo "OK: Can create a process directly"
 fi
 
 python3 test/CREATE_PROCESS_test.py
@@ -109,7 +109,7 @@ fi
 python3 test/DELETE_PROCESS_test.py
 rc=$?
 
-if [ ! $rc -eq 0 ]; then
+if [ ! $rc -eq 1 ]; then
 	echo "OK: Script was able to delete a process"
 else
         echo "ERROR: Script was not able to delete a process"
