@@ -11,8 +11,7 @@ MODEL_PATH = "../../models/"
 os.chdir(EXECUTION_PATH)
 
 #Creating a process
-process = subprocess.Popen(["./peos", "-l", "1", "-c", MODEL_PATH + "Dementia_management.pml"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-output, error = process.communicate()
+response = urllib.request.urlopen("http://127.0.0.1/cgi-bin/kernel_request.py/?event=CREATE&login_name=1&pathway_name=Dementia_management.pml").read()
 
 #Testing if CGI script will return Json with process table
 response = urllib.request.urlopen("http://127.0.0.1/cgi-bin/kernel_request.py/?event=GETLIST&login_name=1").read()
