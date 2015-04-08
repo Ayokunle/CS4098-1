@@ -1,7 +1,8 @@
 #CS4098
 
 #Tested only to work on Ubuntu 14.04 64 bit - will not work on 32 bit
-#See CS4098-Shcyup-Documentation.pdf cofor technical information, feature lists and user guides
+#See CS4098-Shcyup-Documentation.pdf for technical information, feature lists and user guides
+#A live site with this program installed can be found at http://45.55.167.222/openemr
 
 #Installation:
 - Go to where you want the program to be installed
