@@ -13,7 +13,7 @@
 - Answer "yes" to any confirmation prompts
 - You will be prompted to enter your MySQL root password - please enter it correctly
 - This install script performs actions other than just installing dependencies. Please do not try to run the project without having ran the install script.
-- Once the install is finished automated tests will be run. Please observer their output and note any errors.
+- Once the install is finished automated tests will be run. Please observe their output and note any errors.
 
 #How to use
 - For detailed usage instructions on each feature (with screenshots included) see documentation.pdf
