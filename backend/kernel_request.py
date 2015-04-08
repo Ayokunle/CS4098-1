@@ -100,10 +100,11 @@ else:
         #Construct a string from the command arguments
         commandargs = ("./peos", "-l", str(request.getvalue('login_name')), "-n", str(request.getvalue('process_id')), request.getvalue('action_name'), request.getvalue('event'))
         commandstr = ("%s " * len(commandargs)) % commandargs
+        
+        output_peos, error_peos = peos_notify.peos_notify(request.getvalue('login_name'))
 
-        jsonreply = {"status" : "success", "output" : {"o" : output, "e" : error}, "command" : commandstr}
+        jsonreply = {"status" : "success", "output" : {"o" : output, "e" : error}, "peos_output" : {"o": output_peos, "e" : error_peos}, "command" : commandstr}
     except Exception as ex:
         jsonreply = {"error": "%s\n%s" % (type(ex), ex), "error_code" : ERROR_SCRIPT_FAIL}
 
-    peos_notify(request.getvalue('login_name'))
     print json.dumps(jsonreply)

@@ -1,7 +1,7 @@
 #CS4098
 
-#Only works on 64 bit - do not use 32 bit
-#See documentation.pdf for technical information and user guides
+#Tested only to work on Ubuntu 14.04 64 bit - will not work on 32 bit
+#See documentation.pdf for technical information, feature lists and user guides
 
 #Installation:
 - Go to where you want the program to be installed
@@ -10,8 +10,8 @@
 - Enter the CS4098 directory and run "sudo chmod +x install64.sh"
 - Run "sudo ./install64.sh"
 - This script will now install all dependencies and then install the program
-- Answer "yes" to all confirmation prompts
-- You may be prompted to create and/or enter a MySQL root password, please do so
+- Answer "yes" to any confirmation prompts
+- You will be prompted to enter your MySQL root password - please enter it correctly
 - This install script performs actions other than just installing dependencies. Please do not try to run the project without having ran the install script.
 - Once the install is finished automated tests will be run. Please observer their output and note any errors.
 
@@ -24,13 +24,14 @@
 	- Verify that modal dialog box with header "Pathway Support" appears
 - To show pathway support action list
 	- Go to pathway support popup
-	- Click the "+" button
+	- Click the "Create New Pathway" button
 	- Select the pathway you want to create an instance of
 	- Click ok
-	- Mouse over the pathway and click it when it turns dark blue
-	- Verify that the action list appears below the pathway list
+	- Click the "Action List" button next to the pathway
+	- View the action list
 	- Click "expand" on the action you want to select
-	- Verify that the start, suspend, abort and finish buttons appear (these are currently unfinished)
+	- Verify that the start, suspend, abort and finish buttons appear
+	- Where applicable, click the buttons to change the action's state
 - To test backend functionality
 	- Automated tests are performed at the end of the install process. If you want to do manual tests then see below
 	- Enter CS4098/test directory
@@ -58,16 +59,6 @@
 	- tcl-dev
 	- libxml2-dev
 	- dos2unix
-
-#To verify OpenEMR is working:
-
-- Go to OpenEMR location on server 
-	- http://localhost/openemr
-- Sign in as admin
-	- username: admin
-	- password: pass
-- Create patients
-
-#To verify peos is working
-
-- Go to CS4098/peos/os/kernel and run "./peos -h" and it should display a list of possible commands
+	- libxslt-dev
+	- python-dev
+	- python-lxml

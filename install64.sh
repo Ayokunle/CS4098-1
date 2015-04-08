@@ -40,12 +40,14 @@ chmod u+x mysql.sh
 /bin/bash mysql.sh
 cd peos
 sudo make
+rm models/build_test.pml
 rm models/commit_changes.pml
 rm models/incremental_test.pml
 rm models/netbeans_req_release.pml
 rm models/run_peos.pml
 rm models/simple.pml
 rm models/test_commit.pml
+rm models/web_test.pml
 
 cd ../
 sudo make install
