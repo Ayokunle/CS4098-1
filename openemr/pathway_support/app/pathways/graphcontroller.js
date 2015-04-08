@@ -312,6 +312,14 @@ function getFillFromActionState(state, isselected) {
 			return "#52A3CC"
 		}
 	}
+	else if (state == "SATISFIED") {
+		if (isselected) {
+			return "#CCFF33";
+		}
+		else {
+			return "#A3CC29"
+		}
+	}
 
 	else {
 		if (isselected) {
