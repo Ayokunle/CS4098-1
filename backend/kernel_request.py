@@ -87,7 +87,10 @@ elif request.getvalue('event') == "GETLIST":
 elif request.getvalue('event') == "DELETE":
     #To delete a process: peos [-l login_name] -d pid
     process = subprocess.Popen(["./peos", "-l", request.getvalue('login_name'), "-d", request.getvalue('process_id')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+    
+    jsonreply = {"status" : "success"}
+    print json.dumps(jsonreply)
+    
 else:
     #peos [-l login_name] -n process_id action_name event
     try:

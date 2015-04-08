@@ -15,7 +15,7 @@ os.chdir(EXECUTION_PATH)
 process = subprocess.Popen(["./peos", "-l", "27", "-c", MODEL_PATH + "Dementia_management.pml"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 output, error = process.communicate()
 
-#10000ing if CGI script will return Json with process table
+#27ing if CGI script will return Json with process table
 response = urllib.request.urlopen("http://127.0.0.1/cgi-bin/kernel_request.py/?event=GETLIST&login_name=27").read()
 response = str(response)
 
