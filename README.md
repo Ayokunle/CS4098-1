@@ -35,9 +35,7 @@
 - To test backend functionality
 	- Automated tests are performed at the end of the install process. If you want to do manual tests then see below
 	- Enter CS4098/test directory
-	- Run "python3 create_process_test.py"
-	- Run "python3 parse_xml_process_table_test.py"
-	- If it is able to receive a request from the server it means the CGI scripts are working and can contact peos
+	- Run "python3 <test_name>.py"
     - To make a request to "Start action", "Finish action", "Abort action" or "Suspend action": "IP/domain name of server"/cgi-bin/kernel_request.py/?event="event"&login_name="login_name"&process_id="process_id"&action_name="action_name"
 
 #Requirements:
