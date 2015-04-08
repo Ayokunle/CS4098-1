@@ -1,6 +1,6 @@
 //Constants
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var PATHWAY_SELECT = 0;
 var PATHWAY_NOTIFY = 1;
@@ -16,9 +16,28 @@ var app
 if (app == null)
     app = angular.module('popupApp', ['ngRoute']);
 
+app.filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            if (text != null) {
+
+                //Remove the quotes from the start and end of the html string
+                if (text.charAt(1) == "\"") {
+                    text = text.substring(2);
+                }
+                if (text.charAt(text.length - 2) == "\"") {
+                    text = text.substring(0, text.length - 2);
+                }
+                return $sce.trustAsHtml(text);
+            }
+            else
+            {
+                return "";
+            }
+        };
+    }]);
+
 app.controller('pathwaycontroller', function($scope) {
     console.log("Starting pathway controller");
-
     //
     //Assign scope member functions
     //
@@ -113,6 +132,7 @@ function selectpathway($scope, pathwayindex) {
 function createpathway($scope, pathwayname) {
     getdata = {"event" : "CREATE", "login_name" : $scope.active_pid, "pathway_name" : pathwayname};
 
+    $scope.closepathwaycreate();
     console.log("Requesting backend to create process: " + pathwayname);
 
     $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
