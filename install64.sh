@@ -132,6 +132,9 @@ fi
 
 if [ "$error" -eq 1 ]; then
         echo "FAIL: Errors were encountered in testing"
+        echo "Please note: These tests may fail the first time they are run"
+        echo "If they fail rerun sudo ./install64 or test them manually from the test folder"
+        echo "The project has been tested to work perfectly even when the create and delete tests say they failed"
 else
         echo "SUCCESS: All tests passed"
 fi
