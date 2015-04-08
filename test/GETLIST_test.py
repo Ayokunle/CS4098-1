@@ -11,15 +11,15 @@ MODEL_PATH = "../../models/"
 os.chdir(EXECUTION_PATH)
 
 #Creating a process
-process = subprocess.Popen(["./peos", "-l", "test", "-c", MODEL_PATH + "Dementia_management.pml"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+process = subprocess.Popen(["./peos", "-l", "10000", "-c", MODEL_PATH + "Dementia_management.pml"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 output, error = process.communicate()
 
 #Testing if CGI script will return Json with process table
-response = urllib.request.urlopen("http://127.0.0.1/cgi-bin/kernel_request.py/?event=GETLIST&login_name=test").read()
+response = urllib.request.urlopen("http://127.0.0.1/cgi-bin/kernel_request.py/?event=GETLIST&login_name=10000").read()
 response = str(response)
 
 #Clean up (Adding a process at random may have side effects....)
-process = subprocess.Popen(["./peos", "-l", "test", "-d", "0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+process = subprocess.Popen(["./peos", "-l", "10000", "-d", "0"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 if ("Dementia_management" in response):
     sys.exit(0)
