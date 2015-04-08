@@ -118,7 +118,7 @@ proc Confirmed_Dementia { resource } {
     set handle [mysqlconnect -user root]
     mysqluse $handle mysql
     #puts $handle
-    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = $file_data" -list] {
+    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = '$file_data'" -list] {
         if {[string match -nocase *dementia* [lindex $res 1] ]} {
             return 1
         }
@@ -135,7 +135,7 @@ proc suspect_diabetes { resource }  {
     set handle [mysqlconnect -user root]
     mysqluse $handle mysql
     #puts $handle
-    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = $file_data" -list] {
+    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = '$file_data'" -list] {
         if {[string match -nocase *diabetes* [lindex $res 1] ]} {
             return 1
         }
@@ -152,7 +152,7 @@ proc glucose_test { resource }  {
     set handle [mysqlconnect -user root]
     mysqluse $handle mysql
     #puts $handle
-    foreach res [mysqlsel $handle "select foreign_id, url from openemr.documents where foreign_id = $file_data" -list] {
+    foreach res [mysqlsel $handle "select foreign_id, url from openemr.documents where foreign_id = '$file_data'" -list] {
         if {[string match -nocase *glucose_test* [lindex $res 1] ]} {
             return 1
         }
@@ -169,7 +169,7 @@ proc cholesterol_test { resource }  {
     set handle [mysqlconnect -user root]
     mysqluse $handle mysql
     #puts $handle
-    foreach res [mysqlsel $handle "select foreign_id, url from openemr.documents where foreign_id = $file_data" -list] {
+    foreach res [mysqlsel $handle "select foreign_id, url from openemr.documents where foreign_id = '$file_data'" -list] {
         if {[string match -nocase *cholesterol_test* [lindex $res 1] ]} {
             return 1
         }
@@ -186,7 +186,7 @@ proc diabetes { resource }  {
     set handle [mysqlconnect -user root]
     mysqluse $handle mysql
     #puts $handle
-    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = $file_data" -list] {
+    foreach res [mysqlsel $handle "select pid, title from openemr.lists where pid = '$file_data'" -list] {
         if {[string match -nocase *diabetes* [lindex $res 1] ]} {
             return 1
         }
