@@ -59,7 +59,7 @@
         <div class="container" ng-show="ispathwaynotifyscreen()">
                 <h1>Pathway Actions</h1>
                 <div>
-                        Filter by state: <select ng-model="selectedpml" ng-controller="popupController" ng-options="state for state in stateArray"></select>
+                        <!--Filter by state: <select ng-model="selectedpml" ng-controller="popupController" ng-options="state for state in stateArray"></select>-->
 
                         <div ng-controller = "actionController" ng-repeat = "action in pathways[selectedpathway]['children']" class = "popup action {{ action['action']['state'] }}">
                                 <div class="expanded" ng-show = "visible">
@@ -90,6 +90,7 @@
                 <h1>Pathway Graph</h1>
                 <div class="subtitle">Active Pathway: {{ fixname(selectedpathway["model"]) }}</div>
                 <div>
+                        <div class="graph" id="graphtag"></div>
                         <div class="graph popup action">
                                 <div class="expanded {{ selectedaction['state'] }}" ng-show="selectedaction != null">
                                         <div><button ng-click="hideaction()" >Close</button> {{ fixname(selectedaction["name"]) }} </div>
@@ -107,7 +108,6 @@
                                         Select an action to display more information!
                                 </div>
                         </div>
-                        <div class="graph" id="graphtag"></div>
                 </div>
                 <div class="fullrow">
                         <button ng-click="closegraphscreen()">< Back to pathway List</button>

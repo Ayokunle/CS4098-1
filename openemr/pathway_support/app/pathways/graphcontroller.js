@@ -2,8 +2,8 @@
 ACTION_WIDTH = 120;
 ACTION_HEIGHT = 40;
 
-COLUMN_WIDTH = ACTION_WIDTH + 30;
-ROW_HEIGHT = ACTION_HEIGHT + 20;
+COLUMN_WIDTH = ACTION_WIDTH + 100;
+ROW_HEIGHT = ACTION_HEIGHT + 30;
 
 var app
 if (app == null)
@@ -71,7 +71,14 @@ function generategraph($scope, pathway) {
     var yStart = 15;
 
     //Assume the top layer is a pathway
-    generatesequence($scope, $scope.paper, pathway, xStart, yStart, false);
+    generatesequence($scope, $scope.paper, {"children": pathway.children}, xStart, yStart, false, []);
+
+
+    var tx = ($scope.xMax / 3) - xStart;
+	//console.log(paper.canvas);
+	shapes.transform("t" + tx + ",0");
+	connections.transform("t" + tx + ",0");
+	textboxes.transform("t" + tx + ",0");
 
     $scope.paper.setSize($scope.xMax, $scope.yMax);
 }
@@ -83,46 +90,54 @@ function hoverout() {
 	this.animate({"fill-opacity": 0.8}, 50);
 }
 
-function generatesequence($scope, paper, sequence, xStart, yStart, isLooped) {
-	x = xStart;
-	y = yStart;
+function generatesequence($scope, paper, sequence, xStart, yStart, isLooped, parentindices) {
+	var x = xStart;
+	var y = yStart;
 
+	var result = [parentindices, yStart];
 	for (key in sequence)
 	{
 		if (key == "children") {
 			for (child in sequence['children']) {
 		    	for (childkey in sequence['children'][child])
 				{
-		    		generatepart($scope, paper, childkey, sequence['children'][child][childkey], x, y);
-
-		    		y += ROW_HEIGHT;
-					if (y > $scope.yMax) {
-						$scope.yMax = y;
-			    	}
+		    		result = generatepart($scope, paper, childkey, sequence['children'][child][childkey], x, y, parentindices);
+		    		parentindices = result[0];
+		    		y = result[1];
 		    	}
 		    }
 		}
 		else {
-			generatepart($scope, paper, key, sequence[key], x, y);
+			result = generatepart($scope, paper, key, sequence[key], x, y, parentindices);
 		}
 	}
+	return result;
 }
 
-function generatepart($scope, paper, partname, part, xStart, yStart) {
+function generatepart($scope, paper, partname, part, xStart, yStart, parentindices) {
+	console.log("-------------------------------------")
 	console.log("Generating part " + partname);
 	console.log("location " + xStart + "," + yStart);
 	console.log(part);
 
-	x = xStart;
-	y = yStart;
+	pstring = "[";
+	for ( x in parentindices) {
+		pstring += parentindices[x] + ",";
+	}
+	pstring += "]"
+	console.log("parents " + pstring);
+	console.log("------------------------------------");
+
+	var x = xStart;
+	var y = yStart;
 
 	if (partname == "action") {
 		//console.log("action: ");
 		//console.log(sequence['children'][child][key]);
 
 		var action = part;
-		action.selected = "";
-		generateaction($scope, paper, action);
+		//action.selected = "";
+		generateaction($scope, paper, action, x, y);
 
 		y += ROW_HEIGHT;
 		if (y > $scope.yMax) {
@@ -130,95 +145,87 @@ function generatepart($scope, paper, partname, part, xStart, yStart) {
     	}
 
     	if (shapes.length > 1) {
-    		console.log($scope.parentindices);
-    		for (i in $scope.parentindices) {
-				connections.push(paper.connection(shapes[$scope.parentindices[i]], shapes[shapes.length - 1], "#000"));
+    		//console.log(parentindices);
+    		for (i in parentindices) {
+    			console.log("Connection between " + parentindices[i] + " and " + shapes.length - 1);
+				connections.push(paper.connection(shapes[parentindices[i]], shapes[shapes.length - 1], "#000"));
 			}
 		}
 		//Set the parent index to be this shape, for the next shape that will be added
-		$scope.parentindices = [shapes.length - 1];
+		return [[shapes.length - 1], y];
 	}
 	else if (partname == "iteration") {
-    	shapes.push(paper.rect(x, y, ACTION_WIDTH, ACTION_HEIGHT));
-
-		y += ROW_HEIGHT;
-		if (y > $scope.yMax) {
-			$scope.yMax = y;
-    	}
-
-	    if (shapes.length > 1) {
-			connections.push(paper.connection(shapes[shapes.length - 2], shapes[shapes.length - 1], "#000"));
-		}
+		var iteration = part;
+		return generatesequence($scope, paper, iteration, x, y, true, parentindices);
 	}
 	else if (partname == "branch") {
 		var branch = part;
-		var tx = generatebranch($scope, paper, branch, x, y);
-
-		//console.log(paper.canvas);
-		shapes.transform("t" + tx + ",0");
-		connections.transform("t" + tx + ",0");
-		textboxes.transform("t" + tx + ",0");
-
-		/*
-		var tx = (xtranslation);
-		console.log("t" + tx + ",0");
-		
-		for (s in shapes) {
-			shapes[s].transform("t" + tx + ",0");
-			shapes[s].text.transform("t" + tx + ",0");
-		}
-		for (c in connections) {
-			connections[c].transform("t" + tx + ",0");
-		}*/
-
-
-    	/*shapes.push(paper.rect(x, y, ACTION_WIDTH, ACTION_HEIGHT));
-
-		y += ROW_HEIGHT;
-		if (y > $scope.yMax) {	
-			$scope.yMax = y;
-    	}
-
-	    if (shapes.length > 1) {
-			connections.push(paper.connection(shapes[shapes.length - 2], shapes[shapes.length - 1], "#000"));
-		}*/
+		return generatebranch($scope, paper, branch, x, y, parentindices);
 	}
 	else if (partname == "sequence") {
 		var sequence = part;
-		generatesequence($scope, paper, sequence, x, y, false);
+		return generatesequence($scope, paper, sequence, x, y, false, parentindices);
 	}
+	else
+		console.log("oops");
 }
 
-function generatebranch($scope, paper, branch, xStart, yStart) {
-	var branchparents = $scope.parentindices;
+function generatebranch($scope, paper, branch, xStart, yStart, parentindices) {
 	var branchindices = [];
-
 	var numchildren = branch["children"].length;
 
-	for (child in branch["children"]) {
-		console.log(child);
+	var x = xStart; var y = yStart;
 
-		var x = xStart - ((COLUMN_WIDTH / 2) * (numchildren - 1));
-		x += (COLUMN_WIDTH * child);
+	//
+	//Generate the root of the branch
+	//
+	generatebranchparent($scope, paper, branch, x, y, parentindices);
 
-		generatesequence($scope, paper, branch["children"][child], x, yStart, false);
-		//Restore the parent index to be the parent of the branch
-		$scope.parentindices = branchparents;
-		branchindices.push(shapes.length - 1);
-
-		if ($scope.xMax < xStart + (COLUMN_WIDTH * child) + COLUMN_WIDTH) {
-			$scope.xMax = xStart + (COLUMN_WIDTH * child) + COLUMN_WIDTH;
-			console.log("max x = " + $scope.xMax);
+	if (shapes.length > 1) {
+		//console.log(parentindices);
+		for (i in parentindices) {
+			console.log("Connection between " + parentindices[i] + " and " + shapes.length - 1);
+			connections.push(paper.connection(shapes[parentindices[i]], shapes[shapes.length - 1], "#000"));
 		}
 	}
 
-	$scope.parentindices = branchindices;
+	parentindices = [shapes.length - 1]
+
+	y += ROW_HEIGHT;
+	if (y > $scope.yMax) {
+		$scope.yMax = y;
+    }
+
+    var yMaxBranch = y;
+
+    //
+    //Generate the child nodes of the branch
+    //
+	for (child in branch["children"]) {
+		console.log("child:");
+		console.log(child);
+
+		var xb = x - ((COLUMN_WIDTH / 2) * (numchildren - 1));
+		xb += (COLUMN_WIDTH * child);
+
+		result = generatesequence($scope, paper, branch["children"][child], xb, y, false, parentindices);
+
+		if (yMaxBranch < result[1])
+			yMaxBranch = result[1];
+
+		//Restore the parent index to be the parent of the branch
+		branchindices.push(shapes.length - 1);
+
+		if ($scope.xMax < xb + (COLUMN_WIDTH * child) + COLUMN_WIDTH) {
+			$scope.xMax = xb + (COLUMN_WIDTH * child) + COLUMN_WIDTH;
+		}
+	}
 
 	//Return the total amount of x translation
-	return ((COLUMN_WIDTH / 2) * (numchildren - 1));
+	return [branchindices, yMaxBranch];
 }
 
-function generateaction($scope, paper, currentaction) {
+function generateaction($scope, paper, currentaction, x, y) {
 	var fill_deselected = getFillFromActionState(currentaction["state"], false);
 	var fill_selected = getFillFromActionState(currentaction["state"], true);
 
@@ -231,7 +238,7 @@ function generateaction($scope, paper, currentaction) {
 		)
 		.hover(hoverin, hoverout);
 
-	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, $scope.fixname(currentaction["name"]))
+	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, fixnamewidth($scope.fixname(currentaction["name"])))
 		.click(
 			function() {
 				$scope.selectaction(currentaction);
@@ -246,6 +253,29 @@ function generateaction($scope, paper, currentaction) {
 	currentaction.deselect = function() {
 		sh.animate({ "fill": fill_deselected}, 200);
 	}
+}
+
+function generatebranchparent($scope, paper, currentbranch, x, y) {
+	//var fill_deselected = getFillFromActionState(currentaction["state"], false);
+	//var fill_selected = getFillFromActionState(currentaction["state"], true);
+
+	var branch = paper.ellipse(x + ACTION_WIDTH / 2, y + ACTION_HEIGHT / 2, ACTION_WIDTH / 2, ACTION_HEIGHT / 2)
+		.attr({fill: "#fff", "fill-opacity": 0.8})
+		.click(
+			function() {
+				//$scope.selectaction(currentaction);
+			}
+		)
+		.hover(hoverin, hoverout);
+
+	branchText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, "branch")
+		.click(
+			function() {
+				$scope.selectaction(currentaction);
+			});
+
+	shapes.push(branch);
+	textboxes.push(branchText);
 }
 
 function getFillFromActionState(state, isselected) {
@@ -330,4 +360,24 @@ function getFillFromActionState(state, isselected) {
 			return "#999"
 		}
 	}
+}
+
+
+function fixnamewidth(name)
+{
+    parts = name.split(" ");
+
+    newname = "";
+    currentline = parts[0];
+    for (var i = 1; i < parts.length; i++)
+    {
+        currentline += " " + parts[i];
+
+        if (currentline.length > 15) {
+        	newname += currentline + "\n";
+        	currentline = ""
+        }
+    }
+
+    return newname + currentline;
 }
