@@ -73,7 +73,7 @@
                                         <div>Script:</div><div ng-bind-html="action['action']['children'][0].script | to_trusted"></div>
                                         <br>
 
-                                        <actionbuttons action="action" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
+                                        <actionbuttons action="action['action']" pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
                                 </div>
                                 <div class="collapsed" ng-hide = "visible">
                                         <div><button ng-click="expand()" >Expand</button> {{ fixname(action["action"]["name"]) }} </div>
@@ -102,7 +102,7 @@
                                         <br>
                                         <div>Script:</div><div class="script" ng-bind-html="selectedaction['children'][0]['script'] | to_trusted"></div>
                                         <br>
-                                        <actionbuttons action='selectedaction["action"]' pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
+                                        <actionbuttons action='selectedaction' pathway="selectedpathway" patient="active_pid" oncompleterequest="getpathways"></actionbuttons>
                                 </div>
                                 <div ng-hide="selectedaction != null">
                                         Select an action to display more information!
