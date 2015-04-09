@@ -96,9 +96,9 @@
                                         <div><button ng-click="hideaction()" >Close</button> {{ fixname(selectedaction["name"]) }} </div>
                                         <div>State: {{ selectedaction["state"] }}</div>
                                         <br>
-                                        <div>Required resources: {{ fixname(selectedaction["action"]['children'][1].req_resource["name"]) }}</div>
+                                        <div>Required resources: {{ fixname(selectedaction['children'][1].req_resource["name"]) }}</div>
                                         <br>
-                                        <div>Provided resources: {{ fixname(selectedaction["action"]['children'][2].prov_resource["name"])}}</div>
+                                        <div>Provided resources: {{ fixname(selectedaction['children'][2].prov_resource["name"])}}</div>
                                         <br>
                                         <div>Script:</div><div class="script" ng-bind-html="selectedaction['children'][0]['script'] | to_trusted"></div>
                                         <br>
