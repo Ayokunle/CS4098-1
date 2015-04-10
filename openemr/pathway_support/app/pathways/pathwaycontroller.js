@@ -1,6 +1,6 @@
 //Constants
-var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
-//var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
+//var KERNEL_REQUEST_URL = "/cgi-bin/kernel_request.py";
+var KERNEL_REQUEST_URL = "/openemr/pathway_support/test/kernel_request.php";
 
 var PATHWAY_SELECT = 0;
 var PATHWAY_NOTIFY = 1;
@@ -55,8 +55,8 @@ app.controller('pathwaycontroller', function($scope) {
     }
 
 
-    $scope.getpathways = function() {
-        getpathways($scope);
+    $scope.getpathways = function(oncompleterequest) {
+        getpathways($scope, oncompleterequest);
     };
 
     $scope.selectpathway = function(pathwayindex) {
@@ -181,12 +181,10 @@ function opengraph($scope, pathwayindex) {
     $scope.currentscreen = PATHWAY_GRAPH;
 }
 
-function getpathways($scope) {
+function getpathways($scope, oncompleterequest) {
     if ($scope.active_pid != null) {
         getdata = {"event" : "GETLIST", "login_name" : $scope.active_pid};
 
-        console.log($scope.selectedpathway);
-        var storedpathway = $scope.selectedpathway;
         console.log("Getting list of pathways");
         $.getJSON(KERNEL_REQUEST_URL, getdata, datatype = 'json')
         .done(function(data) {
@@ -200,7 +198,11 @@ function getpathways($scope) {
                 //Display the list of pathways
                 $scope.pathways = data["process_table"]["process"];
             }
-            $scope.selectedpathway = storedpathway;
+            if (oncompleterequest != null)
+            {
+                oncompleterequest();
+            }
+
             $scope.$digest();
         })
         .fail(function(data) {

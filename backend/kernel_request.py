@@ -71,10 +71,11 @@ elif request.getvalue('event') == "GETLIST":
     #Remove outer body tag (it's only boilerplate)
     data = data["body"]
 
+    #Check for an empty
     if data["process_table"] == {}:
         pass
     #Convert children key to process list
-    if "children" in data["process_table"]:
+    elif "children" in data["process_table"]:
         data["process_table"]["process"] = [p["process"] for p in data["process_table"]["children"]]
         data["process_table"].pop("children", None)
     #Convert process key to list

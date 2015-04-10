@@ -14,6 +14,15 @@ app.controller('graphcontroller', function($scope) {
     console.log("Starting graph controller");
 
     $scope.generategraph = function(pathway) { generategraph($scope, pathway); }
+ 
+    $scope.regenerategraph = function() {
+        var storedpathway = $scope.selectedpathway;
+    	$scope.closegraphscreen();
+    	$scope.getpathways(function() {
+    	//	$scope.selectedpathway = storedpathway;
+    		$scope.opengraph(storedpathway);
+    	});
+    };
 
     //Generate the graph only when the selected pathway changes
     $scope.$watch('selectedpathway', function(newValue, oldValue) {
@@ -27,7 +36,7 @@ app.controller('graphcontroller', function($scope) {
     	console.log("Selected action:");
     	console.log(action);
     	if ($scope.selectedaction) {
-	    	$scope.selectedaction.deselect();	
+	    	$scope.selectedaction.deselect();
     	}
     	$scope.selectedaction = action;
     	$scope.selectedaction.select();
@@ -48,14 +57,16 @@ function closegraphscreen($scope) {
 }
 
 function generategraph($scope, pathway) {
+	console.log("Generating graph");
 	console.log(pathway);
 	//Clear the paper if it already exists
     if ($scope.paper) {
     	console.log("clearing paper");
 		$('#graphtag').html("");
+		textboxes.clear();
 	}
 
-    $scope.paper = Raphael("graphtag", 20, 20);
+    $scope.paper = Raphael("graphtag", 20, 20)
         //connections = [];
         //shapes = [];
 
@@ -115,19 +126,6 @@ function generatesequence($scope, paper, sequence, xStart, yStart, isLooped, par
 }
 
 function generatepart($scope, paper, partname, part, xStart, yStart, parentindices) {
-	/*console.log("-------------------------------------")
-	console.log("Generating part " + partname);
-	console.log("location " + xStart + "," + yStart);
-	console.log(part);
-
-	pstring = "[";
-	for ( x in parentindices) {
-		pstring += parentindices[x] + ",";
-	}
-	pstring += "]"
-	console.log("parents " + pstring);
-	console.log("------------------------------------");
-	*/
 
 	var x = xStart;
 	var y = yStart;
@@ -241,12 +239,16 @@ function generateaction($scope, paper, currentaction, x, y) {
 		)
 		.hover(hoverin, hoverout);
 
-	actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2 - 5, fixnamewidth($scope.fixname(currentaction["name"])))
+	console.log(fixnamewidth($scope.fixname(currentaction["name"])));
+	console.log(x, y);
+
+	var actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2 - 5, fixnamewidth($scope.fixname(currentaction["name"])))
 		.click(
 			function() {
 				$scope.selectaction(currentaction);
-			});
-
+			})
+		.attr({'text-anchor': 'middle'});
+	
 	shapes.push(sh);
 	textboxes.push(actionText);
 
@@ -264,18 +266,10 @@ function generatebranchparent($scope, paper, currentbranch, x, y) {
 
 	var branch = paper.ellipse(x + ACTION_WIDTH / 2, y + ACTION_HEIGHT / 2, ACTION_WIDTH / 2, ACTION_HEIGHT / 2)
 		.attr({fill: "#fff", "fill-opacity": 0.8})
-		.click(
-			function() {
-				//$scope.selectaction(currentaction);
-			}
-		)
 		.hover(hoverin, hoverout);
 
-	branchText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, "branch")
-		.click(
-			function() {
-				$scope.selectaction(currentaction);
-			});
+	var branchText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2, "branch")
+		.attr({'text-anchor': 'middle'});
 
 	shapes.push(branch);
 	textboxes.push(branchText);
