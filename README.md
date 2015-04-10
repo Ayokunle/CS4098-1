@@ -2,7 +2,6 @@
 
 #Tested only to work on Ubuntu 14.04 64 bit - will not work on 32 bit
 #See CS4098-Shcyup-Documentation.pdf for technical information, feature lists and user guides
-#A live site with this program installed can be found at http://45.55.167.222/openemr
 
 #Installation:
 - Go to where you want the program to be installed
@@ -36,7 +35,7 @@
 - To test backend functionality
 	- Automated tests are performed at the end of the install process. If you want to do manual tests then see below
 	- Enter CS4098/test directory
-	- Run "python3 <test_name>.py"
+	- Run "python3 [test name].py"
     - To make a request to "Start action", "Finish action", "Abort action" or "Suspend action": "IP/domain name of server"/cgi-bin/kernel_request.py/?event="event"&login_name="login_name"&process_id="process_id"&action_name="action_name"
 
 #Requirements:
