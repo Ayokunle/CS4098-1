@@ -16,11 +16,17 @@ app.controller('graphcontroller', function($scope) {
     $scope.generategraph = function(pathway) { generategraph($scope, pathway); }
  
     $scope.regenerategraph = function() {
-        var storedpathway = $scope.selectedpathway;
+        var storedpathway = $scope.selectedpathway["pid"];
+        console.log("stored pathway");
+        console.log(storedpathway);
     	$scope.closegraphscreen();
     	$scope.getpathways(function() {
-    	//	$scope.selectedpathway = storedpathway;
-    		$scope.opengraph(storedpathway);
+    		for (i in $scope.pathways)
+    		{
+    			if ($scope.pathways[i]["pid"] == storedpathway) {
+    				$scope.opengraph($scope.pathways[i]);
+    			}
+    		}
     	});
     };
 
@@ -238,9 +244,6 @@ function generateaction($scope, paper, currentaction, x, y) {
 			}
 		)
 		.hover(hoverin, hoverout);
-
-	console.log(fixnamewidth($scope.fixname(currentaction["name"])));
-	console.log(x, y);
 
 	var actionText = paper.text(x + ACTION_WIDTH / 2, (y + ACTION_HEIGHT / 2) / 2 - 5, fixnamewidth($scope.fixname(currentaction["name"])))
 		.click(

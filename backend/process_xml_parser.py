@@ -9,6 +9,10 @@ html_escape_table = {
     "'": "&apos;"
 }
 
+html_unescape_table = {v:k for k, v in html_escape_table.items()}
+def html_unescape(text):
+    return unescape(text, html_unescape_table)
+
 def html_escape(text):
     return escape(text, html_escape_table)
 
@@ -35,7 +39,7 @@ def etree_to_dict(tree, only_child):
     '''Converts an lxml etree into a dictionary.'''
 
     if (tree.tag == "script"):
-        return {tree.tag: html_escape(tree.text)}
+        return {tree.tag: html_unescape(tree.text)}
 
     mydict = dict([(item[0], item[1]) for item in tree.items()])
     children = tree.getchildren()
