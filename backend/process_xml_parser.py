@@ -13,10 +13,9 @@ def html_escape(text):
     return escape(text, html_escape_table)
 
 def main():
+    print "Printing xml tree for patient id = 2"
     root = (xml_to_etree("../peos/os/kernel/%s.dat.xml" % "2"))
     print (etree.tostring(root, pretty_print=True))
-    
-    #parsexml(sys.argv[1])
 
 def parsexml(patient_id):
     return xml_to_json("../peos/os/kernel/%s.dat.xml" % patient_id)
@@ -52,10 +51,7 @@ def etree_to_dict(tree, only_child):
         return {tree.tag: mydict}
 
 def dict_to_json(dictionary, json_output):
-    '''Coverts a dictionary into a json file.'''
-    #f = open(json_output, 'w')
-    #f.write(json.dumps(dictionary, ensure_ascii=False))
-    #f.close()
+    '''Coverts a dictionary into json'''
     return json.dumps(dictionary, ensure_ascii=False)
 
 if __name__== "__main__":
